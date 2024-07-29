@@ -1,5 +1,5 @@
-<div class="join">
-    <input class="input input-bordered join-item"
+<div class="join flex w-full max-w-sm">
+    <input class="input input-bordered join-item grow"
            required
            name="email"
            type="email"

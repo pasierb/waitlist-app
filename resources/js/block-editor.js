@@ -1,7 +1,8 @@
 import EditorJS from '@editorjs/editorjs'
 import Header from '@editorjs/header';
 import List from "@editorjs/list";
-import {EmailInput} from './blockeditor/email-input.js';
+import {EmailInput} from './blockeditor/email-input';
+import {TextInput} from './blockeditor/text-input';
 
 function createEditor() {
     const holder = document.getElementById('editorjs');
@@ -14,6 +15,7 @@ function createEditor() {
         tools: {
             header: Header,
             'email-input': EmailInput,
+            'text-input': TextInput,
             list: {
                 class: List,
                 inlineToolbar: true,

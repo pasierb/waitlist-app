@@ -6,7 +6,7 @@ export class EmailInput {
     _input() {
         const input = document.createElement('input');
         input.type = 'email';
-        input.classList.add('input', 'input-bordered', 'join-item');
+        input.classList.add('input', 'input-bordered', 'join-item', 'grow');
         input.value = this.data.placeholder;
 
         return input;
@@ -26,7 +26,7 @@ export class EmailInput {
 
     _wrapper() {
         const wrapper = document.createElement('div');
-        wrapper.classList.add('join');
+        wrapper.classList.add('join', 'w-full', 'max-w-sm', 'flex');
         wrapper.appendChild(this._input());
         wrapper.appendChild(this._button());
 
