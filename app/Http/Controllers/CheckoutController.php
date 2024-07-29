@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Cashier\Cashier;
-use Spatie\Url\Url;
 
 class CheckoutController extends Controller
 {

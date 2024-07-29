@@ -23,6 +23,11 @@ function createEditor() {
                     defaultStyle: 'unordered'
                 }
             },
+        },
+        onChange(api, event) {
+            api.saver.save().then((outputData) => {
+                document.dispatchEvent(new CustomEvent('block-editor-change', {detail: {data: outputData}}));
+            });
         }
     });
     return editor;
