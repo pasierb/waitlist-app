@@ -12,7 +12,7 @@ export class TextInput {
         const input = document.createElement('input');
         input.type = 'text';
         input.classList.add('input', 'input-bordered');
-        // input.value = this.data.placeholder;
+        input.value = this.data.placeholder;
         input.name = `data[${this.data.label}]`
 
         return input;
@@ -25,6 +25,13 @@ export class TextInput {
         const span = document.createElement('span');
         span.classList.add('label-text');
         span.innerHTML = this.data.label || 'Label';
+
+        span.addEventListener('click', (event) => {
+            const value = window.prompt('Enter label', span.innerHTML);
+            if (value !== null) {
+                span.innerHTML = value;
+            }
+        });
 
         wrapper.appendChild(span);
 
@@ -46,6 +53,8 @@ export class TextInput {
 
     save(blockContent) {
         return {
+            label: blockContent.querySelector('.label-text').innerText,
+            placeholder: blockContent.querySelector('input').value,
         };
     }
 }

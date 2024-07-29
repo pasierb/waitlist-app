@@ -21,6 +21,7 @@ Route::resource('projects.submissions', SubmissionController::class)
     ->only(['index'])
     ->middleware(['auth', 'verified']);
 
+Route::get('/p/{project:slug}', [ProjectController::class, 'show'])->name('project.page');
 Route::get('/projects/{project}', [ProjectController::class, 'show'])->name('projects.show');
 Route::post('/projects/{project}/submissions', [SubmissionController::class, 'store'])
     ->name('projects.submissions.store');

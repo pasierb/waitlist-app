@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .ce-block {
+        @apply hover:bg-gray-50;
+    }
+    .ce-block__content {
+        @apply flex flex-row justify-center;
+    }
+}

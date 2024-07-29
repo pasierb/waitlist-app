@@ -56,5 +56,7 @@ export default {
         ],
     },
 
+    safelist: ['ce-block__content', 'ce-block'],
+
     plugins: [forms, typography, daisyui],
 };

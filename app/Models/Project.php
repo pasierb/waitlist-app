@@ -14,5 +14,5 @@ class Project extends Model
         return $this->hasMany(Submission::class);
     }
 
-    protected $fillable = ['name', 'block_editor_data', 'color_theme'];
+    protected $fillable = ['name', 'block_editor_data', 'color_theme', 'slug'];
 }

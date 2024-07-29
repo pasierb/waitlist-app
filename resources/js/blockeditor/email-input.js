@@ -18,7 +18,10 @@ export class EmailInput {
         button.innerText = this.data.button;
         button.onclick = (event) => {
             event.preventDefault();
-            alert('Subscribed');
+            const value = window.prompt('Enter button label', this.data.button);
+            if (value !== null) {
+                button.innerText = value;
+            }
         };
 
         return button;

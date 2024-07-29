@@ -91,7 +91,9 @@ $themes = [
             <section>
                 <div class="mockup-browser border-base-300 border">
                     <div class="mockup-browser-toolbar">
-                        <div class="input border-base-300 border">https://daisyui.com</div>
+                        <div class="input border-base-300 border">
+                            {{route('project.page', $project->slug)}}
+                        </div>
                     </div>
                     <div class="border-base-300 flex justify-center border-t">
 
@@ -134,14 +136,12 @@ $themes = [
         });
     }
 
-    function saveProject(blockEditorData) {
-        const data = blockEditorData || form.querySelector('input[name="block_editor_data"]').value;
-
+    function saveProject() {
         window.axios.post(`/projects/{{$project->id}}`, {
             _method: 'PUT',
             name: form.querySelector('input[name="name"]').value,
             color_theme: form.querySelector('select[name="color_theme"]').value,
-            block_editor_data: data,
+            block_editor_data: form.querySelector('input[name="block_editor_data"]').value,
         }).then(() => {
             previewIframe.src = `/projects/{{$project->id}}?preview=${Date.now()}`;
         });
@@ -150,7 +150,8 @@ $themes = [
 
     document.addEventListener('block-editor-change', (event) => {
         const data = event.detail.data;
+        form.querySelector('input[name="block_editor_data"]').value = JSON.stringify(data);
 
-        saveProject(JSON.stringify(data));
+        saveProject();
     });
 </script>
