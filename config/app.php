@@ -123,4 +123,5 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'stripe_lifetime_access_price_id' => env('STRIPE_LIFETIME_ACCESS_PRICE_ID', ''),
 ];

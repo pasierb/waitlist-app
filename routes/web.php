@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\SubmissionController;
@@ -29,5 +30,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+// https://laravel.com/docs/11.x/billing#quickstart-selling-products
+Route::get('/checkout', [CheckoutController::class, 'create'])
+    ->middleware(['auth', 'verified'])
+    ->name('checkout');
+Route::get('/checkout/success', [CheckoutController::class, 'show'])->name('checkout-success');
+Route::view('/checkout/cancel', 'checkout.cancel')->name('checkout-cancel');
 
 require __DIR__ . '/auth.php';
