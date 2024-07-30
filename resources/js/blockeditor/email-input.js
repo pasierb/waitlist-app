@@ -1,4 +1,9 @@
 export class EmailInput {
+    static get toolbox() {
+        return {
+            title: 'Email Input',
+        };
+    }
     constructor({data}) {
         this.data = data;
     }

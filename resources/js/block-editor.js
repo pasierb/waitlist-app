@@ -1,18 +1,21 @@
 import EditorJS from '@editorjs/editorjs'
 import Header from '@editorjs/header';
 import List from "@editorjs/list";
+import Embed from '@editorjs/embed';
 import {EmailInput} from './blockeditor/email-input';
 import {TextInput} from './blockeditor/text-input';
 
 function createEditor() {
     const holder = document.getElementById('editorjs');
-
     const data = JSON.parse(holder.dataset.data);
 
-    const editor = new EditorJS({
+    return new EditorJS({
         holder,
         data,
         tools: {
+            embed: {
+                class: Embed,
+            },
             header: Header,
             'email-input': EmailInput,
             'text-input': TextInput,
@@ -30,7 +33,6 @@ function createEditor() {
             });
         }
     });
-    return editor;
 }
 
 function bootstrap() {

@@ -6,7 +6,7 @@
     .ce-block {
         @apply hover:bg-gray-50;
     }
-    .ce-block__content {
-        @apply flex flex-row justify-center;
-    }
+    /*.ce-block__content {*/
+    /*    @apply flex flex-row justify-center;*/
+    /*}*/
 }

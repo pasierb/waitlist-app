@@ -19,6 +19,7 @@
     },
     "dependencies": {
         "@editorjs/editorjs": "^2.30.2",
+        "@editorjs/embed": "^2.7.4",
         "@editorjs/header": "^2.8.7",
         "@editorjs/list": "^1.10.0"
     }
