@@ -135,6 +135,18 @@ $themes = [
                    value="{{$project->block_editor_data}}"
                    x-ref="blockEditorDataInput"/>
         </form>
+
+        Danger zone
+
+        <form action="{{route('projects.destroy', $project)}}" method="POST"
+              x-on:submit="confirmDelete($event)">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-error">
+                <x-heroicon-o-exclamation-triangle class="w-4 h-4" />
+                Delete
+            </button>
+        </form>
     </div>
 
     <div class="px-8" x-show="selectedTab === 'editor'">
@@ -151,6 +163,14 @@ $themes = [
     <script>
         const form = document.querySelector('#project-form');
         const previewIframe = document.querySelector('#project-preview')
+
+        function confirmDelete($event) {
+            const name = form.querySelector('[name="name"]').value;
+
+            if (!confirm(`Are you sure you want to delete "${name}"?`)) {
+                $event.preventDefault();
+            }
+        }
 
         function handleSubmit($refs, $dispatch) {
             $dispatch('block-editor-save', {

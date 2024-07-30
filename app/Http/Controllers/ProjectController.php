@@ -35,7 +35,11 @@ class ProjectController extends Controller
         $project = new Project($request->validated());
         $project->user_id = Auth::id();
         $project->color_theme = 'lofi';
-        $project->block_editor_data = json_encode([]);
+        $project->block_editor_data = json_encode(['blocks' => [
+            ['type' => 'header', 'data' => ['text' => $project->name, 'level' => 1]],
+            ['type' => 'paragraph', 'data' => ['text' => 'This is a new project.']],
+            ['type' => 'email-input', 'data' => ['button' => 'Sign up!', 'placeholder' => 'Enter your email']],
+        ]]);
 
         $project->save();
 
@@ -77,6 +81,8 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->deleteOrFail();
+
+        return redirect()->route('projects.index');
     }
 }
