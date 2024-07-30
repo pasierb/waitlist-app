@@ -3,6 +3,7 @@
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ProjectVersionController;
 use App\Http\Controllers\SubmissionController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,11 @@ Route::resource('projects', ProjectController::class)
     ->middleware(['auth', 'verified']);
 Route::resource('projects.submissions', SubmissionController::class)
     ->only(['index'])
+    ->middleware(['auth', 'verified']);
+Route::resource('projects.versions', ProjectVersionController::class)
+    ->middleware(['auth', 'verified']);
+Route::post('/projects/{project}/versions/{version}/publish', [ProjectVersionController::class, 'publish'])
+    ->name('projects.versions.publish')
     ->middleware(['auth', 'verified']);
 
 Route::get('/p/{project:slug}', [ProjectController::class, 'show'])->name('project.page');

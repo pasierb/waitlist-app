@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
+use App\Models\ProjectVersion;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
@@ -34,12 +36,6 @@ class ProjectController extends Controller
     {
         $project = new Project($request->validated());
         $project->user_id = Auth::id();
-        $project->color_theme = 'lofi';
-        $project->block_editor_data = json_encode(['blocks' => [
-            ['type' => 'header', 'data' => ['text' => $project->name, 'level' => 1]],
-            ['type' => 'paragraph', 'data' => ['text' => 'This is a new project.']],
-            ['type' => 'email-input', 'data' => ['button' => 'Sign up!', 'placeholder' => 'Enter your email']],
-        ]]);
 
         $project->save();
 
@@ -51,15 +47,25 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        return view('projects.show', compact('project'));
+        $version = $project->publishedVersion()->firstOrFail();
+
+        return view('project_versions.show', compact('project', 'version'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Project $project)
+    public function edit(Request $request, Project $project)
     {
-        return view('projects.edit', compact('project'));
+        $versionId = $request->input('version_id', null);
+        if ($versionId) {
+            $version = $project->versions()->where(['id' => $versionId])->firstOrFail();
+        } else {
+            $version = $project->maybeCreateDraftVersion();
+        }
+        $versions = $project->versions()->get();
+
+        return view('projects.edit', compact('project', 'version', 'versions'));
     }
 
     /**

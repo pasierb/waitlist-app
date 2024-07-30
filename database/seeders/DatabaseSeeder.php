@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Project;
+use App\Models\ProjectVersion;
 use App\Models\User;
+
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -22,10 +24,14 @@ class DatabaseSeeder extends Seeder
             'password' => '12345678',
         ]);
 
-        Project::factory()->create([
+        $project = Project::factory()->create([
             'name' => 'Test Project',
             'slug' => 'test-project',
             'user_id' => $user->id,
+        ]);
+
+        $version = ProjectVersion::factory()->create([
+            'project_id' => $project->id,
             'color_theme' => 'cyberpunk',
             'block_editor_data' => json_encode([
                 'time' => 1722165676318,

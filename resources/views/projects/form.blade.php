@@ -35,8 +35,8 @@ $themes = [
 ];
 ?>
 
-<div x-data="{colorTheme: '{{$project->color_theme}}', selectedTab: 'settings'}"
-     x-init="$watch('colorTheme', saveProject)"
+<div x-data="{colorTheme: '{{$version->color_theme}}', selectedTab: 'settings'}"
+     x-init="$watch('colorTheme', saveProjectVersion)"
      class="h-full">
 
     <div role="tablist" class="tabs tabs-boxed mb-8">
@@ -71,6 +71,9 @@ $themes = [
                        name="name"
                        value="{{$project->name}}"
                        class="input input-bordered"/>
+                <div class="label">
+                    <span class="label-text-alt">This will appear as a page title</span>
+                </div>
             </div>
 
             <div class="form-control w-6/12">
@@ -90,17 +93,10 @@ $themes = [
                 </a>
 
                 <button type="submit"
-                        class="btn btn-primary"
-                        x-on:click.prevent="handleSubmit($refs, $dispatch)">
+                        class="btn btn-primary">
                     Save
                 </button>
             </div>
-
-            <input type="hidden" name="color_theme" x-model="colorTheme"/>
-            <input type="hidden"
-                   name="block_editor_data"
-                   value="{{$project->block_editor_data}}"
-                   x-ref="blockEditorDataInput"/>
         </form>
 
         <div class="mt-12">
@@ -129,6 +125,16 @@ $themes = [
 
     <!-- Design tab -->
     <div class="flex flex-col gap-4 border rounded-lg p-4" x-show="selectedTab === 'editor'">
+        <form id="project-version-form">
+            <input type="hidden"
+                   name="color_theme"
+                   value="{{$version->color_theme}}"
+                   x-model="colorTheme" />
+            <input type="hidden"
+                   name="block_editor_data"
+                   value="{{$version->block_editor_data}}" />
+        </form>
+
         <div class="form-control">
             <div class="label">
                 <span class="label-text">Theme</span>
@@ -164,7 +170,7 @@ $themes = [
         <div id="editorjs"
              data-theme="lofi"
              class="prose border-dashed border"
-             data-data="{{$project->block_editor_data}}">
+             data-data="{{$version->block_editor_data}}">
         </div>
     </div>
 </div>
@@ -172,7 +178,7 @@ $themes = [
 <x-slot:scripts>
     @vite('resources/js/block-editor.js')
     <script>
-        const form = document.querySelector('#project-form');
+        const form = document.querySelector('#project-version-form');
         const previewIframe = document.querySelector('#project-preview')
 
         function confirmDelete($event) {
@@ -183,19 +189,9 @@ $themes = [
             }
         }
 
-        function handleSubmit($refs, $dispatch) {
-            $dispatch('block-editor-save', {
-                callback: (data) => {
-                    $refs.blockEditorDataInput.value = JSON.stringify(data);
-                    $refs.form.submit();
-                }
-            });
-        }
-
-        function saveProject() {
-            window.axios.post(`/projects/{{$project->id}}`, {
+        function saveProjectVersion() {
+            window.axios.post(`/projects/{{$project->id}}/versions/{{$version->id}}`, {
                 _method: 'PUT',
-                name: form.querySelector('[name="name"]').value,
                 color_theme: form.querySelector('[name="color_theme"]').value,
                 block_editor_data: form.querySelector('[name="block_editor_data"]').value,
             }).then(() => {
@@ -211,7 +207,7 @@ $themes = [
             const data = event.detail.data;
             form.querySelector('input[name="block_editor_data"]').value = JSON.stringify(data);
 
-            saveProject();
+            saveProjectVersion();
         });
     </script>
 </x-slot:scripts>

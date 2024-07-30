@@ -16,7 +16,7 @@
                             </div>
                         </div>
                         <div class="border-base-300 flex justify-center border-t h-full min-h-96">
-                            <iframe src="{{route('project.page', $project->slug)}}"
+                            <iframe src="{{route('projects.versions.show', [$project, $version])}}"
                                     id="project-preview"
                                     class="w-full h-full"
                                     title="Preview"></iframe>
