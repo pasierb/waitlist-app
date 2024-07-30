@@ -31,10 +31,11 @@ class SubmissionController extends Controller
      */
     public function store(Request $request, Project $project)
     {
+        $data = $request->has('data') ? $request->all('data')['data'] : [];
         $submission = new Submission([
             'project_id' => $project->id,
             'email' => $request->input('email'),
-            'data' => $request->input('data', json_encode([]))
+            'data' => json_encode($data),
         ]);
         $submission->save();
 

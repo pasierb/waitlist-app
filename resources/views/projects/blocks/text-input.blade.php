@@ -2,5 +2,5 @@
     <div class="label">
         <span class="label-text">{{$data->label}}</span>
     </div>
-    <input type="text" placeholder="{{$data->placeholder}}" class="input input-bordered w-full" />
+    <input type="text" name="data[{{$data->label}}]" placeholder="{{$data->placeholder}}" class="input input-bordered w-full" />
 </label>

@@ -42,10 +42,16 @@ $themes = [
     <div role="tablist" class="tabs tabs-boxed mb-8">
         <a role="tab" class="tab"
            x-bind:class="selectedTab === 'settings' ? 'tab-active' : ''"
-           x-on:click="selectedTab = 'settings'">Settings</a>
+           x-on:click="selectedTab = 'settings'">
+            <x-heroicon-o-cog-6-tooth class="w-4 h-4"/>
+            Settings
+        </a>
         <a role="tab" class="tab"
            x-bind:class="selectedTab === 'editor' ? 'tab-active' : ''"
-           x-on:click="selectedTab = 'editor'">Content editor</a>
+           x-on:click="selectedTab = 'editor'">
+            <x-heroicon-o-pencil class="w-4 h-4"/>
+            Content editor
+        </a>
     </div>
 
     <div x-show="selectedTab === 'settings'">
