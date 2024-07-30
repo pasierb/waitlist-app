@@ -18,6 +18,7 @@
         <tr>
             <th>Name</th>
             <th class="text-right">Submissions</th>
+            <th>Published</th>
             <th></th>
         </tr>
         </thead>
@@ -33,6 +34,11 @@
                     <a href="{{route('projects.submissions.index', $project)}}" class="link">
                         {{ $project->submissions()->count() }}
                     </a>
+                </td>
+                <td>
+                    @if($project->published_version_id)
+                        <x-heroicon-o-check class="h-4"/>
+                    @endif
                 </td>
                 <td class="text-right">
                     <a href="{{ route('projects.show', $project) }}"
