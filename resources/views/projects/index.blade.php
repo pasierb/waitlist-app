@@ -6,7 +6,7 @@
         <div class="navbar-center hidden lg:flex">
         </div>
         <div class="navbar-end">
-            <a href="{{route('projects.create')}}" class="btn">
+            <a href="{{route('projects.create')}}" class="btn btn-primary">
                 <x-heroicon-o-plus class="h-4"/>
                 Create
             </a>

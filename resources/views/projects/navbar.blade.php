@@ -13,7 +13,7 @@
     ]
 ?>
 
-<div class="navbar bg-base-100 border-b">
+<div class="navbar bg-base-100 border-b px-4">
     <div class="navbar-start">
         {{$project->name}}
     </div>
