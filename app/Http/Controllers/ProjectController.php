@@ -24,7 +24,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('projects.create');
     }
 
     /**
@@ -32,7 +32,14 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        //
+        $project = new Project($request->validated());
+        $project->user_id = Auth::id();
+        $project->color_theme = 'lofi';
+        $project->block_editor_data = json_encode([]);
+
+        $project->save();
+
+        return redirect()->route('projects.edit', $project);
     }
 
     /**

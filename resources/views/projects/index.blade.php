@@ -1,4 +1,15 @@
 <x-app-layout>
+    <div class="navbar bg-base-100 border-b">
+        <div class="navbar-start">
+            {{__('Projects')}}
+        </div>
+        <div class="navbar-center hidden lg:flex">
+        </div>
+        <div class="navbar-end">
+            <a href="{{route('projects.create')}}" class="btn btn-primary">Create</a>
+        </div>
+    </div>
+
     <table class="table">
         <thead>
         <tr>
