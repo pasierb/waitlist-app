@@ -1,12 +1,15 @@
 <x-app-layout>
-    <div class="navbar bg-base-100 border-b">
+    <div class="navbar bg-base-100 border-b px-4">
         <div class="navbar-start">
             {{__('Projects')}}
         </div>
         <div class="navbar-center hidden lg:flex">
         </div>
         <div class="navbar-end">
-            <a href="{{route('projects.create')}}" class="btn btn-primary">Create</a>
+            <a href="{{route('projects.create')}}" class="btn">
+                <x-heroicon-o-plus class="h-4"/>
+                Create
+            </a>
         </div>
     </div>
 
@@ -34,8 +37,8 @@
                 <td class="text-right">
                     <a href="{{ route('projects.show', $project) }}"
                        target="_blank"
-                       class="btn btn-sm btn-primary">
-                        View
+                       class="btn btn-ghost btn-sm">
+                        <x-heroicon-o-eye class="h-4"/>
                     </a>
                 </td>
             </tr>

@@ -31,6 +31,9 @@
     <div class="navbar-end">
         <a class="btn btn-link"
            target="_blank"
-           href="{{route('project.page', $project)}}">View</a>
+           href="{{route('project.page', $project)}}">
+            View
+            <x-heroicon-o-arrow-top-right-on-square class="h-4" />
+        </a>
     </div>
 </div>

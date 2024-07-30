@@ -39,7 +39,7 @@ $themes = [
      x-init="$watch('colorTheme', saveProject)"
      class="h-full">
 
-    <div role="tablist" class="tabs tabs-boxed">
+    <div role="tablist" class="tabs tabs-boxed mb-8">
         <a role="tab" class="tab"
            x-bind:class="selectedTab === 'settings' ? 'tab-active' : ''"
            x-on:click="selectedTab = 'settings'">Settings</a>
@@ -48,11 +48,11 @@ $themes = [
            x-on:click="selectedTab = 'editor'">Content editor</a>
     </div>
 
-    <div x-show="selectedTab === 'settings'"
-         class="flex flex-col gap-4">
+    <div x-show="selectedTab === 'settings'">
         <form id="project-form" action="{{route('projects.update', $project)}}"
               method="POST"
-              x-ref="form">
+              x-ref="form"
+              class="flex flex-col gap-4">
             @csrf
             @method('PUT')
             <div class="form-control w-6/12">
