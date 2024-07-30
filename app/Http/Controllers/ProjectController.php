@@ -58,7 +58,11 @@ class ProjectController extends Controller
     {
         $project->update($request->validated());
 
-        return redirect()->route('projects.index');
+        if ($request->ajax()) {
+            return response()->json($project);
+        } else {
+            return redirect()->route('projects.index');
+        }
     }
 
     /**
