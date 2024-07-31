@@ -92,47 +92,50 @@ $editorModes = [
             @csrf
             @method('PUT')
 
-            <div class="form-control w-6/12">
-                <div class="label">
-                    <span class="label-text">Name</span>
+            <div class="grid grid-cols-5 gap-2">
+                <div class="col-span-2">
+                    <label for="name-input" class="label flex flex-col items-start">
+                        <span class="label-text">Name</span>
+                        <span class="label-text-alt">This will appear as a page title</span>
+                    </label>
                 </div>
                 <input type="text"
+                       id="name-input"
                        name="name"
                        value="{{$project->name}}"
-                       class="input input-bordered"/>
-                <div class="label">
-                    <span class="label-text-alt">This will appear as a page title</span>
-                </div>
-            </div>
+                       class="input input-bordered col-span-3"/>
 
-            <div class="form-control w-6/12">
-                <div class="label">
+
+                <label class="label col-span-2" for="slug-input">
                     <span class="label-text">Slug</span>
-                </div>
+                </label>
                 <input type="text"
+                       id="slug-input"
                        name="slug"
                        value="{{$project->slug}}"
-                       class="input input-bordered"/>
-            </div>
+                       class="input input-bordered col-span-3"/>
 
-            <div class="form-control">
-                <label class="label cursor-pointer justify-start gap-2">
-                    <input type="hidden" name="redirect_after_submission" value="0"/>
-                    <input type="checkbox" name="redirect_after_submission"
-                           {{$project->redirect_after_submission ? 'checked="checked"' : ''}} value="1"
-                           class="checkbox"/>
+
+                <label class="label cursor-pointer col-span-2" for="redirect_after_submission-input">
                     <span class="label-text">Redirect</span>
                 </label>
-            </div>
-
-            <div class="form-control w-6/12">
-                <div class="label">
-                    <span class="label-text">Redirect URL</span>
+                <div class="col-span-3">
+                    <input type="hidden" name="redirect_after_submission" value="0"/>
+                    <input type="checkbox"
+                           id="redirect_after_submission-input"
+                           name="redirect_after_submission"
+                           {{$project->redirect_after_submission ? 'checked="checked"' : ''}} value="1"
+                           class="checkbox"/>
                 </div>
+
+                <label class="label col-span-2" for="redirect_to_after_submission-input">
+                    <span class="label-text">Redirect URL</span>
+                </label>
                 <input type="text"
+                       id="redirect_to_after_submission-input"
                        name="redirect_to_after_submission"
                        value="{{$project->redirect_to_after_submission}}"
-                       class="input input-bordered"/>
+                       class="input input-bordered col-span-3"/>
             </div>
 
             <div class="flex flex-row justify-end gap-2 border-t mt-4 pt-4">
@@ -173,7 +176,7 @@ $editorModes = [
     </div>
 
     <!-- Design tab -->
-    <div class="flex flex-col gap-4 border rounded-lg p-4" x-show="selectedTab === 'editor'">
+    <div class="flex flex-col gap-4 border rounded-lg px-4 pb-4" x-show="selectedTab === 'editor'">
         <form id="project-version-form">
             <input type="hidden"
                    name="color_theme"
@@ -187,22 +190,27 @@ $editorModes = [
                    value="{{$version->success_editor_data}}"/>
         </form>
 
-        <div class="form-control">
-            <div class="label">
+        <div class="grid grid-cols-5 gap-2">
+            <div class="label col-span-2">
                 <span class="label-text">Theme</span>
             </div>
-            <div class="flex flex-row bg-base-100 justify-between w-4/12 btn"
-                 x-bind:data-theme="colorTheme"
-                 onclick="my_modal_1.showModal()"
-                 role="button">
-                <span x-text="colorTheme"></span>
-                <div class="flex flex-row gap-1">
-                    <div class="w-2 h-6 bg-primary"></div>
-                    <div class="w-2 h-6 bg-secondary"></div>
-                    <div class="w-2 h-6 bg-accent"></div>
-                    <div class="w-2 h-6 bg-neutral"></div>
+            <div class="col-span-3">
+                <div class="flex flex-row bg-base-100 justify-between w-full btn"
+                     x-bind:data-theme="colorTheme"
+                     onclick="my_modal_1.showModal()"
+                     role="button">
+                    <span x-text="colorTheme"></span>
+                    <div class="flex flex-row gap-1">
+                        <div class="w-2 h-6 bg-primary"></div>
+                        <div class="w-2 h-6 bg-secondary"></div>
+                        <div class="w-2 h-6 bg-accent"></div>
+                        <div class="w-2 h-6 bg-neutral"></div>
+                    </div>
                 </div>
             </div>
+        </div>
+
+        <div class="form-control">
         </div>
 
         <dialog id="my_modal_1" class="modal">
