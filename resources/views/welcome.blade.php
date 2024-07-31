@@ -5,7 +5,7 @@
         <div class="hero-content text-center">
             <div class="max-w-xl">
                 <h1 class="text-5xl font-bold">
-                    Build Buzz with a Stunning Waitlist Page
+                    Build ⚡Buzz⚡ with a Stunning Waitlist Page
                 </h1>
 
                 <div class="py-6">

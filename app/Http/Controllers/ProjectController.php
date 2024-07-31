@@ -6,8 +6,10 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use App\Models\ProjectVersion;
+use Database\Factories\ProjectVersionFactory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProjectController extends Controller
 {
@@ -37,7 +39,10 @@ class ProjectController extends Controller
         $project = new Project($request->validated());
         $project->user_id = Auth::id();
 
-        $project->save();
+        DB::transaction(function () use ($project) {
+            $project->save();
+            ProjectVersion::factory()->forProject($project)->create();
+        });
 
         return redirect()->route('projects.edit', $project);
     }
