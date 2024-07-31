@@ -34,7 +34,7 @@ export class EmailInput {
 
     _wrapper() {
         const wrapper = document.createElement('div');
-        wrapper.classList.add('join', 'w-full', 'max-w-sm', 'flex');
+        wrapper.classList.add('join', 'w-full', 'max-w-sm', 'flex', 'mx-auto');
         wrapper.appendChild(this._input());
         wrapper.appendChild(this._button());
 

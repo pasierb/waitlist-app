@@ -40,7 +40,7 @@ export class TextInput {
 
     _wrapper() {
         const wrapper = document.createElement('div');
-        wrapper.classList.add('form-control', 'w-full', 'max-w-sm');
+        wrapper.classList.add('form-control', 'w-full', 'max-w-sm', 'mx-auto');
         wrapper.appendChild(this._label());
         wrapper.appendChild(this._input());
 

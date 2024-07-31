@@ -1,3 +1,3 @@
-<div class="prose">
-    <h1>{!! $data->text !!}</h1>
+<div class="prose text-center">
+    <h{{ $data->level }}>{!! $data->text  !!}</h{{ $data->level }}>
 </div>
