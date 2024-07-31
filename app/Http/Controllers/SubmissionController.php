@@ -39,7 +39,11 @@ class SubmissionController extends Controller
         ]);
         $submission->save();
 
-        dd($submission);
+        if ($project->redirect_after_submission) {
+            return redirect($project->redirect_to_after_submission);
+        } else {
+            dd($submission);
+        }
     }
 
     /**

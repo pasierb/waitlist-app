@@ -55,5 +55,5 @@ class Project extends Model
         ]);
     }
 
-    protected $fillable = ['name', 'slug', 'published_version_id'];
+    protected $fillable = ['name', 'slug', 'published_version_id', 'redirect_to_after_submission', 'redirect_after_submission',];
 }

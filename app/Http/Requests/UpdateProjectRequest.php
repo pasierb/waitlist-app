@@ -25,6 +25,8 @@ class UpdateProjectRequest extends FormRequest
         return [
             'name' => 'required|string',
             'slug' => 'required|string',
+            'redirect_to_after_submission' => 'nullable|string',
+            'redirect_after_submission' => 'integer',
         ];
     }
 }

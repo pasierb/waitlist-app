@@ -78,7 +78,7 @@ class ProjectController extends Controller
         if ($request->ajax()) {
             return response()->json($project);
         } else {
-            return redirect()->route('projects.index');
+            return redirect()->route('projects.edit', $project);
         }
     }
 

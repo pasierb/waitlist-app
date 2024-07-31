@@ -33,6 +33,19 @@ $themes = [
     "nord",
     "sunset",
 ];
+
+$tabs = [
+    [
+        'icon' => 'cog-6-tooth',
+        'label' => 'Settings',
+        'key' => 'settings',
+    ],
+    [
+        'icon' => 'paint-brush',
+        'label' => 'Design',
+        'key' => 'editor',
+    ],
+];
 ?>
 
 <style>
@@ -47,18 +60,14 @@ $themes = [
      class="h-full">
 
     <div role="tablist" class="tabs tabs-boxed mb-8">
-        <a role="tab" class="tab"
-           x-bind:class="selectedTab === 'settings' ? 'tab-active' : ''"
-           x-on:click="selectedTab = 'settings'">
-            <x-heroicon-o-cog-6-tooth class="w-4 h-4"/>
-            Settings
-        </a>
-        <a role="tab" class="tab"
-           x-bind:class="selectedTab === 'editor' ? 'tab-active' : ''"
-           x-on:click="selectedTab = 'editor'">
-            <x-heroicon-o-paint-brush class="w-4 h-4"/>
-            Design
-        </a>
+        @foreach($tabs as $tab)
+            <a role="tab" class="tab flex flex-row gap-2"
+               x-bind:class="selectedTab === '{{$tab['key']}}' ? 'tab-active' : ''"
+               x-on:click="selectedTab = '{{$tab['key']}}'">
+                @svg('heroicon-o-'.$tab['icon'], 'w-4 h-4')
+                {{$tab['label']}}
+            </a>
+        @endforeach
     </div>
 
     <!-- Settings tab -->
@@ -90,6 +99,26 @@ $themes = [
                 <input type="text"
                        name="slug"
                        value="{{$project->slug}}"
+                       class="input input-bordered"/>
+            </div>
+
+            <div class="form-control">
+                <label class="label cursor-pointer justify-start gap-2">
+                    <input type="hidden" name="redirect_after_submission" value="0"/>
+                    <input type="checkbox" name="redirect_after_submission"
+                           {{$project->redirect_after_submission ? 'checked="checked"' : ''}} value="1"
+                           class="checkbox"/>
+                    <span class="label-text">Redirect</span>
+                </label>
+            </div>
+
+            <div class="form-control w-6/12">
+                <div class="label">
+                    <span class="label-text">Redirect URL</span>
+                </div>
+                <input type="text"
+                       name="redirect_to_after_submission"
+                       value="{{$project->redirect_to_after_submission}}"
                        class="input input-bordered"/>
             </div>
 

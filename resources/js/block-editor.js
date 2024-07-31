@@ -6,8 +6,7 @@ import SimpleImage from "@editorjs/simple-image";
 import {EmailInput} from './blockeditor/email-input';
 import {TextInput} from './blockeditor/text-input';
 
-function createEditor() {
-    const holder = document.getElementById('editorjs');
+function createEditor(holder) {
     const data = JSON.parse(holder.dataset.data);
 
     return new EditorJS({
@@ -38,7 +37,8 @@ function createEditor() {
 }
 
 function bootstrap() {
-    const editor = createEditor();
+    const holder = document.getElementById('editorjs');
+    const editor = createEditor(holder);
 
     document.addEventListener('block-editor-save', (event) => {
         editor.save().then((data) => {
