@@ -1,6 +1,7 @@
 <x-app-layout>
     <div class="navbar bg-base-100 border-b px-4">
         <div class="navbar-start">
+            <x-drawer-open-button />
             {{__('Projects')}}
         </div>
         <div class="navbar-center hidden lg:flex">

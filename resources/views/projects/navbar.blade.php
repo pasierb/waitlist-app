@@ -15,6 +15,7 @@ $navLinks = [
 
 <div class="navbar bg-base-100 border-b px-4">
     <div class="navbar-start">
+        <x-drawer-open-button />
         <ul class="menu menu-horizontal gap-2">
             @foreach($navLinks as $navLink)
                 <li>

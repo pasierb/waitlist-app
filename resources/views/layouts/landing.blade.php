@@ -15,10 +15,7 @@
 
     @vite('resources/css/app.css')
 </head>
-
 <body class="bg-base-100 min-h-screen flex flex-col">
-
-
 <div class="navbar bg-base-100 container mx-auto">
     <div class="flex-1">
         <a class="btn btn-ghost text-xl" href="/">

@@ -145,7 +145,7 @@ $editorModes = [
                 </a>
 
                 <button type="submit"
-                        class="btn btn-primary">
+                        class="btn btn-secondary">
                     Save
                 </button>
             </div>
@@ -210,9 +210,6 @@ $editorModes = [
             </div>
         </div>
 
-        <div class="form-control">
-        </div>
-
         <dialog id="my_modal_1" class="modal">
             <div class="modal-box w-8/12 max-w-4xl">
                 <div class="grid grid-cols-3 gap-2">
@@ -236,19 +233,21 @@ $editorModes = [
             @endforeach
         </div>
 
-        <div x-show="editorMode === 'form'">
-            <div id="editorjs"
-                 data-theme="lofi"
-                 class="prose border-dashed border-2"
-                 data-data="{{$version->block_editor_data}}">
+        <div class="w-full">
+            <div x-show="editorMode === 'form'">
+                <div id="editorjs"
+                     data-theme="lofi"
+                     class="prose border-dashed border-2 mx-auto"
+                     data-data="{{$version->block_editor_data}}">
+                </div>
             </div>
-        </div>
 
-        <div x-show="editorMode === 'success'">
-            <div id="success-editorjs"
-                 data-theme="lofi"
-                 class="prose border-dashed border-2"
-                 data-data="{{$version->success_editor_data}}">
+            <div x-show="editorMode === 'success'">
+                <div id="success-editorjs"
+                     data-theme="lofi"
+                     class="prose border-dashed border-2 mx-auto"
+                     data-data="{{$version->success_editor_data}}">
+                </div>
             </div>
         </div>
     </div>

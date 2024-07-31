@@ -3,7 +3,7 @@
         @include('projects.navbar')
 
         <div class="px-4 grow">
-            <div class="grid grid-cols-2 h-full gap-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 h-full gap-4">
                 <section class="col-span-1 border-r pr-4 pt-4">
                     @include('projects.form', ['project' => $project])
                 </section>

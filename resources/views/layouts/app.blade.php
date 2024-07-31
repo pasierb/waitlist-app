@@ -17,9 +17,10 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="font-sans antialiased" x-data="{asideOpen: false}">
+<body class="font-sans antialiased"
+      x-data="{asideOpen: false}">
 <div class="drawer lg:drawer-open">
-    <input id="my-drawer-2" type="checkbox" class="drawer-toggle"/>
+    <input id="my-drawer" type="checkbox" class="drawer-toggle"/>
     <div class="drawer-content min-h-screen bg-base-100">
         {{$slot}}
 
@@ -28,7 +29,7 @@
         {{--        </label>--}}
     </div>
     <div class="drawer-side">
-        <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>
+        <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
         <div class="bg-base-200 text-base-content min-h-full w-48 py-4">
             <a href="{{route('root')}}" class="flex flex-row gap-2 ml-4 mt-2 mb-4">
                 <img src="{{asset('img/logo.png')}}" alt="logo" class="w-8 h-8"/>
