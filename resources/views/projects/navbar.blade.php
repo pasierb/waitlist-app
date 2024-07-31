@@ -63,11 +63,13 @@ $navLinks = [
             </form>
         @endisset
 
-        <a class="btn btn-link"
-           target="_blank"
-           href="{{route('projects.versions.preview', [$project, $version])}}">
-            View
-            <x-heroicon-o-arrow-top-right-on-square class="h-4"/>
-        </a>
+        @isset($version)
+            <a class="btn btn-link"
+               target="_blank"
+               href="{{route('projects.versions.preview', [$project, $version])}}">
+                View
+                <x-heroicon-o-arrow-top-right-on-square class="h-4"/>
+            </a>
+        @endisset
     </div>
 </div>

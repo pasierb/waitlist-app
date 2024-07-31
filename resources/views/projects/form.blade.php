@@ -176,7 +176,7 @@ $themes = [
         </dialog>
         <div id="editorjs"
              data-theme="lofi"
-             class="prose border-dashed border"
+             class="prose border-dashed border-2"
              data-data="{{$version->block_editor_data}}">
         </div>
     </div>
