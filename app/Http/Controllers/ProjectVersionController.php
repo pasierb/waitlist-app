@@ -46,6 +46,11 @@ class ProjectVersionController extends Controller
         return view('project_versions.show', compact('project', 'version'));
     }
 
+    public function successPreview(Project $project, ProjectVersion $version)
+    {
+        return view('project_versions.success', compact('project', 'version'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      */

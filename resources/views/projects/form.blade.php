@@ -46,6 +46,11 @@ $tabs = [
         'key' => 'editor',
     ],
 ];
+
+$editorModes = [
+    'form',
+    'success',
+];
 ?>
 
 <style>
@@ -55,8 +60,8 @@ $tabs = [
 </style>
 
 
-<div x-data="{colorTheme: '{{$version->color_theme}}', selectedTab: 'settings'}"
-     x-init="$watch('colorTheme', saveProjectVersion)"
+<div x-data="{colorTheme: '{{$version->color_theme}}', selectedTab: 'settings', editorMode: 'form'}"
+     x-init="$watch('colorTheme', saveProjectVersion), $watch('editorMode', () => $dispatch('editor-mode-change', editorMode))"
      class="h-full">
 
     <div role="tablist" class="tabs tabs-boxed mb-8">
@@ -169,6 +174,9 @@ $tabs = [
             <input type="hidden"
                    name="block_editor_data"
                    value="{{$version->block_editor_data}}"/>
+            <input type="hidden"
+                   name="success_editor_data"
+                   value="{{$version->success_editor_data}}"/>
         </form>
 
         <div class="form-control">
@@ -203,10 +211,29 @@ $tabs = [
                 </div>
             </div>
         </dialog>
-        <div id="editorjs"
-             data-theme="lofi"
-             class="prose border-dashed border-2"
-             data-data="{{$version->block_editor_data}}">
+
+        <div role="tablist" class="tabs tabs-bordered">
+            @foreach($editorModes as $editorMode)
+                <a role="tab" class="tab"
+                   x-on:click="editorMode = '{{$editorMode}}'"
+                   x-bind:class="editorMode === '{{$editorMode}}' ? 'tab-active' : ''">{{$editorMode}}</a>
+            @endforeach
+        </div>
+
+        <div x-show="editorMode === 'form'">
+            <div id="editorjs"
+                 data-theme="lofi"
+                 class="prose border-dashed border-2"
+                 data-data="{{$version->block_editor_data}}">
+            </div>
+        </div>
+
+        <div x-show="editorMode === 'success'">
+            <div id="success-editorjs"
+                 data-theme="lofi"
+                 class="prose border-dashed border-2"
+                 data-data="{{$version->success_editor_data}}">
+            </div>
         </div>
     </div>
 </div>
@@ -214,11 +241,13 @@ $tabs = [
 <x-slot:scripts>
     @vite('resources/js/block-editor.js')
     <script>
+        const projectForm = document.querySelector('#project-form');
         const form = document.querySelector('#project-version-form');
         const previewIframe = document.querySelector('#project-preview')
+        const successPreviewIframe = document.querySelector('#success-preview')
 
         function confirmDelete($event) {
-            const name = form.querySelector('[name="name"]').value;
+            const name = projectForm.querySelector('[name="name"]').value;
 
             if (!confirm(`Are you sure you want to delete "${name}"?`)) {
                 $event.preventDefault();
@@ -230,18 +259,31 @@ $tabs = [
                 _method: 'PUT',
                 color_theme: form.querySelector('[name="color_theme"]').value,
                 block_editor_data: form.querySelector('[name="block_editor_data"]').value,
+                success_editor_data: form.querySelector('[name="success_editor_data"]').value,
             }).then(() => {
-                const url = new URL(previewIframe.src);
-                url.searchParams.set('preview', Date.now());
-
-                previewIframe.src = url.toString();
+                refreshIframe(previewIframe);
+                refreshIframe(successPreviewIframe);
             });
 
+        }
+
+        function refreshIframe(iframeEl) {
+            const url = new URL(iframeEl.src);
+            url.searchParams.set('preview', Date.now());
+
+            iframeEl.src = url.toString();
         }
 
         document.addEventListener('block-editor-change', (event) => {
             const data = event.detail.data;
             form.querySelector('input[name="block_editor_data"]').value = JSON.stringify(data);
+
+            saveProjectVersion();
+        });
+
+        document.addEventListener('success-editor-change', (event) => {
+            const data = event.detail.data;
+            form.querySelector('input[name="success_editor_data"]').value = JSON.stringify(data);
 
             saveProjectVersion();
         });

@@ -23,6 +23,7 @@ class UpdateProjectVersionRequest extends FormRequest
     {
         return [
             'block_editor_data' => 'required|string',
+            'success_editor_data' => 'required|string',
             'color_theme' => 'required|string',
         ];
     }

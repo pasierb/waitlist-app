@@ -38,11 +38,12 @@ class SubmissionController extends Controller
             'data' => json_encode($data),
         ]);
         $submission->save();
+        $version = $project->publishedVersion()->first();
 
         if ($project->redirect_after_submission) {
             return redirect($project->redirect_to_after_submission);
         } else {
-            dd($submission);
+            return view('project_versions.success', compact('project', 'version'));
         }
     }
 

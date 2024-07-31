@@ -36,15 +36,39 @@ function createEditor(holder) {
     });
 }
 
+function createSuccessEditor(holder) {
+    const data = JSON.parse(holder.dataset.data);
+
+    return new EditorJS({
+        holder,
+        data,
+        tools: {
+            embed: {
+                class: Embed,
+            },
+            header: Header,
+            image: SimpleImage,
+            list: {
+                class: List,
+                inlineToolbar: true,
+                config: {
+                    defaultStyle: 'unordered'
+                }
+            },
+        },
+        onChange(api, event) {
+            api.saver.save().then((outputData) => {
+                document.dispatchEvent(new CustomEvent('success-editor-change', {detail: {data: outputData}}));
+            });
+        }
+    });
+}
+
 function bootstrap() {
     const holder = document.getElementById('editorjs');
     const editor = createEditor(holder);
 
-    document.addEventListener('block-editor-save', (event) => {
-        editor.save().then((data) => {
-            event.detail.callback(data);
-        });
-    });
+    createSuccessEditor(document.getElementById('success-editorjs'));
 }
 
 document.addEventListener('DOMContentLoaded', bootstrap);

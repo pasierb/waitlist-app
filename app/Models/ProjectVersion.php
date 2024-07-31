@@ -18,6 +18,7 @@ class ProjectVersion extends Model
     public function cloneToDraftVersion() {
         $cloneProject = new ProjectVersion([
             'block_editor_data' => $this->block_editor_data,
+            'success_editor_data' => $this->success_editor_data,
             'color_theme' => $this->color_theme,
             'published' => 0,
         ]);
@@ -38,5 +39,5 @@ class ProjectVersion extends Model
         });
     }
 
-    protected $fillable = ['block_editor_data', 'color_theme', 'published'];
+    protected $fillable = ['block_editor_data', 'success_editor_data', 'color_theme', 'published'];
 }
