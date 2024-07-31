@@ -8,7 +8,7 @@ $navLinks = [
     [
         'href' => route('projects.submissions.index', $project),
         'routeName' => 'projects.submissions.index',
-        'label' => 'Submissions',
+        'label' => 'Submissions (' . ($project->submissions->count()) . ')',
     ]
 ]
 ?>

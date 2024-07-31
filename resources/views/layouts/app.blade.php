@@ -26,7 +26,12 @@
     </div>
     <div class="drawer-side">
         <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>
-        <div class="bg-base-200 text-base-content min-h-full w-48">
+        <div class="bg-base-200 text-base-content min-h-full w-48 py-4">
+            <div class="flex flex-row gap-2 ml-4 mb-4">
+                <img src="{{asset('img/logo.png')}}" alt="logo" class="w-8 h-8"/>
+                <span class="font-semibold text-lg">LaunchLoom</span>
+            </div>
+
             <ul class="menu">
                 <li>
                     <a href="{{route('dashboard')}}">
