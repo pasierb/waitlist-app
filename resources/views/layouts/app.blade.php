@@ -8,8 +8,11 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -27,10 +30,10 @@
     <div class="drawer-side">
         <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>
         <div class="bg-base-200 text-base-content min-h-full w-48 py-4">
-            <div class="flex flex-row gap-2 ml-4 mb-4">
+            <a href="{{route('root')}}" class="flex flex-row gap-2 ml-4 mt-2 mb-4">
                 <img src="{{asset('img/logo.png')}}" alt="logo" class="w-8 h-8"/>
                 <span class="font-semibold text-lg">LaunchLoom</span>
-            </div>
+            </a>
 
             <ul class="menu">
                 <li>

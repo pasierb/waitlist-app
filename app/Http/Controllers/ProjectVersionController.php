@@ -67,7 +67,7 @@ class ProjectVersionController extends Controller
     {
         $version->publish();
 
-        return redirect()->route('projects.edit', [$project, 'version_id' => $version->id]);
+        return redirect()->route('projects.edit', [$project]);
     }
 
     /**

@@ -124,4 +124,6 @@ return [
     ],
 
     'stripe_lifetime_access_price_id' => env('STRIPE_LIFETIME_ACCESS_PRICE_ID', ''),
+
+    'lifetime_access_price' => env('LIFETIME_PRICE', 65),
 ];

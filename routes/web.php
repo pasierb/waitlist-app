@@ -32,6 +32,8 @@ Route::get('/projects/{project}', [ProjectController::class, 'show'])->name('pro
 Route::post('/projects/{project}/submissions', [SubmissionController::class, 'store'])
     ->name('projects.submissions.store');
 
+Route::view('/terms', 'terms')->name('terms');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
