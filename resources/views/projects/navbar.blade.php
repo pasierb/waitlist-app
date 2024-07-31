@@ -65,7 +65,7 @@ $navLinks = [
 
         <a class="btn btn-link"
            target="_blank"
-           href="{{route('project.page', $project)}}">
+           href="{{route('projects.versions.preview', [$project, $version])}}">
             View
             <x-heroicon-o-arrow-top-right-on-square class="h-4"/>
         </a>

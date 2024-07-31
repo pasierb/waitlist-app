@@ -2,6 +2,7 @@ import EditorJS from '@editorjs/editorjs'
 import Header from '@editorjs/header';
 import List from "@editorjs/list";
 import Embed from '@editorjs/embed';
+import SimpleImage from "@editorjs/simple-image";
 import {EmailInput} from './blockeditor/email-input';
 import {TextInput} from './blockeditor/text-input';
 
@@ -19,6 +20,7 @@ function createEditor() {
             header: Header,
             'email-input': EmailInput,
             'text-input': TextInput,
+            image: SimpleImage,
             list: {
                 class: List,
                 inlineToolbar: true,

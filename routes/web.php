@@ -26,6 +26,9 @@ Route::resource('projects.versions', ProjectVersionController::class)
 Route::post('/projects/{project}/versions/{version}/publish', [ProjectVersionController::class, 'publish'])
     ->name('projects.versions.publish')
     ->middleware(['auth', 'verified']);
+Route::get('/projects/{project}/versions/{version}/preview', [ProjectVersionController::class, 'preview'])
+    ->middleware(['auth', 'verified'])
+    ->name('projects.versions.preview');
 
 Route::get('/p/{project:slug}', [ProjectController::class, 'show'])->name('project.page');
 Route::get('/projects/{project}', [ProjectController::class, 'show'])->name('projects.show');
