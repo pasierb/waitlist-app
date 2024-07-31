@@ -29,7 +29,7 @@ $navLinks = [
     <div class="navbar-center flex">
         @isset($versions)
             <div class="dropdown">
-                <div tabindex="0" role="button" class="btn m-1">
+                <div tabindex="0" role="button" class="btn m-1 btn-sm">
                     {{$version->created_at}}
                     @if($version->id === $project->published_version_id)
                         <x-heroicon-o-check class="h-4 text-success"/>
