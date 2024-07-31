@@ -36,11 +36,10 @@
                     <details>
                         <summary>{{Auth::user()->name}}</summary>
                         <ul class="bg-base-100 rounded-t-none p-2">
-                            <li><a>Link 1</a></li>
                             <li>
                                 <form action="{{route('logout')}}" method="POST">
                                     @csrf
-                                    <button>{{__('Sign out')}}</button>
+                                    <button class="text-nowrap">{{__('Sign out')}}</button>
                                 </form>
                             </li>
                         </ul>
