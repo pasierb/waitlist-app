@@ -9,9 +9,9 @@
 
     @vite('resources/css/project.css')
 </head>
-<body class="bg-base-100 min-h-screen flex flex-col justify-center">
+<body class="bg-base-100 min-h-screen flex flex-col">
 
-<div class="container mx-auto">
+<div class="container mx-auto grow flex flex-col justify-center">
     <form action="{{route('projects.submissions.store', [$project])}}" method="POST">
         @csrf
 
@@ -22,6 +22,18 @@
         </div>
     </form>
 </div>
+
+<footer>
+    <div class="container mx-auto text-center py-4">
+        <p class="text-sm">
+            Powered by
+            <a class="link" href="{{route('root')}}">
+                <img src="{{asset('img/logo.png')}}" class="w-6 h-6 inline-block"/>
+                LaunchLoom.io
+            </a>
+        </p>
+    </div>
+</footer>
 
 </body>
 </html>
