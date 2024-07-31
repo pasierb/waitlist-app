@@ -11,7 +11,7 @@
 </head>
 <body class="bg-base-100 min-h-screen flex flex-col">
 
-<div class="container mx-auto grow flex flex-col justify-center">
+<div class="container mx-auto grow flex flex-col justify-center mb-24">
     <form action="{{route('projects.submissions.store', [$project])}}" method="POST">
         @csrf
 
