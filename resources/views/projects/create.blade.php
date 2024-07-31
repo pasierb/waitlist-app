@@ -1,34 +1,13 @@
 <x-app-layout>
-    <div class="w-full flex justify-center">
-        <form action="{{route('projects.store')}}" method="POST"
-              x-data="{name: '', slug: ''}">
+    <div class="w-full px-8 max-w-4xl mx-auto">
+        <form id="project-form" action="{{route('projects.store')}}"
+              method="POST"
+              x-data="{ projectName: '{{$project->name}}', projectSlug: '{{$project->slug}}' }"
+              x-init="$watch('projectName', value => projectSlug = value.toLowerCase().replace(/[^a-z0-9]/g, '-'))"
+              class="flex flex-col gap-2 border rounded-lg p-4">
             @csrf
-            <div class="card bg-base-300 w-96 shadow-xl">
-                <div class="card-body">
-                    <div class="form-control">
-                        <div class="label">
-                            <span class="label-text">Name</span>
-                        </div>
-                        <input type="text" name="name"
-                               x-model="name"
-                               x-on:keyup="slug = name.toLowerCase().replace(/ /g, '-')"
-                               class="input input-bordered"/>
-                    </div>
-
-                    <div class="form-control">
-                        <div class="label">
-                            <span class="label-text">Slug</span>
-                        </div>
-                        <input type="text" name="slug"
-                               x-model="slug"
-                               class="input input-bordered"/>
-                    </div>
-
-                    <div class="card-actions justify-end">
-                        <button class="btn btn-primary">Create</button>
-                    </div>
-                </div>
-            </div>
+            @method('POST')
+            @include('projects.form-fields')
         </form>
     </div>
 </x-app-layout>

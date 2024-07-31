@@ -28,7 +28,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('projects.create');
+        $project = Project::factory()->make();
+
+        return view('projects.create', compact('project'));
     }
 
     /**
