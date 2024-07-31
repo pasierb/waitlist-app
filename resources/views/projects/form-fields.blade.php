@@ -23,9 +23,13 @@
            value="{{$project->slug}}"
            class="input input-bordered col-span-3"/>
 
+    <h3 class="col-span-5 font-semibold text-lg pt-4">Redirection</h3>
 
     <label class="label cursor-pointer col-span-2" for="redirect_after_submission-input">
-        <span class="label-text">Redirect</span>
+        <div class="flex flex-col">
+            <span class="label-text">Redirect</span>
+            <span class="label-text-alt">Redirect users to "Redirect URL" after submission instead of showing success page</span>
+        </div>
     </label>
     <div class="col-span-3">
         <input type="hidden" name="redirect_after_submission" value="0"/>
@@ -42,6 +46,7 @@
     <input type="text"
            id="redirect_to_after_submission-input"
            name="redirect_to_after_submission"
+           placeholder="https://example.com"
            value="{{$project->redirect_to_after_submission}}"
            class="input input-bordered col-span-3"/>
 </div>

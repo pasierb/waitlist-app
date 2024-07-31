@@ -6,7 +6,8 @@
     .ce-block {
         @apply hover:bg-gray-50/80;
     }
-    /*.ce-block__content {*/
-    /*    @apply flex flex-row justify-center;*/
-    /*}*/
+
+    .label-text {
+        @apply font-semibold;
+    }
 }

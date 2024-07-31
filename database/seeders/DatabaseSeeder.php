@@ -23,59 +23,5 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
             'password' => '12345678',
         ]);
-
-        $project = Project::factory()->create([
-            'name' => 'Test Project',
-            'slug' => 'test-project',
-            'user_id' => $user->id,
-        ]);
-
-        $version = ProjectVersion::factory()->create([
-            'project_id' => $project->id,
-            'color_theme' => 'cyberpunk',
-            'success_editor_data' => json_encode([
-                'time' => 1722165676318,
-                'blocks' => [
-                    [
-                        'type' => 'header',
-                        'data' => [
-                            'text' => 'Thank you for subscribing!',
-                            'level' => 1,
-                        ],
-                    ],
-                    [
-                        'type' => 'paragraph',
-                        'data' => [
-                            'text' => 'You have successfully subscribed to the Test Project!',
-                        ],
-                    ],
-                ],
-            ]),
-            'block_editor_data' => json_encode([
-                'time' => 1722165676318,
-                'blocks' => [
-                    [
-                        'type' => 'header',
-                        'data' => [
-                            'text' => 'Welcome to the Test Project!',
-                            'level' => 1,
-                        ],
-                    ],
-                    [
-                        'type' => 'paragraph',
-                        'data' => [
-                            'text' => 'Hello, world!',
-                        ],
-                    ],
-                    [
-                        'type' => 'email-input',
-                        'data' => [
-                            'placeholder' => 'Enter your email',
-                            'button' => 'Subscribe',
-                        ],
-                    ]
-                ],
-            ]),
-        ]);
     }
 }

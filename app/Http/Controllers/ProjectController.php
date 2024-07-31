@@ -70,7 +70,7 @@ class ProjectController extends Controller
         } else {
             $version = $project->maybeCreateDraftVersion();
         }
-        $versions = $project->versions()->get();
+        $versions = $project->versions()->latest()->get();
 
         return view('projects.edit', compact('project', 'version', 'versions'));
     }

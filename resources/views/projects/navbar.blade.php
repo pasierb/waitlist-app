@@ -34,7 +34,7 @@ $navLinks = [
             @isset($version)
                 <div class="dropdown">
                     <div tabindex="0" role="button" class="btn btn-sm">
-                        {{$version->created_at}}
+                        {{$version->name}}
                         @if($version->id === $project->published_version_id)
                             <x-heroicon-o-check class="h-4 text-success"/>
                         @endif
@@ -44,7 +44,7 @@ $navLinks = [
                         @foreach($versions as $v)
                             <li>
                                 <a href="{{route('projects.edit', [$project, 'version_id' => $v->id])}}">
-                                    {{$v->created_at}}
+                                    {{$v->name}}
                                     @if($v->id === $project->published_version_id)
                                         <x-heroicon-o-check class="h-4 text-success"/>
                                     @endif
@@ -56,7 +56,10 @@ $navLinks = [
                 <form action="{{route('projects.versions.publish', [$project, $version])}}" method="POST">
                     @csrf
                     @if($version->id === $project->published_version_id)
-                        Published
+                        <button class="btn btn-sm" disabled>
+                            <x-heroicon-o-globe-alt class="h-4" />
+                            Published
+                        </button>
                     @else
                         <button class="btn btn-sm">
                             <x-heroicon-o-globe-alt class="h-4" />

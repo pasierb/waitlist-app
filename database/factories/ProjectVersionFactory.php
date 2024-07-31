@@ -35,6 +35,7 @@ class ProjectVersionFactory extends Factory
         return $this->state(function (array $attributes) use ($version) {
             return [
                 'project_id' => $version->project_id,
+                'name' => 'v' . ($version->project()->first()->versions()->count() + 1),
                 'color_theme' => $version->color_theme,
                 'block_editor_data' => $version->block_editor_data,
                 'success_editor_data' => $version->success_editor_data,
@@ -47,6 +48,7 @@ class ProjectVersionFactory extends Factory
         return $this->state(function (array $attributes) use ($project) {
             return [
                 'project_id' => $project->id,
+                'name' => 'v' . ($project->versions()->count() + 1),
                 'block_editor_data' => json_encode([
                     'blocks' => [
                         [

@@ -54,7 +54,7 @@ $editorModes = [
     ],
     [
         'key' => 'success',
-        'label' => 'Success',
+        'label' => 'Success page',
     ],
 ];
 ?>
@@ -95,7 +95,7 @@ $editorModes = [
               method="POST"
               x-data="{ projectName: '{{$project->name}}', projectSlug: '{{$project->slug}}' }"
               x-ref="form"
-              class="flex flex-col gap-2 border rounded-lg p-4">
+              class="flex flex-col gap-2 rounded-lg p-4">
             @csrf
             @method('PUT')
             @include('projects.form-fields')
@@ -126,7 +126,7 @@ $editorModes = [
     </div>
 
     <!-- Design tab -->
-    <div class="flex flex-col gap-4 border rounded-lg px-4 pb-4" x-show="selectedTab === 'editor'">
+    <div class="flex flex-col gap-4 rounded-lg px-4 pb-4" x-show="selectedTab === 'editor'">
         <form id="project-version-form">
             <input type="hidden"
                    name="color_theme"
