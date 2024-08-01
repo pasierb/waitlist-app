@@ -78,8 +78,7 @@
         <nav>
             <h6 class="footer-title">Legal</h6>
             <a href="{{route('terms')}}" class="link link-hover">Terms of use</a>
-            <a class="link link-hover">Privacy policy</a>
-            <a class="link link-hover">Cookie policy</a>
+            <a href="{{route('privacy')}}" class="link link-hover">Privacy policy</a>
         </nav>
     </footer>
 </div>
