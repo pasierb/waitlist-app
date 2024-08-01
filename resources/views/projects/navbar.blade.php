@@ -5,14 +5,17 @@ $navLinks = [
     [
         'href' => route('projects.edit', $project),
         'routeName' => 'projects.edit',
+        'icon' => 'heroicon-o-cog-6-tooth',
         'label' => 'Settings',
     ], [
         'href' => route('projects.versions.edit', [$project, isset($version) ? $version : $project->latestDraftVersion()]),
         'routeName' => 'projects.versions.edit',
+        'icon' => 'heroicon-o-paint-brush',
         'label' => 'Design',
     ], [
         'href' => route('projects.submissions.index', $project),
         'routeName' => 'projects.submissions.index',
+        'icon' => 'heroicon-o-circle-stack',
         'label' => 'Submissions (' . ($project->submissions->count()) . ')',
     ]
 ];
@@ -26,6 +29,7 @@ $navLinks = [
                 <li>
                     <a href="{{$navLink['href']}}"
                        class="{{request()->routeIs($navLink['routeName']) ? 'active' : ''}}">
+                        @svg($navLink['icon'], 'h-4 w-4')
                         {{$navLink['label']}}
                     </a>
                 </li>
