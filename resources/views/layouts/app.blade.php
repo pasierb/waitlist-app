@@ -29,10 +29,10 @@
 
         @if(Session::has('success'))
             <div class="toast toast-center">
-                <div class="alert alert-success"
+                <div class="alert alert-success "
                      x-data
                      x-ref="alert"
-                     x-init="setTimeout(() => {$el.remove()}, 5000)">
+                     x-init="setTimeout(() => {$el.classList.add('animate-drop')}, 3000)">
                     <x-heroicon-o-check-circle class="w-4 h-4"/>
                     <span class="text-sm">{{Session::get('success')}}</span>
                     <button class="btn btn-sm btn-ghost" x-on:click="$refs.alert.remove()">

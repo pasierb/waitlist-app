@@ -47,7 +47,6 @@
     </div>
 
     @push('scripts')
-        @vite('resources/js/block-editor.js')
         <script>
             const projectForm = document.querySelector('#project-form');
 

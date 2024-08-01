@@ -16,6 +16,15 @@ export default {
             fontFamily: {
                 sans: ['Poppins', 'Figtree', ...defaultTheme.fontFamily.sans],
             },
+            keyframes: {
+                drop: {
+                    '10%': { transform: 'translateY(-10px); opacity: 0.7' },
+                    '100%': { transform: 'translateY(150px); opacity: 0' },
+                }
+            },
+            animation: {
+                drop: 'drop 1.5s cubic-bezier(0,.51,.37,1.53) forwards',
+            },
         },
     },
 
@@ -56,7 +65,7 @@ export default {
         ],
     },
 
-    safelist: ['ce-block__content', 'ce-block'],
+    safelist: ['ce-block__content', 'ce-block', 'animate-drop'],
 
     plugins: [forms, typography, daisyui],
 };
