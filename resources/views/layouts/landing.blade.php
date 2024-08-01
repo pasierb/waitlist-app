@@ -60,12 +60,14 @@
 
 <div class="bg-base-200">
     <footer class="footer bg-base-200 text-base-content p-10 container mx-auto">
-        <aside>
-            <img src="{{asset('img/logo.png')}}" class="h-12"/>
-            <p>
+        <aside class="max-w-xs">
+            <x-application-logo class="h-12" />
+            <p class="font-semibold text-lg">
                 {{config('app.name')}}<br/>
-                <br/>
-                Providing reliable tech since 1992
+            </p>
+            <p class="text-sm text-base-content/70">
+                LaunchLoom enables entrepreneurs to create stunning, code-free waitlist landing pages effortlessly with
+                an intuitive visual editor.
             </p>
         </aside>
         <nav>
