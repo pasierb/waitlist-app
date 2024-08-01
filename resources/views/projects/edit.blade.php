@@ -45,13 +45,10 @@
         </div>
     </div>
 
-    <x-slot:scripts>
+    @push('scripts')
         @vite('resources/js/block-editor.js')
         <script>
             const projectForm = document.querySelector('#project-form');
-            const form = document.querySelector('#project-version-form');
-            const previewIframe = document.querySelector('#project-preview')
-            const successPreviewIframe = document.querySelector('#success-preview')
 
             function confirmDelete($event) {
                 const name = projectForm.querySelector('[name="name"]').value;
@@ -61,5 +58,5 @@
                 }
             }
         </script>
-    </x-slot:scripts>
+    @endpush
 </x-app-layout>

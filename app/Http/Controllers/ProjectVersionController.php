@@ -6,6 +6,7 @@ use App\Http\Requests\StoreProjectVersionRequest;
 use App\Http\Requests\UpdateProjectVersionRequest;
 use App\Models\Project;
 use App\Models\ProjectVersion;
+use Illuminate\Http\Request;
 
 class ProjectVersionController extends Controller
 {
@@ -73,11 +74,13 @@ class ProjectVersionController extends Controller
         return response()->json($version);
     }
 
-    public function publish(Project $project, ProjectVersion $version)
+    public function publish(Project $project, ProjectVersion $version, Request $request)
     {
         $version->publish();
+        $request->session()->flash('success', 'Version ' . $version->name . ' published successfully');
+        $newDraftVersion = $project->versions()->latest()->first();
 
-        return redirect()->route('projects.edit', [$project]);
+        return redirect()->route('projects.versions.edit', [$project, $newDraftVersion]);
     }
 
     /**

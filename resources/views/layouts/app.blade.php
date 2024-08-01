@@ -25,6 +25,8 @@
 <div class="drawer lg:drawer-open">
     <input id="my-drawer" type="checkbox" class="drawer-toggle"/>
     <div class="drawer-content min-h-screen bg-base-100">
+        {{$slot}}
+
         @if(Session::has('success'))
             <div class="toast toast-center">
                 <div class="alert alert-success" x-data x-init="setTimeout(() => {$el.remove()}, 3000)">
@@ -33,12 +35,6 @@
                 </div>
             </div>
         @endif
-
-        {{$slot}}
-
-        {{--        <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">--}}
-        {{--            Open drawer--}}
-        {{--        </label>--}}
     </div>
     <div class="drawer-side">
         <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
@@ -75,8 +71,6 @@
     </div>
 </div>
 
-@isset($scripts)
-    {{$scripts}}
-@endisset
+@stack('scripts')
 </body>
 </html>
