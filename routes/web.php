@@ -20,7 +20,7 @@ Route::resource('projects', ProjectController::class)
     ->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
     ->middleware(['auth', 'verified']);
 Route::resource('projects.submissions', SubmissionController::class)
-    ->only(['index'])
+    ->only(['index', 'destroy'])
     ->middleware(['auth', 'verified']);
 Route::resource('projects.versions', ProjectVersionController::class)
     ->middleware(['auth', 'verified']);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Models\Submission;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SubmissionController extends Controller
 {
@@ -73,8 +74,14 @@ class SubmissionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Submission $submission)
+    public function destroy(Project $project, Submission $submission)
     {
-        //
+        if (Auth::user()->id !== $project->user_id) {
+            return abort(403);
+        }
+
+        $submission->delete();
+
+        return redirect()->route('projects.submissions.index', $project);
     }
 }

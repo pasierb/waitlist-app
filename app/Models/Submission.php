@@ -9,6 +9,11 @@ class Submission extends Model
 {
     use HasFactory;
 
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
+    }
+
     protected $fillable = [
         'project_id',
         'email',
