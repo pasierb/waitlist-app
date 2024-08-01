@@ -31,7 +31,7 @@
                     </a>
                 </td>
                 <td>
-                    <a href="{{route('projects.show', $project)}}" class="link" target="_blank">
+                    <a href="{{$project->url()}}" class="link" target="_blank">
                         {{ $project->url() }}
                     </a>
                 </td>

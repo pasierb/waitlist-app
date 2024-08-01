@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Events\ProjectCreated;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Url\Url;
 
 class Project extends Model
 {
@@ -33,8 +34,12 @@ class Project extends Model
             ->first();
     }
 
-    public function url(): string {
-        return route('projects.show', $this->slug);
+    public function url(): string
+    {
+        $host = $this->slug . '.' . Url::fromString(config('app.url'))->getHost();
+
+        return Url::fromString(config('app.url'))
+            ->withHost($host);
     }
 
     protected $fillable = ['name', 'slug', 'published_version_id', 'redirect_to_after_submission', 'redirect_after_submission',];
