@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\ProjectCreated;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -32,31 +33,14 @@ class Project extends Model
             ->first();
     }
 
-    public function maybeCreateDraftVersion()
-    {
-        $version = $this->latestDraftVersion();
-        if ($version) {
-            return $version;
-        }
-
-        $publishedVersion = $this->publishedVersion()->first();
-        if ($publishedVersion) {
-            return $this->versions()->create([
-                'block_editor_data' => $publishedVersion->block_editor_data,
-                'color_theme' => $publishedVersion->color_theme,
-            ]);
-        }
-
-        return $this->versions()->create([
-            'block_editor_data' => json_encode(
-                ['blocks' => [
-                    ['type' => 'header', 'data' => ['text' => $this->name, 'level' => 1]],
-                    ['type' => 'paragraph', 'data' => ['text' => 'This is a new project.']],
-                    ['type' => 'email-input', 'data' => ['button' => 'Sign up!', 'placeholder' => 'Enter your email']],
-                ]]),
-            'color_theme' => 'lofi',
-        ]);
-    }
-
     protected $fillable = ['name', 'slug', 'published_version_id', 'redirect_to_after_submission', 'redirect_after_submission',];
+
+    /**
+     * The event map for the model.
+     *
+     * @var array<string, string>
+     */
+    protected $dispatchesEvents = [
+        'created' => ProjectCreated::class,
+    ];
 }

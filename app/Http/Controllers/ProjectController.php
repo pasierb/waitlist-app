@@ -40,11 +40,7 @@ class ProjectController extends Controller
     {
         $project = new Project($request->validated());
         $project->user_id = Auth::id();
-
-        DB::transaction(function () use ($project) {
-            $project->save();
-            ProjectVersion::factory()->forProject($project)->create();
-        });
+        $project->saveOrFail();
 
         return redirect()->route('projects.edit', $project);
     }
@@ -72,7 +68,8 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        $project->update($request->validated());
+        $project->updateOrFail($request->validated());
+        $request->session()->flash('success', 'Project updated successfully!');
 
         if ($request->ajax()) {
             return response()->json($project);

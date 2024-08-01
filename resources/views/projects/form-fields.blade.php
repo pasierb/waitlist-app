@@ -5,23 +5,32 @@
             <span class="label-text-alt">This will appear as a page title</span>
         </label>
     </div>
-    <input type="text"
-           id="name-input"
-           name="name"
-           x-model="projectName"
-           value="{{$project->name}}"
-           class="input input-bordered col-span-3"/>
-
+    <div class="col-span-3 flex flex-col items-start">
+        <input type="text"
+               id="name-input"
+               name="name"
+               x-model="projectName"
+               value="{{$project->name}}"
+               class="input input-bordered w-full @error('name') input-error @enderror"/>
+        @error('name')
+        <span class="text-sm text-error">{{$message}}</span>
+        @enderror
+    </div>
 
     <label class="label col-span-2" for="slug-input">
         <span class="label-text">Slug</span>
     </label>
-    <input type="text"
-           id="slug-input"
-           name="slug"
-           x-model="projectSlug"
-           value="{{$project->slug}}"
-           class="input input-bordered col-span-3"/>
+    <div class="col-span-3">
+        <input type="text"
+               id="slug-input"
+               name="slug"
+               x-model="projectSlug"
+               value="{{$project->slug}}"
+               class="input input-bordered w-full @error('slug') input-error @enderror"/>
+        @error('slug')
+        <span class="text-sm text-error">{{$message}}</span>
+        @enderror
+    </div>
 
     <h3 class="col-span-5 font-semibold text-lg pt-4">Redirection</h3>
 
@@ -36,19 +45,24 @@
         <input type="checkbox"
                id="redirect_after_submission-input"
                name="redirect_after_submission"
-               {{$project->redirect_after_submission ? 'checked="checked"' : ''}} value="1"
+               {{( old('redirect_after_submission') ?? $project->redirect_after_submission) ? 'checked="checked"' : ''}} value="1"
                class="checkbox"/>
     </div>
 
     <label class="label col-span-2" for="redirect_to_after_submission-input">
         <span class="label-text">Redirect URL</span>
     </label>
-    <input type="text"
-           id="redirect_to_after_submission-input"
-           name="redirect_to_after_submission"
-           placeholder="https://example.com"
-           value="{{$project->redirect_to_after_submission}}"
-           class="input input-bordered col-span-3"/>
+    <div class="col-span-3">
+        <input type="text"
+               id="redirect_to_after_submission-input"
+               name="redirect_to_after_submission"
+               placeholder="https://example.com"
+               value="{{$project->redirect_to_after_submission ?? old('redirect_to_after_submission')}}"
+               class="input input-bordered w-full"/>
+        @error('redirect_to_after_submission')
+        <span class="text-sm text-error">{{$message}}</span>
+        @enderror
+    </div>
 </div>
 
 <div class="flex flex-row justify-end gap-2 border-t mt-4 pt-4">

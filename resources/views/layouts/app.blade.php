@@ -25,6 +25,15 @@
 <div class="drawer lg:drawer-open">
     <input id="my-drawer" type="checkbox" class="drawer-toggle"/>
     <div class="drawer-content min-h-screen bg-base-100">
+        @if(Session::has('success'))
+            <div class="toast toast-center">
+                <div class="alert alert-success" x-data x-init="setTimeout(() => {$el.remove()}, 3000)">
+                    <x-heroicon-o-check-circle class="w-4 h-4"/>
+                    <span class="text-sm">{{Session::get('success')}}</span>
+                </div>
+            </div>
+        @endif
+
         {{$slot}}
 
         {{--        <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">--}}

@@ -22,9 +22,9 @@ class StoreProjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
-            'slug' => ['required', 'string', 'max:255', 'unique:projects'],
-            'redirect_to_after_submission' => 'nullable|string',
+            'name' => 'required|string|max:255',
+            'slug' => 'required|string|max:255|unique:projects',
+            'redirect_to_after_submission' => 'nullable|url:https',
             'redirect_after_submission' => 'integer',
         ];
     }

@@ -8,7 +8,7 @@
                 <div>
                     <form id="project-form" action="{{route('projects.update', $project)}}"
                           method="POST"
-                          x-data="{ projectName: '{{$project->name}}', projectSlug: '{{$project->slug}}' }"
+                          x-data="{ projectName: '{{$project->name}}', projectSlug: '{{old('slug') ?? $project->slug}}' }"
                           x-ref="form"
                           class="flex flex-col gap-2 rounded-lg p-4">
                         @csrf
