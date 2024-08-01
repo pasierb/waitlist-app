@@ -2,14 +2,9 @@
     <div class="h-full flex flex-col">
         @include('projects.navbar')
 
-        <div class="px-4 grow max-w-4xl">
+        <div class="px-4 grow max-w-5xl">
 
-            <div x-data="{colorTheme: '{{$version->color_theme}}', selectedTab: 'settings', editorMode: 'form'}"
-                 x-init="$watch('colorTheme', saveProjectVersion), $watch('editorMode', () => $dispatch('editor-mode-change', editorMode))"
-                 class="h-full">
-
-
-                <!-- Settings tab -->
+            <div class="h-full">
                 <div>
                     <form id="project-form" action="{{route('projects.update', $project)}}"
                           method="POST"

@@ -64,15 +64,7 @@ class ProjectController extends Controller
      */
     public function edit(Request $request, Project $project)
     {
-        $versionId = $request->input('version_id', null);
-        if ($versionId) {
-            $version = $project->versions()->where(['id' => $versionId])->firstOrFail();
-        } else {
-            $version = $project->maybeCreateDraftVersion();
-        }
-        $versions = $project->versions()->latest()->get();
-
-        return view('projects.edit', compact('project', 'version', 'versions'));
+        return view('projects.edit', compact('project'));
     }
 
     /**

@@ -26,7 +26,10 @@ class Project extends Model
 
     public function latestDraftVersion()
     {
-        return $this->versions()->where('published', 0)->latest()->first();
+        return $this->versions()
+            ->where('published', 0)
+            ->orderBy('updated_at', 'desc')
+            ->first();
     }
 
     public function maybeCreateDraftVersion()
