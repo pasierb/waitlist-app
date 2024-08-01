@@ -6,6 +6,9 @@
 
     <title>{{config('app.name')}}</title>
 
+    <!-- Favicon definition -->
+    <link rel="icon" type="image/png" href="{{asset('favicon/favicon.ico')}}">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
