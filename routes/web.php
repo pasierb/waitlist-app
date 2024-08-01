@@ -11,9 +11,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('root');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+//Route::get('/dashboard', function () {
+//    return view('dashboard');
+//})->middleware(['auth', 'verified'])->name('dashboard');
+Route::redirect('/dashboard', '/projects')->name('dashboard');
 
 Route::resource('projects', ProjectController::class)
     ->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])

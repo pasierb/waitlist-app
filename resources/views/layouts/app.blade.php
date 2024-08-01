@@ -51,12 +51,12 @@
             </a>
 
             <ul class="menu">
-                <li>
-                    <a href="{{route('dashboard')}}">
-                        <x-heroicon-o-home class="w-4 h-4"/>
-                        {{__('Dashboard')}}
-                    </a>
-                </li>
+{{--                <li>--}}
+{{--                    <a href="{{route('dashboard')}}">--}}
+{{--                        <x-heroicon-o-home class="w-4 h-4"/>--}}
+{{--                        {{__('Dashboard')}}--}}
+{{--                    </a>--}}
+{{--                </li>--}}
                 <li>
                     <a href="{{route('projects.index')}}">
                         <x-heroicon-o-folder class="w-4 h-4"/>
