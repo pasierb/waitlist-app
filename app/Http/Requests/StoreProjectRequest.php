@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreProjectRequest extends FormRequest
 {
@@ -23,7 +24,14 @@ class StoreProjectRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:projects',
+            'slug' => [
+                'required',
+                'string',
+                'max:255',
+                'min:5',
+                'unique:projects',
+                Rule::notIn(['www', 'admin', 'dashboard', 'cdn']),
+            ],
             'redirect_to_after_submission' => 'nullable|url:https|required_if_accepted:redirect_after_submission',
             'redirect_after_submission' => 'integer',
         ];
