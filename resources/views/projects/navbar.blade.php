@@ -49,7 +49,7 @@ $navLinks = [
                         @endif
                         <x-heroicon-o-chevron-down class="h-4"/>
                     </div>
-                    <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+                    <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow max-h-screen scroll-auto">
                         @foreach($versions as $v)
                             <li>
                                 <a href="{{route('projects.versions.edit', [$project, $v])}}">
