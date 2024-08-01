@@ -14,6 +14,7 @@ namespace :deploy do
       within release_path do
         execute :php, "artisan", "migrate", "--force"
         execute :php, "artisan", "storage:link"
+        execute :php, "artisan", "cache:clear"
         execute :php, "artisan", "optimize:clear"
         execute :php, "artisan", "optimize"
       end
