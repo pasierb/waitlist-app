@@ -37,8 +37,8 @@ class UpdateProjectRequest extends FormRequest
                 'max:255',
                 Rule::unique('projects')->ignore($request->route('project')),
             ],
-            'redirect_to_after_submission' => 'nullable|string',
             'redirect_after_submission' => 'integer',
+            'redirect_to_after_submission' => 'nullable|url:https|required_if_accepted:redirect_after_submission',
         ];
     }
 }

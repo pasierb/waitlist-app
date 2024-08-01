@@ -57,7 +57,7 @@
                id="redirect_to_after_submission-input"
                name="redirect_to_after_submission"
                placeholder="https://example.com"
-               value="{{$project->redirect_to_after_submission ?? old('redirect_to_after_submission')}}"
+               value="{{old('redirect_to_after_submission') ?? $project->redirect_to_after_submission}}"
                class="input input-bordered w-full"/>
         @error('redirect_to_after_submission')
         <span class="text-sm text-error">{{$message}}</span>

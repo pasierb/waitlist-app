@@ -24,7 +24,7 @@ class StoreProjectRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:projects',
-            'redirect_to_after_submission' => 'nullable|url:https',
+            'redirect_to_after_submission' => 'nullable|url:https|required_if_accepted:redirect_after_submission',
             'redirect_after_submission' => 'integer',
         ];
     }
