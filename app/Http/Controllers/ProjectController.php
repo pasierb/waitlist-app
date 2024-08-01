@@ -55,6 +55,17 @@ class ProjectController extends Controller
         return view('project_versions.show', compact('project', 'version'));
     }
 
+    public function find(Request $request)
+    {
+        $domain = $request->input('domain');
+        if ($domain) {
+            $project = Project::where('custom_domain', $domain)->firstOrFail();
+            return redirect()->route('project.page', $project);
+        }
+
+        return redirect()->route('root');
+    }
+
     /**
      * Show the form for editing the specified resource.
      */

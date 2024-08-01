@@ -42,7 +42,14 @@ class Project extends Model
             ->withHost($host);
     }
 
-    protected $fillable = ['name', 'slug', 'published_version_id', 'redirect_to_after_submission', 'redirect_after_submission',];
+    protected $fillable = [
+        'name',
+        'slug',
+        'published_version_id',
+        'redirect_to_after_submission',
+        'redirect_after_submission',
+        'custom_domain',
+    ];
 
     /**
      * The event map for the model.

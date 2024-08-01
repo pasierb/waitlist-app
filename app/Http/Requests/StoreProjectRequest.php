@@ -34,6 +34,11 @@ class StoreProjectRequest extends FormRequest
             ],
             'redirect_to_after_submission' => 'nullable|url:https|required_if_accepted:redirect_after_submission',
             'redirect_after_submission' => 'integer',
+            'custom_domain' => [
+                'nullable',
+                'string',
+                'unique:projects',
+            ],
         ];
     }
 }

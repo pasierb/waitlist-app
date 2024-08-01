@@ -63,6 +63,25 @@
         <span class="text-sm text-error">{{$message}}</span>
         @enderror
     </div>
+
+    <h3 class="col-span-5 font-semibold text-lg pt-4">Domain</h3>
+
+    <label class="label col-span-2 flex-col items-start" for="custom_domain-input">
+        <span class="label-text">Custom domain</span>
+        <!-- TODO: Add a note about setting up custom domain -->
+    </label>
+    <div class="col-span-3">
+        <input type="text"
+               id="custom_domain-input"
+               name="custom_domain"
+               placeholder="example.com"
+               value="{{old('custom_domain') ?? $project->custom_domain}}"
+               class="input input-bordered w-full @error('custom_domain') input-error @enderror"/>
+        @error('custom_domain')
+        <span class="text-sm text-error">{{$message}}</span>
+        @enderror
+    </div>
+
 </div>
 
 <div class="flex flex-row justify-end gap-2 border-t mt-4 pt-4">

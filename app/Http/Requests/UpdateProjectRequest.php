@@ -41,6 +41,11 @@ class UpdateProjectRequest extends FormRequest
             ],
             'redirect_after_submission' => 'integer',
             'redirect_to_after_submission' => 'nullable|url:https|required_if_accepted:redirect_after_submission',
+            'custom_domain' => [
+                'nullable',
+                'string',
+                Rule::unique('projects')->ignore($request->route('project')),
+            ],
         ];
     }
 }

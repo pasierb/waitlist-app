@@ -35,6 +35,7 @@ Route::get('/projects/{project}/versions/{version}/success_preview', [ProjectVer
     ->name('projects.versions.success_preview');
 
 Route::get('/p/{project:slug}', [ProjectController::class, 'show'])->name('project.page');
+Route::get('/p', [ProjectController::class, 'find'])->name('projects.find');
 Route::get('/projects/{project}', [ProjectController::class, 'show'])->name('projects.show');
 Route::post('/projects/{project}/submissions', [SubmissionController::class, 'store'])
     ->name('projects.submissions.store');
