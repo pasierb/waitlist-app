@@ -1,4 +1,4 @@
-@if(config('app.env') === 'production')
+@if(app()->environment('production'))
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-YDNRDGP4RZ"></script>
     <script>
