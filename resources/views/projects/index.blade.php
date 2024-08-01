@@ -7,7 +7,7 @@
         <div class="navbar-center hidden lg:flex">
         </div>
         <div class="navbar-end">
-            <a href="{{route('projects.create')}}" class="btn btn-primary">
+            <a href="{{route('projects.create')}}" class="btn btn-sm btn-primary">
                 <x-heroicon-o-plus class="h-4"/>
                 Create
             </a>
@@ -18,9 +18,8 @@
         <thead>
         <tr>
             <th>Name</th>
+            <th>Publish URL</th>
             <th class="text-right">Submissions</th>
-            <th>Published</th>
-            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -31,21 +30,14 @@
                         {{ $project->name }}
                     </a>
                 </td>
+                <td>
+                    <a href="{{route('projects.show', $project)}}" class="link" target="_blank">
+                        {{ $project->url() }}
+                    </a>
+                </td>
                 <td class="text-right">
                     <a href="{{route('projects.submissions.index', $project)}}" class="link">
                         {{ $project->submissions()->count() }}
-                    </a>
-                </td>
-                <td>
-                    @if($project->published_version_id)
-                        <x-heroicon-o-check class="h-4"/>
-                    @endif
-                </td>
-                <td class="text-right">
-                    <a href="{{ route('projects.show', $project) }}"
-                       target="_blank"
-                       class="btn btn-ghost btn-sm">
-                        <x-heroicon-o-eye class="h-4"/>
                     </a>
                 </td>
             </tr>

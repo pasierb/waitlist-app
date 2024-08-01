@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="w-full px-8 max-w-4xl mx-auto">
+    <div class="w-full px-8 max-w-4xl mt-12">
         <form id="project-form" action="{{route('projects.store')}}"
               method="POST"
               x-data="{ projectName: '{{$project->name ?? old('name')}}', projectSlug: '{{$project->slug ?? old('slug')}}' }"

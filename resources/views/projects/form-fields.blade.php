@@ -72,7 +72,7 @@
     </a>
 
     <button type="submit"
-            class="btn btn-secondary">
+            class="btn btn-primary">
         Save
     </button>
 </div>

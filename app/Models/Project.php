@@ -33,6 +33,10 @@ class Project extends Model
             ->first();
     }
 
+    public function url(): string {
+        return route('projects.show', $this->slug);
+    }
+
     protected $fillable = ['name', 'slug', 'published_version_id', 'redirect_to_after_submission', 'redirect_after_submission',];
 
     /**

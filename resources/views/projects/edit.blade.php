@@ -35,6 +35,7 @@
                                 </div>
                                 <button type="submit" class="btn btn-error">
                                     <x-heroicon-o-trash class="w-4 h-4"/>
+                                    Delete
                                 </button>
                             </form>
                         </div>
