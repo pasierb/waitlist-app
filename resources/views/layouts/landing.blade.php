@@ -3,6 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Create eye-catching waitlist landing pages in minutes. No coding required. Capture and manage potential customers effortlessly with our intuitive visual editor.">
+    <meta name="keywords" content="waitlist, landing page, launch, CMS">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
 
     <title>{{config('app.name')}}</title>
 
