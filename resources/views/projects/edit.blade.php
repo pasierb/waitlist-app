@@ -44,4 +44,22 @@
 
         </div>
     </div>
+
+    <x-slot:scripts>
+        @vite('resources/js/block-editor.js')
+        <script>
+            const projectForm = document.querySelector('#project-form');
+            const form = document.querySelector('#project-version-form');
+            const previewIframe = document.querySelector('#project-preview')
+            const successPreviewIframe = document.querySelector('#success-preview')
+
+            function confirmDelete($event) {
+                const name = projectForm.querySelector('[name="name"]').value;
+
+                if (!confirm(`Are you sure you want to delete "${name}"?`)) {
+                    $event.preventDefault();
+                }
+            }
+        </script>
+    </x-slot:scripts>
 </x-app-layout>
