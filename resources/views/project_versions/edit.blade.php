@@ -71,6 +71,10 @@ $editorModes = [
         .ce-paragraph {
             text-align: center;
         }
+
+        .cdx-simple-image__picture > * {
+            margin: 0 auto;
+        }
     </style>
 
     <div class="h-full flex flex-col"
