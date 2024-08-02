@@ -30,15 +30,31 @@ $lifetimeFeatures = [
             </div>
         </div>
 
+        @auth
+            @if(Auth::user()->isPremium())
+                <div class="max-w-4xl mx-auto my-8">
+                    <div role="alert" class="alert">
+                        <div></div>
+                        <span>
+                            You are already a premium user. Thank you for supporting LaunchLoom!
+                        </span>
+                        <div>
+                            <a href="{{route('dashboard')}}" class="btn btn-sm">Go to dashboard</a>
+                        </div>
+                    </div>
+                </div>
+            @endif
+        @endauth
+
         <div class="mt-20 px-8 max-w-5xl mx-auto">
             <div class="grid w-full grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-2">
                 <x-pricing-card
-                                plan="free"
-                                 :features="$freeFeatures"/>
+                    plan="free"
+                    :features="$freeFeatures"/>
 
                 <x-pricing-card title="Premium" price="$65"
                                 plan="lifetime"
-                                 :features="$lifetimeFeatures">
+                                :features="$lifetimeFeatures">
                     <x-slot:price-note>
                         One-time payment
                     </x-slot:price-note>
