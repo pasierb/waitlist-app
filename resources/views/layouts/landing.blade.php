@@ -4,7 +4,8 @@
     <x-ga/>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Create eye-catching waitlist landing pages in minutes. No coding required. Capture and manage potential customers effortlessly with our intuitive visual editor.">
+    <meta name="description"
+          content="Create eye-catching waitlist landing pages in minutes. No coding required. Capture and manage potential customers effortlessly with our intuitive visual editor.">
     <meta name="keywords" content="waitlist, landing page, launch, CMS">
     <meta name="robots" content="index, follow">
     <meta name="language" content="English">
@@ -25,13 +26,20 @@
 </head>
 <body class="bg-base-100 min-h-screen flex flex-col">
 <div class="navbar bg-base-100 container mx-auto">
-    <div class="flex-1">
+    <div class="navbar-start">
         <a class="btn btn-ghost text-xl" href="/">
             <img src="{{asset('img/logo.png')}}" alt="Bunny.net" class="h-8"/>
             {{config('app.name')}}
         </a>
     </div>
-    <div class="flex-none">
+    <div class="navbar-center hidden md:flex">
+        <ul class="menu menu-horizontal px-1">
+            <li>
+                <a href="{{route('pricing')}}">Pricing</a>
+            </li>
+        </ul>
+    </div>
+    <div class="navbar-end">
         <ul class="menu menu-horizontal px-1">
             @auth
                 <li>
@@ -69,7 +77,7 @@
 <div class="bg-base-200">
     <footer class="footer bg-base-200 text-base-content p-10 container mx-auto">
         <aside class="max-w-xs">
-            <x-application-logo class="h-12" />
+            <x-application-logo class="h-12"/>
             <p class="font-semibold text-lg">
                 {{config('app.name')}}<br/>
             </p>

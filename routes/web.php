@@ -42,6 +42,7 @@ Route::post('/projects/{project}/submissions', [SubmissionController::class, 'st
 
 Route::view('/terms', 'terms')->name('terms');
 Route::view('/privacy', 'privacy')->name('privacy');
+Route::view('/pricing', 'pricing')->name('pricing');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -54,6 +55,6 @@ Route::get('/checkout', [CheckoutController::class, 'create'])
     ->middleware(['auth', 'verified'])
     ->name('checkout');
 Route::get('/checkout/success', [CheckoutController::class, 'show'])->name('checkout-success');
-Route::view('/checkout/cancel', 'checkout.cancel')->name('checkout-cancel');
+Route::redirect('/checkout/cancel', '/pricing')->name('checkout-cancel');
 
 require __DIR__ . '/auth.php';

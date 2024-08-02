@@ -23,6 +23,11 @@ class User extends Authenticatable
         return $this->hasMany(Order::class);
     }
 
+    public function isPremium(): bool
+    {
+        return $this->orders()->where('is_completed', 1)->exists();
+    }
+
     /**
      * The attributes that are mass assignable.
      *

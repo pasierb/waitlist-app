@@ -11,11 +11,15 @@ class CheckoutController extends Controller
     /**
      * Show the form for creating the resource.
      */
-    public function create()
+    public function create(Request $request)
     {
+        if (Auth::user()->isPremium()) {
+            return redirect()->route('dashboard');
+        }
+
         $stripePriceId = config('app.stripe_lifetime_access_price_id');
         $quantity = 1;
-        $successUrl = route('checkout-success').'?session_id={CHECKOUT_SESSION_ID}';
+        $successUrl = route('checkout-success') . '?session_id={CHECKOUT_SESSION_ID}';
 
         return Auth::user()->checkout([$stripePriceId => $quantity], [
             'success_url' => $successUrl,
@@ -48,8 +52,10 @@ class CheckoutController extends Controller
 
         Auth::user()->orders()->create([
             'payment_status' => $session->payment_status,
+            'is_completed' => $session->payment_status === 'paid',
         ]);
 
+        $request->session()->flash('success', 'Payment successful!');
         return redirect()->route('dashboard');
     }
 

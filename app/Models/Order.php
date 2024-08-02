@@ -11,5 +11,6 @@ class Order extends Model
 
     protected $fillable = [
         'payment_status',
+        'is_completed',
     ];
 }
