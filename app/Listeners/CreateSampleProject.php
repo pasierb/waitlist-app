@@ -24,10 +24,11 @@ class CreateSampleProject
      */
     public function handle(UserCreated $event): void
     {
-        Project::create([
-            'user_id' => $event->user->id,
+        $project = new Project([
             'name' => 'Sample Project',
             'slug' => 'sample-user-project-' . $event->user->id . '-' . Carbon::now()->unix(),
         ]);
+        $project->user_id = $event->user->id;
+        $project->save();
     }
 }
