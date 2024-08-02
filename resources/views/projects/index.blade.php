@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="navbar bg-base-100 border-b px-4">
         <div class="navbar-start">
-            <x-drawer-open-button />
+            <x-drawer-open-button/>
             {{__('Projects')}}
         </div>
         <div class="navbar-center hidden lg:flex">
@@ -18,7 +18,7 @@
         <thead>
         <tr>
             <th>Name</th>
-            <th>Publish URL</th>
+            <th>URL</th>
             <th class="text-right">Submissions</th>
         </tr>
         </thead>
@@ -31,9 +31,13 @@
                     </a>
                 </td>
                 <td>
-                    <a href="{{$project->url()}}" class="link" target="_blank">
-                        {{ $project->url() }}
-                    </a>
+                    @if($project->published_version_id)
+                        <a href="{{$project->url()}}" class="link" target="_blank">
+                            {{ $project->url() }}
+                        </a>
+                    @else
+                        <span class="text-base-content/70">Not published</span>
+                    @endif
                 </td>
                 <td class="text-right">
                     <a href="{{route('projects.submissions.index', $project)}}" class="link">
