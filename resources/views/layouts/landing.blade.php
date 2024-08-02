@@ -87,6 +87,11 @@
             </p>
         </aside>
         <nav>
+            <h6 class="footer-title">Company</h6>
+            <a href="{{route('pricing')}}" class="link link-hover">Pricing</a>
+            <a href="{{route('contact')}}" class="link link-hover">Contact</a>
+        </nav>
+        <nav>
             <h6 class="footer-title">Legal</h6>
             <a href="{{route('terms')}}" class="link link-hover">Terms of use</a>
             <a href="{{route('privacy')}}" class="link link-hover">Privacy policy</a>

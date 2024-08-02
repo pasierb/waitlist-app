@@ -43,6 +43,7 @@ Route::post('/projects/{project}/submissions', [SubmissionController::class, 'st
 Route::view('/terms', 'terms')->name('terms');
 Route::view('/privacy', 'privacy')->name('privacy');
 Route::view('/pricing', 'pricing')->name('pricing');
+Route::view('/contact', 'contact')->name('contact');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
