@@ -21,6 +21,5 @@ class ProjectCreated
      */
     public function __construct(public Project $project)
     {
-        ProjectVersion::factory()->forProject($project)->create();
     }
 }

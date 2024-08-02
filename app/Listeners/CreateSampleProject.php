@@ -24,11 +24,10 @@ class CreateSampleProject
      */
     public function handle(UserCreated $event): void
     {
-        $project = Project::factory()->create([
+        Project::create([
             'user_id' => $event->user->id,
             'name' => 'Sample Project',
             'slug' => 'sample-user-project-' . $event->user->id . '-' . Carbon::now()->unix(),
         ]);
-        ProjectVersion::factory()->forProject($project)->create();
     }
 }

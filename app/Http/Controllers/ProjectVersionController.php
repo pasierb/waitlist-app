@@ -77,9 +77,9 @@ class ProjectVersionController extends Controller
     public function publish(Project $project, ProjectVersion $version, Request $request)
     {
         $version->publish();
-        $request->session()->flash('success', 'Version ' . $version->name . ' published successfully');
         $newDraftVersion = $project->versions()->latest()->first();
 
+        $request->session()->flash('success', 'Version ' . $version->name . ' published successfully');
         return redirect()->route('projects.versions.edit', [$project, $newDraftVersion]);
     }
 

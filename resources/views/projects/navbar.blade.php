@@ -1,6 +1,4 @@
 <?php
-$versions = $project->versions()->latest()->get();
-
 $navLinks = [
     [
         'href' => route('projects.edit', $project),
@@ -8,10 +6,10 @@ $navLinks = [
         'icon' => 'heroicon-o-cog-6-tooth',
         'label' => 'Settings',
     ], [
-        'href' => route('projects.versions.edit', [$project, isset($version) ? $version : $project->latestDraftVersion()]),
+        'href' => route('projects.versions.edit', [$project, $project->latestDraftVersion()]),
         'routeName' => 'projects.versions.edit',
         'icon' => 'heroicon-o-paint-brush',
-        'label' => 'Design',
+        'label' => 'Design' . (isset($version) ? ' (' . $version->name . ')' : ''),
     ], [
         'href' => route('projects.submissions.index', $project),
         'routeName' => 'projects.submissions.index',
@@ -50,7 +48,7 @@ $navLinks = [
                         <x-heroicon-o-chevron-down class="h-4"/>
                     </div>
                     <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow max-h-screen scroll-auto">
-                        @foreach($versions as $v)
+                        @foreach($project->versions()->latest()->get() as $v)
                             <li>
                                 <a href="{{route('projects.versions.edit', [$project, $v])}}">
                                     {{$v->name}}
