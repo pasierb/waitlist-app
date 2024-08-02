@@ -45,35 +45,43 @@
     </div>
     <div class="drawer-side">
         <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
-        <div class="bg-base-200 text-base-content min-h-full w-48 py-4">
-            <a href="{{route('root')}}" class="flex flex-row gap-2 ml-4 mt-2 mb-4">
-                <img src="{{asset('img/logo.png')}}" alt="logo" class="w-8 h-8"/>
-                <span class="font-semibold text-lg">LaunchLoom</span>
-            </a>
+        <div class="bg-base-200 text-base-content min-h-full w-48 py-4 flex flex-col">
+            <div class="grow">
 
-            <ul class="menu">
-{{--                <li>--}}
-{{--                    <a href="{{route('dashboard')}}">--}}
-{{--                        <x-heroicon-o-home class="w-4 h-4"/>--}}
-{{--                        {{__('Dashboard')}}--}}
-{{--                    </a>--}}
-{{--                </li>--}}
-                <li>
-                    <a href="{{route('projects.index')}}">
-                        <x-heroicon-o-folder class="w-4 h-4"/>
-                        {{__('Projects')}}
-                    </a>
-                </li>
-            </ul>
+                <a href="{{route('root')}}" class="flex flex-row gap-2 ml-4 mt-2 mb-4">
+                    <img src="{{asset('img/logo.png')}}" alt="logo" class="w-8 h-8"/>
+                    <span class="font-semibold text-lg">LaunchLoom</span>
+                </a>
 
-            <ul class="menu rounded-box">
-                <li class="menu-title">Projects</li>
-                @foreach(\Illuminate\Support\Facades\Auth::user()->projects()->get() as $project)
+                <ul class="menu">
                     <li>
-                        <a href="{{route('projects.edit', $project)}}">{{$project->name}}</a>
+                        <a href="{{route('projects.index')}}">
+                            <x-heroicon-o-folder class="w-4 h-4"/>
+                            {{__('Projects')}}
+                        </a>
                     </li>
-                @endforeach
-            </ul>
+                </ul>
+
+                <ul class="menu rounded-box">
+                    <li class="menu-title">Projects</li>
+                    @foreach(\Illuminate\Support\Facades\Auth::user()->projects()->get() as $project)
+                        <li>
+                            <a href="{{route('projects.edit', $project)}}">{{$project->name}}</a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+
+            <div>
+                <ul class="menu">
+                    <li>
+                        <a href="{{route('profile.edit')}}">
+                            <x-heroicon-o-cog-6-tooth class="w-4 h-4"/>
+                            {{__('Settings')}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
