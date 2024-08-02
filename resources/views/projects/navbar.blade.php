@@ -9,7 +9,7 @@ $navLinks = [
         'href' => route('projects.versions.edit', [$project, $project->latestDraftVersion()]),
         'routeName' => 'projects.versions.edit',
         'icon' => 'heroicon-o-paint-brush',
-        'label' => 'Design' . (isset($version) ? ' (' . $version->name . ')' : ''),
+        'label' => 'Design',
     ], [
         'href' => route('projects.submissions.index', $project),
         'routeName' => 'projects.submissions.index',
@@ -47,7 +47,8 @@ $navLinks = [
                         @endif
                         <x-heroicon-o-chevron-down class="h-4"/>
                     </div>
-                    <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow max-h-screen scroll-auto">
+                    <ul tabindex="0"
+                        class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow max-h-screen scroll-auto">
                         @foreach($project->versions()->latest()->get() as $v)
                             <li>
                                 <a href="{{route('projects.versions.edit', [$project, $v])}}">
@@ -80,6 +81,18 @@ $navLinks = [
                    href="{{route('projects.versions.preview', [$project, $version])}}">
                     <x-heroicon-o-eye class="h-4"/>
                 </a>
+            @else
+                @if($project->published_version_id)
+                    <a href="{{$project->url()}}" class="btn btn-sm" target="_blank">
+                        <x-heroicon-o-globe-alt class="h-4"/>
+                        View
+                    </a>
+                @else
+                    <div class="flex flex-row items-center gap-2 text-sm text-base-content/70">
+                        <x-heroicon-o-globe-alt class="h-4"/>
+                        Not published
+                    </div>
+                @endif
             @endisset
         </div>
     </div>
