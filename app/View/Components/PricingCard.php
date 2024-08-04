@@ -38,7 +38,7 @@ class PricingCard extends Component
     private function price() {
         switch($this->plan) {
             case 'lifetime':
-                return '€65';
+                return '$65';
             case 'free':
                 return '$0';
         }
