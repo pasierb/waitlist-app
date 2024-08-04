@@ -114,7 +114,7 @@
             </nav>
         </div>
 
-        <div class="w-full py-12 flex flex row items-center gap-4">
+        <div class="w-full py-12 flex flex row items-center gap-4 max-w-3xl">
             <img src="img/profile-pic-michal-square.png" alt="Founder's profile picture" class="w-16 h-16 rounded-badge">
             <p class="text-base-content/80 text-sm">
                 Hi! I'm Michal, the founder of LaunchLoom. I'm here to help you with any questions you might have.
