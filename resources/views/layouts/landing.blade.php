@@ -95,7 +95,8 @@
                     {{config('app.name')}}<br/>
                 </p>
                 <p class="text-sm text-neutral-contentl/70">
-                    LaunchLoom enables entrepreneurs to create stunning, code-free waitlist landing pages effortlessly with
+                    LaunchLoom enables entrepreneurs to create stunning, code-free waitlist landing pages effortlessly
+                    with
                     an intuitive visual editor.
                 </p>
                 <p class="text-sm text-neutral-content/70">
@@ -106,6 +107,7 @@
                 <h6 class="footer-title">Company</h6>
                 <a href="{{route('pricing')}}" class="link link-hover">Pricing</a>
                 <a href="{{route('contact')}}" class="link link-hover">Contact</a>
+                <a href="https://launchloom.io/p/newsletter" class="link link-hover">Newsletter</a>
             </nav>
             <nav>
                 <h6 class="footer-title">Legal</h6>
@@ -115,7 +117,8 @@
         </div>
 
         <div class="w-full py-12 flex flex row items-center gap-4 max-w-3xl">
-            <img src="img/profile-pic-michal-square.png" alt="Founder's profile picture" class="w-16 h-16 rounded-badge">
+            <img src="img/profile-pic-michal-square.png" alt="Founder's profile picture"
+                 class="w-16 h-16 rounded-badge">
             <p class="text-neutral-content/80 text-sm">
                 Hi! I'm Michal, the founder of LaunchLoom. I'm here to help you with any questions you might have.
                 Feel free to reach out to me at

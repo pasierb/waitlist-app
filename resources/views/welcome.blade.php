@@ -31,5 +31,22 @@
         </div>
     </div>
 
-    {{--    <x-pricing></x-pricing>--}}
+    <div class="bg-base-100 text-base-content py-24 px-4">
+        <div class="text-center mx-auto">
+            <h1 class="font-semibold text-4xl">Pricing</h1>
+
+            <div class="mt-8 prose mx-auto">
+                <p>
+                    Enjoy generous free plan to get you started with creating beautiful waitlist
+                    landing pages.
+                </p>
+                <p>
+                    For those looking to unlock our full suite of premium features, a one-time payment provides
+                    lifetime access with <strong>no recurring fees 💸</strong>.
+                </p>
+            </div>
+        </div>
+
+        <x-pricing-section />
+    </div>
 @endsection
