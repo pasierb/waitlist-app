@@ -4,15 +4,18 @@
     <x-ga/>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description"
-          content="Create eye-catching waitlist landing pages in minutes. No coding required. Capture and manage potential customers effortlessly with our intuitive visual editor.">
     <meta name="keywords" content="waitlist, landing page, launch, CMS">
     <meta name="robots" content="index, follow">
     <meta name="language" content="English">
 
+    <meta name="title" property="og:title" content="{{config('app.name')}}"/>
+    <meta name="description"
+          property="og:description"
+          content="Create eye-catching waitlist landing pages in minutes. No coding required. Capture and manage potential customers effortlessly with our intuitive visual editor.">
     <meta name="image"
           property="og:image"
           content="{{'https://staging.siteshooter.app/snap/' . config('app.siteshooter_token') . '?url='.config('app.url')}}">
+    <meta property="og:url" content="{{config('app.url')}}">
 
     <title>
         {{config('app.name')}}
@@ -28,8 +31,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-            href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-            rel="stylesheet">
+        href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>

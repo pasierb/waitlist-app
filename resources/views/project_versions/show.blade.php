@@ -6,11 +6,14 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <meta property="og:title" content="{{$project->name}}">
     <meta name="image"
           property="og:image"
           content="{{'https://staging.siteshooter.app/snap/' . config('app.siteshooter_token') . '?url='.route('project.page', $project)}}">
     <meta property="og:url" content="{{$project->url()}}">
+    <meta property="og:site_name" content="{{config('app.name')}}">
+
     <title>{{$project->name}}</title>
 
     @vite('resources/css/project.css')
