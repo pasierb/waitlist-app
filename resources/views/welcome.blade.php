@@ -24,5 +24,12 @@
         </div>
     </div>
 
+    <div class="bg-base-300 py-24 px-4">
+        <div class="relative container mx-auto">
+            <img src="img/editor.png" class="border rounded-lg w-full max-w-4xl mx-auto" alt="">
+            <div class="absolute -inset-x-20 bottom-0 bg-gradient-to-t from-base-300 pt-[7%]"></div>
+        </div>
+    </div>
+
     {{--    <x-pricing></x-pricing>--}}
 @endsection
