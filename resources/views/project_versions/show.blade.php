@@ -13,6 +13,9 @@
           content="{{'https://staging.siteshooter.app/snap/' . config('app.siteshooter_token') . '?url='.route('project.page', $project)}}">
     <meta property="og:url" content="{{$project->url()}}">
     <meta property="og:site_name" content="{{config('app.name')}}">
+    @if($project->custom_domain)
+        <meta name="auth" property="og:auth" content="{{$project->custom_domain}}">
+    @endif
 
     <title>{{$project->name}}</title>
 
