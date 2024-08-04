@@ -28,6 +28,11 @@ class User extends Authenticatable
         return $this->orders()->where('is_completed', 1)->exists();
     }
 
+    public function isGod(): bool
+    {
+        return $this->is_god;
+    }
+
     /**
      * The attributes that are mass assignable.
      *

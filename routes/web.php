@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectVersionController;
 use App\Http\Controllers\SubmissionController;
+use App\Http\Middleware\EnsureGodUser;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -57,5 +58,9 @@ Route::get('/checkout', [CheckoutController::class, 'create'])
     ->name('checkout');
 Route::get('/checkout/success', [CheckoutController::class, 'show'])->name('checkout-success');
 Route::redirect('/checkout/cancel', '/pricing')->name('checkout-cancel');
+
+Route::middleware(['auth'])->group(function () {
+    Route::view('/stats', 'stats')->name('stats')->middleware(EnsureGodUser::class);
+});
 
 require __DIR__ . '/auth.php';
