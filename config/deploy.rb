@@ -27,7 +27,7 @@ append :linked_files, ".env", "database/database.sqlite"
 
 # Default value for linked_dirs is []
 # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "vendor", "storage"
-append :linked_dirs, "storage", "log", "node_modules", "vendor"
+append :linked_dirs, "storage", "log", "node_modules", "vendor", "public/build"
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }

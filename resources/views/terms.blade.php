@@ -1,5 +1,9 @@
 @extends('layouts.landing')
 
+@section('title')
+    Terms of use
+@endsection
+
 @section('content')
     <section class="prose mx-auto py-8">
 

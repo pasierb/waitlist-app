@@ -1,5 +1,9 @@
 @extends('layouts.landing')
 
+@section('title')
+    Get in touch!
+@endsection
+
 @section('content')
     <div class="container mx-auto py-12">
         <div class="prose mx-auto">

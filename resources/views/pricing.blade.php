@@ -1,5 +1,9 @@
 @extends('layouts.landing')
 
+@section('title')
+    Pricing. Start for free or go premium.
+@endsection
+
 <?php
 $freeFeatures = [
     'Unlimited projects',

@@ -1,5 +1,9 @@
 @extends('layouts.landing')
 
+@section('title')
+    Privacy policy
+@endsection
+
 @section('content')
     <div class="prose mx-auto py-8">
         <h1>Privacy policy</h1>

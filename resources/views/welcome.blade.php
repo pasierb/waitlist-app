@@ -1,5 +1,9 @@
 @extends('layouts.landing')
 
+@section('title')
+    Build ⚡Buzz⚡ with a Stunning Waitlist Page
+@endsection
+
 @section('content')
     <div class="hero bg-base-100 text-content py-24">
         <div class="hero-content text-center">
@@ -20,5 +24,5 @@
         </div>
     </div>
 
-{{--    <x-pricing></x-pricing>--}}
+    {{--    <x-pricing></x-pricing>--}}
 @endsection
