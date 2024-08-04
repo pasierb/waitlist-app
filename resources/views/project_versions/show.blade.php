@@ -9,7 +9,7 @@
     <meta property="og:title" content="{{$project->name}}">
     <meta name="image"
           property="og:image"
-          content="{{'https://staging.siteshooter.app/snap/e9ec1a3140862afddf3c19b09941e8f0b1b0c707625b7c64e4250175a3ead3b7?url='.route('project.page', $project)}}">
+          content="{{'https://staging.siteshooter.app/snap/' . config('app.siteshooter_token') . '?url='.route('project.page', $project)}}">
     <meta property="og:url" content="{{$project->url()}}">
     <title>{{$project->name}}</title>
 
@@ -17,7 +17,7 @@
 </head>
 <body class="bg-base-100 min-h-screen flex flex-col">
 
-<div class="container mx-auto grow flex flex-col justify-center mb-24">
+<div class="container mx-auto grow flex flex-col justify-center mb-12">
     <form action="{{route('projects.submissions.store', [$project])}}" method="POST">
         @csrf
 

@@ -10,6 +10,10 @@
     <meta name="robots" content="index, follow">
     <meta name="language" content="English">
 
+    <meta name="image"
+          property="og:image"
+          content="{{'https://staging.siteshooter.app/snap/' . config('app.siteshooter_token') . '?url='.config('app.url')}}">
+
     <title>{{config('app.name')}}</title>
 
     <!-- Favicon definition -->
