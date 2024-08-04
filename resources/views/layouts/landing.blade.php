@@ -87,27 +87,41 @@
 </main>
 
 <div class="bg-base-200">
-    <footer class="footer bg-base-200 text-base-content p-10 container mx-auto">
-        <aside class="max-w-xs">
-            <x-application-logo class="h-12"/>
-            <p class="font-semibold text-lg">
-                {{config('app.name')}}<br/>
+    <footer class="bg-base-200 text-base-content p-10 container mx-auto">
+        <div class="footer">
+            <aside class="max-w-xs">
+                <x-application-logo class="h-12"/>
+                <p class="font-semibold text-lg">
+                    {{config('app.name')}}<br/>
+                </p>
+                <p class="text-sm text-base-content/70">
+                    LaunchLoom enables entrepreneurs to create stunning, code-free waitlist landing pages effortlessly with
+                    an intuitive visual editor.
+                </p>
+                <p class="text-sm text-base-content/70">
+                    Copyright &copy; {{date('Y')}} - All rights reserved.
+                </p>
+            </aside>
+            <nav>
+                <h6 class="footer-title">Company</h6>
+                <a href="{{route('pricing')}}" class="link link-hover">Pricing</a>
+                <a href="{{route('contact')}}" class="link link-hover">Contact</a>
+            </nav>
+            <nav>
+                <h6 class="footer-title">Legal</h6>
+                <a href="{{route('terms')}}" class="link link-hover">Terms of use</a>
+                <a href="{{route('privacy')}}" class="link link-hover">Privacy policy</a>
+            </nav>
+        </div>
+
+        <div class="w-full py-12 flex flex row items-center gap-4">
+            <img src="img/profile-pic-michal-square.png" alt="Founder's profile picture" class="w-16 h-16 rounded-badge">
+            <p class="text-base-content/80 text-sm">
+                Hi! I'm Michal, the founder of LaunchLoom. I'm here to help you with any questions you might have.
+                Feel free to reach out to me at
+                <a href="mailto:michal@launchloom.io" class="link link-hover">michal@launchloom.io</a>
             </p>
-            <p class="text-sm text-base-content/70">
-                LaunchLoom enables entrepreneurs to create stunning, code-free waitlist landing pages effortlessly with
-                an intuitive visual editor.
-            </p>
-        </aside>
-        <nav>
-            <h6 class="footer-title">Company</h6>
-            <a href="{{route('pricing')}}" class="link link-hover">Pricing</a>
-            <a href="{{route('contact')}}" class="link link-hover">Contact</a>
-        </nav>
-        <nav>
-            <h6 class="footer-title">Legal</h6>
-            <a href="{{route('terms')}}" class="link link-hover">Terms of use</a>
-            <a href="{{route('privacy')}}" class="link link-hover">Privacy policy</a>
-        </nav>
+        </div>
     </footer>
 </div>
 </body>
