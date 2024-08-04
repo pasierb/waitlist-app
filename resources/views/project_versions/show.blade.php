@@ -36,7 +36,7 @@
 </div>
 
 <footer>
-    <div class="container mx-auto text-center py-4">
+    <div class="container mx-auto text-center py-4 pb-16">
         <p class="text-sm">
             Powered by
             <a class="link" href="{{route('root')}}">
