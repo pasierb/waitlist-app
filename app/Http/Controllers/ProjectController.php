@@ -28,7 +28,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        $project = Project::factory()->make();
+        $project = new Project();
+        $project->user_id = Auth::id();
 
         return view('projects.create', compact('project'));
     }

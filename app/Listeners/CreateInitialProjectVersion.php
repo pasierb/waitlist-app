@@ -25,10 +25,6 @@ class CreateInitialProjectVersion
     {
         $project = $event->project;
 
-        Log::info('Creating initial project version', [
-            'project_id' => $project->id,
-        ]);
-
         $project->versions()->create([
             'name' => 'v' . ($project->versions()->count() + 1),
             'color_theme' => 'lofi',
