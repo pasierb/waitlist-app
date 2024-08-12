@@ -25,6 +25,11 @@ class CreateInitialProjectVersion
     {
         $project = $event->project;
 
+        // Skip if there are already versions.
+        if ($project->versions()->count() > 0) {
+            return;
+        }
+
         $project->versions()->create([
             'name' => 'v' . ($project->versions()->count() + 1),
             'color_theme' => 'lofi',

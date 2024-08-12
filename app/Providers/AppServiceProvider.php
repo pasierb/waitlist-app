@@ -2,10 +2,16 @@
 
 namespace App\Providers;
 
+use App\Services\GptProjectVersionSuggestionService;
+use App\Services\ProjectVersionSuggestionService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+    public $bindings = [
+        ProjectVersionSuggestionService::class => GptProjectVersionSuggestionService::class,
+    ];
+
     /**
      * Register any application services.
      */

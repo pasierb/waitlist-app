@@ -11,6 +11,7 @@
         "laravel/cashier": "^15.4",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
+        "openai-php/laravel": "^0.10.1",
         "sentry/sentry-laravel": "^4.7",
         "spatie/url": "^2.4"
     },
