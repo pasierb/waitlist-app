@@ -134,6 +134,46 @@ $editorModes = [
                             </div>
                         </dialog>
 
+                        <!-- Open the modal using ID.showModal() method -->
+                        <button class="btn" onclick="ai_modal.showModal()">open modal</button>
+                        <dialog id="ai_modal" class="modal">
+                            <div class="modal-box max-w-5xl">
+                                <h3 class="text-lg font-bold">Hello!</h3>
+                                <p class="py-4">Press ESC key or click the button below to close</p>
+
+                                <form action="{{route('projects.versions.store', $project)}}" method="POST">
+                                    @csrf
+                                    <div class="grid grid-cols-5">
+                                        <div class="col-span-2">
+                                            <label for="ai-description" class="label flex flex-col items-start">
+                                                <span class="label-text">Description</span>
+                                                <span class="label-text-alt">
+                                                    Describe the project version in a few words
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-span-3">
+                                            <textarea name="description"
+                                                      id="ai-description"
+                                                      rows="10"
+                                                      class="textarea textarea-bordered w-full">
+
+                                            </textarea>
+                                        </div>
+
+                                        <button class="btn btn-primary">Save</button>
+                                    </div>
+                                </form>
+
+                                <div class="modal-action">
+                                    <form method="dialog">
+                                        <!-- if there is a button in form, it will close the modal -->
+                                        <button class="btn">Close</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </dialog>
+
                         <div role="tablist" class="tabs tabs-bordered mt-6">
                             @foreach($editorModes as $editorMode)
                                 <a role="tab" class="tab"

@@ -6,6 +6,7 @@ use App\Http\Requests\StoreProjectVersionRequest;
 use App\Http\Requests\UpdateProjectVersionRequest;
 use App\Models\Project;
 use App\Models\ProjectVersion;
+use App\Services\ProjectVersionSuggestionService;
 use Illuminate\Http\Request;
 
 class ProjectVersionController extends Controller
@@ -29,9 +30,13 @@ class ProjectVersionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProjectVersionRequest $request)
+    public function store(StoreProjectVersionRequest $request, Project $project, ProjectVersionSuggestionService $projectVersionSuggestionService)
     {
-        //
+        $version = $projectVersionSuggestionService->suggestVersion($request->input('description'));
+        $version->project()->associate($project);
+        $version->save();
+
+        return response()->redirectTo(route('projects.versions.edit', [$project, $version]));
     }
 
     /**
