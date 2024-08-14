@@ -17,25 +17,6 @@
         @enderror
     </div>
 
-    <div class="col-span-2">
-        <label for="name-input" class="label flex flex-col items-start">
-            <span class="label-text">Description</span>
-            <span class="label-text-alt">
-                Feed our AI with a description of your project. This will help us to generate a better landing page for you.
-            </span>
-        </label>
-    </div>
-    <div class="col-span-3 flex flex-col items-start">
-        <textarea
-            id="name-input"
-            name="description"
-            class="input input-bordered w-full @error('description') input-error @enderror">
-        </textarea>
-        @error('description')
-        <span class="text-sm text-error">{{$message}}</span>
-        @enderror
-    </div>
-
     <label class="label col-span-2" for="slug-input">
         <span class="label-text">Slug</span>
     </label>
