@@ -27,12 +27,13 @@
 </div>
 
 <div class="container mx-auto grow flex flex-col justify-center mb-12 mt-8 px-4">
-    <form action="{{route('projects.submissions.store', [$project])}}" method="POST">
+    <form action="{{$version->published ? route('projects.submissions.store', [$project]) : ''}}"
+          method="{{$version->published ? "POST" : "GET"}}">
         @csrf
 
         <div class="flex flex-col gap-4 items-center">
             @foreach(json_decode($version->block_editor_data)->blocks as $block)
-                @include('projects.blocks.' . $block->type, ['data' => $block->data])
+                @include('projects.blocks.' . $block->type, ['data' => $block->data, 'project' => $project, 'version' => $version])
             @endforeach
         </div>
     </form>
