@@ -15,7 +15,7 @@ $latestProject = Project::latest()->first();
 
 @section('content')
     <div class="mx-auto container flex flex-col items-center justify-center gap-4 py-12">
-        <h1 class="text-xl font-semibold">LaunchLoom stats</h1>
+        <h1 class="text-xl font-semibold">{{config('app.name')}} stats</h1>
 
         <div class="stats stats-vertical shadow">
             <div class="stat">

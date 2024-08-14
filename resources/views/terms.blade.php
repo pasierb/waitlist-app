@@ -10,12 +10,12 @@
         <h1>Terms of use</h1>
 
         <h2>1. Acceptance of Terms</h2>
-        <p>By accessing or using LaunchLoom's services, you agree to be bound by these Terms of Use and our Privacy
+        <p>By accessing or using {{config('app.name')}}'s services, you agree to be bound by these Terms of Use and our Privacy
             Policy.
             If you do not agree, please do not use our services.</p>
 
         <h2>2. Description of Service</h2>
-        <p>LaunchLoom provides a platform to create and manage waitlist landing pages. Features include a visual editor,
+        <p>{{config('app.name')}} provides a platform to create and manage waitlist landing pages. Features include a visual editor,
             email capture, and analytics.</p>
 
         <h2>3. Eligibility</h2>
@@ -27,7 +27,7 @@
             updated. You are responsible for maintaining the confidentiality of your account and password.</p>
 
         <h2>5. Use of Service</h2>
-        <p>You agree to use LaunchLoom only for lawful purposes and in accordance with these terms. You must not:</p>
+        <p>You agree to use {{config('app.name')}} only for lawful purposes and in accordance with these terms. You must not:</p>
         <ul>
             <li>Use our services to distribute spam or unsolicited emails.</li>
             <li>Upload or share content that is offensive, harmful, or violates any law.</li>
@@ -39,7 +39,7 @@
             subject to change with notice.</p>
 
         <h2>7. Intellectual Property</h2>
-        <p>All content and features provided by LaunchLoom are protected by intellectual property laws. You may not
+        <p>All content and features provided by {{config('app.name')}} are protected by intellectual property laws. You may not
             copy,
             distribute, or create derivative works from our content without our express permission.</p>
 
@@ -48,12 +48,12 @@
             services will immediately cease.</p>
 
         <h2>9. Limitation of Liability</h2>
-        <p>LaunchLoom is provided "as is" without warranties of any kind. We are not liable for any indirect,
+        <p>{{config('app.name')}} is provided "as is" without warranties of any kind. We are not liable for any indirect,
             incidental, or
             consequential damages arising from your use of our services.</p>
 
         <h2>10. Governing Law</h2>
-        <p>These terms are governed by and construed in accordance with the laws of the jurisdiction in which LaunchLoom
+        <p>These terms are governed by and construed in accordance with the laws of the jurisdiction in which {{config('app.name')}}
             operates.</p>
 
         <h2>11. Changes to Terms</h2>
@@ -63,7 +63,7 @@
 
         <h2>12. Contact Us</h2>
         <p>If you have any questions about these Terms of Use, please contact us at <a
-                href="mailto:support@launchloom.com">support@launchloom.com</a>.
+                href="mailto:support@getlaunchsoon.com">support@getlaunchsoon.com</a>.
         </p>
     </section>
 @endsection
