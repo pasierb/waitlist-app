@@ -26,7 +26,7 @@
     <span class="text-xl font-semibold mx-4 text-base-content">{{$project->name}}</span>
 </div>
 
-<div class="container mx-auto grow flex flex-col justify-center mb-12">
+<div class="container mx-auto grow flex flex-col justify-center mb-12 mt-8 px-4">
     <form action="{{route('projects.submissions.store', [$project])}}" method="POST">
         @csrf
 
