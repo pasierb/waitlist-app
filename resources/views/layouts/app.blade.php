@@ -50,7 +50,7 @@
 
                 <a href="{{route('root')}}" class="flex flex-row gap-2 ml-4 mt-2 mb-4">
                     <img src="{{asset('img/logo.png')}}" alt="logo" class="w-8 h-8"/>
-                    <span class="font-semibold text-lg">LaunchLoom</span>
+                    <span class="font-semibold text-lg">{{config('app.name')}}</span>
                 </a>
 
                 <ul class="menu">

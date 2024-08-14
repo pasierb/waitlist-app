@@ -14,7 +14,7 @@
             <img src="img/profile-pic-michal-square.png" alt="Founder's profile picture" class="w-28 h-28 rounded-badge">
 
             <p>
-                I'm Michal, the founder of LaunchLoom, and I'm here to help you every step of the way.
+                I'm Michal, the founder of {{config('app.name')}}, and I'm here to help you every step of the way.
                 Whether you have questions, need support, or just want to share your feedback, I'd love to hear from
                 you.
             </p>

@@ -9,7 +9,7 @@
         <h1>Privacy policy</h1>
 
         <h2>1. Introduction</h2>
-        <p>Your privacy is important to us. This Privacy Policy explains how LaunchLoom collects, uses, discloses, and
+        <p>Your privacy is important to us. This Privacy Policy explains how {{config('app.name')}} collects, uses, discloses, and
             safeguards your information when you use our services.</p>
 
         <h2>2. Information We Collect</h2>
@@ -77,7 +77,7 @@
 
         <h2>8. Contact Us</h2>
         <p>If you have any questions about this Privacy Policy, please contact us at <a
-                href="mailto:support@launchloom.com">support@launchloom.com</a>.</p>
+                href="mailto:support@getlaunchsoon.com">support@getlaunchsoon.com</a>.</p>
 
     </div>
 @endsection

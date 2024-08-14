@@ -11,7 +11,7 @@
 
             <div class="mt-8 prose mx-auto">
                 <p>
-                    At LaunchLoom, we offer a generous free plan to get you started with creating beautiful waitlist
+                    At {{config('app.name')}}, we offer a generous free plan to get you started with creating beautiful waitlist
                     landing pages.
                 </p>
                 <p>
@@ -27,7 +27,7 @@
                     <div role="alert" class="alert">
                         <div></div>
                         <span>
-                            You are already a premium user. Thank you for supporting LaunchLoom!
+                            You are already a premium user. Thank you for supporting {{config('app.name')}}!
                         </span>
                         <div>
                             <a href="{{route('dashboard')}}" class="btn btn-sm">Go to dashboard</a>
