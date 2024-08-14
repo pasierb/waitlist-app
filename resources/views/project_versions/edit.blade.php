@@ -135,7 +135,9 @@ $editorModes = [
                         </dialog>
 
                         <!-- Open the modal using ID.showModal() method -->
-                        <button class="btn" onclick="ai_modal.showModal()">open modal</button>
+                        <button class="btn" onclick="ai_modal.showModal()">
+                            
+                        </button>
                         <dialog id="ai_modal" class="modal">
                             <div class="modal-box max-w-5xl">
                                 <h3 class="text-lg font-bold">Hello!</h3>
@@ -156,9 +158,7 @@ $editorModes = [
                                             <textarea name="description"
                                                       id="ai-description"
                                                       rows="10"
-                                                      class="textarea textarea-bordered w-full">
-
-                                            </textarea>
+                                                      class="textarea textarea-bordered w-full"></textarea>
                                         </div>
 
                                         <button class="btn btn-primary">Save</button>
