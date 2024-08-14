@@ -127,7 +127,7 @@ return [
 
     'lifetime_access_price' => env('LIFETIME_PRICE', 65),
 
-    'contact_email' => 'michal@launchloom.io',
+    'contact_email' => 'michal@getlaunchsoon.com',
 
     'siteshooter_token' => env('SITESHOOTER_TOKEN', ''),
 ];
