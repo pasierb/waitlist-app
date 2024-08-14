@@ -40,6 +40,7 @@ class ProjectVersionController extends Controller
 
         $version = $projectVersionSuggestionService->suggestVersion($request->input('description'));
         $version->project()->associate($project);
+        $version->prompt = $request->input('description');
         $version->save();
 
         return response()->redirectTo(route('projects.versions.edit', [$project, $version]));

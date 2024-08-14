@@ -170,7 +170,7 @@ $editorModes = [
                                                       id="ai-description"
                                                       x-autosize
                                                       rows="3"
-                                                      class="textarea textarea-bordered w-full"></textarea>
+                                                      class="textarea textarea-bordered w-full">{{$version->prompt}}</textarea>
                                         </div>
 
                                         <button class="btn btn-primary">Save</button>
