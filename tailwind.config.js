@@ -65,7 +65,14 @@ export default {
         ],
     },
 
-    safelist: ['ce-block__content', 'ce-block', 'animate-drop'],
+    safelist: [
+        'ce-block__content',
+        'ce-block',
+        'animate-drop',
+        'collapse',
+        'collapse-title',
+        'collapse-content',
+    ],
 
     plugins: [forms, typography, daisyui],
 };

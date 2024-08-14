@@ -19,7 +19,7 @@
 
     <title>{{$project->name}}</title>
 
-    @vite('resources/css/project.css')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-base-100 min-h-screen flex flex-col">
 <div class="navbar bg-base-100 fixed shadow">

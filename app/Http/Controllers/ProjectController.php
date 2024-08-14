@@ -6,6 +6,7 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use App\Models\ProjectVersion;
+use App\Services\ProjectVersionSuggestionService;
 use Database\Factories\ProjectVersionFactory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,11 +38,14 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProjectRequest $request)
+    public function store(StoreProjectRequest $request, ProjectVersionSuggestionService $suggestionService)
     {
         $project = new Project($request->validated());
         $project->user_id = Auth::id();
-        $project->saveOrFail();
+
+        DB::transaction(function () use ($project, $request, $suggestionService) {
+            $project->saveOrFail();
+        });
 
         return redirect()->route('projects.edit', $project);
     }

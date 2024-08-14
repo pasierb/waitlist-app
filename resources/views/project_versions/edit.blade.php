@@ -117,6 +117,16 @@ $editorModes = [
                                     </div>
                                 </div>
                             </div>
+
+                            @feature('ai-assistant')
+                            <div class="col-span-2"></div>
+                            <div class="col-span-3">
+                                <button class="btn" onclick="ai_modal.showModal()">
+                                    <x-heroicon-o-sparkles class="w-6 h-6"/>
+                                    <span>AI Assistant</span>
+                                </button>
+                            </div>
+                            @endfeature
                         </div>
 
                         <dialog id="my_modal_1" class="modal">
@@ -130,6 +140,48 @@ $editorModes = [
                                 </div>
                                 <div class="modal-action">
                                     <button class="btn" onclick="my_modal_1.close()">Close</button>
+                                </div>
+                            </div>
+                        </dialog>
+
+                        <dialog id="ai_modal" class="modal">
+                            <div class="modal-box max-w-5xl">
+                                <form method="dialog">
+                                    <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                                        <x-heroicon-o-x-mark class="w-4 h-4"/>
+                                    </button>
+                                </form>
+
+                                <h3 class="text-lg font-bold">AI Assistant</h3>
+
+                                <form action="{{route('projects.versions.store', $project)}}" method="POST">
+                                    @csrf
+                                    <div class="grid grid-cols-5">
+                                        <div class="col-span-2">
+                                            <label for="ai-description" class="label flex flex-col items-start">
+                                                <span class="label-text">Description</span>
+                                                <span class="label-text-alt">
+                                                    Describe the project version in a few words
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="col-span-3">
+                                            <textarea name="description"
+                                                      id="ai-description"
+                                                      x-autosize
+                                                      rows="3"
+                                                      class="textarea textarea-bordered w-full"></textarea>
+                                        </div>
+
+                                        <button class="btn btn-primary">Save</button>
+                                    </div>
+                                </form>
+
+                                <div class="modal-action">
+                                    <form method="dialog">
+                                        <!-- if there is a button in form, it will close the modal -->
+                                        <button class="btn">Close</button>
+                                    </form>
                                 </div>
                             </div>
                         </dialog>
