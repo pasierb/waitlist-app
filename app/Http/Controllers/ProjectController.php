@@ -45,11 +45,6 @@ class ProjectController extends Controller
 
         DB::transaction(function () use ($project, $request, $suggestionService) {
             $project->saveOrFail();
-            if ($request->has('description')) {
-                $version = $suggestionService->suggestVersion($request->input('description'));
-                $version->project_id = $project->id;
-                $version->save();
-            }
         });
 
         return redirect()->route('projects.edit', $project);

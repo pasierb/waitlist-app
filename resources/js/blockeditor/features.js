@@ -1,11 +1,11 @@
-export class Faq {
+export class Features {
     static get toolbox() {
         return window.features['ai-assistant'] ? {
-            title: 'FAQ',
+            title: 'Features',
         } : null;
     }
 
-    constructor({data} = {data: {items: []}}) {
+    constructor({data}) {
         this.data = data;
     }
 
@@ -22,12 +22,10 @@ export class Faq {
         item.classList.add('faq-item', 'border', 'bg-base-100');
         item.innerHTML = `
             <div class="faq-item-question flex flex-row">
-                <div>Q:</div>
-                <div contenteditable>${itemData.question}</div>
+                <div contenteditable>${itemData.headline}</div>
             </div>
             <div class="faq-item-answer flex flex-row">
-                <div>A:</div>
-                <div contenteditable>${itemData.answer}</div>
+                <div contenteditable>${itemData.description}</div>
             </div>
         `;
 

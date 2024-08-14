@@ -10,6 +10,7 @@
         "coconutcraig/laravel-postmark": "^3.2",
         "laravel/cashier": "^15.4",
         "laravel/framework": "^11.9",
+        "laravel/pennant": "^1.10",
         "laravel/tinker": "^2.9",
         "openai-php/laravel": "^0.10.1",
         "sentry/sentry-laravel": "^4.7",

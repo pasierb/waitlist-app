@@ -8,6 +8,7 @@ use App\Models\Project;
 use App\Models\ProjectVersion;
 use App\Services\ProjectVersionSuggestionService;
 use Illuminate\Http\Request;
+use Laravel\Pennant\Feature;
 
 class ProjectVersionController extends Controller
 {
@@ -32,6 +33,11 @@ class ProjectVersionController extends Controller
      */
     public function store(StoreProjectVersionRequest $request, Project $project, ProjectVersionSuggestionService $projectVersionSuggestionService)
     {
+        if (Feature::inactive('ai-assistant')) {
+            return response()->isForbidden();
+        }
+
+
         $version = $projectVersionSuggestionService->suggestVersion($request->input('description'));
         $version->project()->associate($project);
         $version->save();

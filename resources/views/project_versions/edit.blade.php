@@ -118,6 +118,7 @@ $editorModes = [
                                 </div>
                             </div>
 
+                            @feature('ai-assistant')
                             <div class="col-span-2"></div>
                             <div class="col-span-3">
                                 <button class="btn" onclick="ai_modal.showModal()">
@@ -125,6 +126,7 @@ $editorModes = [
                                     <span>AI Assistant</span>
                                 </button>
                             </div>
+                            @endfeature
                         </div>
 
                         <dialog id="my_modal_1" class="modal">

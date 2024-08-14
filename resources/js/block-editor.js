@@ -6,6 +6,7 @@ import SimpleImage from "@editorjs/simple-image";
 import {EmailInput} from './blockeditor/email-input';
 import {TextInput} from './blockeditor/text-input';
 import {Faq} from './blockeditor/faq';
+import {Features} from './blockeditor/features';
 
 function createEditor(holder) {
     const data = JSON.parse(holder.dataset.data);
@@ -22,6 +23,7 @@ function createEditor(holder) {
             'text-input': TextInput,
             image: SimpleImage,
             faq: Faq,
+            features: Features,
             list: {
                 class: List,
                 inlineToolbar: true,
