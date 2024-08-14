@@ -26,7 +26,7 @@
             Powered by
             <a class="link" href="{{route('root')}}">
                 <img src="{{asset('img/logo.png')}}" class="w-6 h-6 inline-block"/>
-                LaunchLoom.io
+                {{config('app.name')}}
             </a>
         </p>
     </div>
