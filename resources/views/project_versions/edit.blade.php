@@ -117,6 +117,14 @@ $editorModes = [
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="col-span-2"></div>
+                            <div class="col-span-3">
+                                <button class="btn" onclick="ai_modal.showModal()">
+                                    <x-heroicon-o-sparkles class="w-6 h-6"/>
+                                    <span>AI Assistant</span>
+                                </button>
+                            </div>
                         </div>
 
                         <dialog id="my_modal_1" class="modal">
@@ -134,14 +142,15 @@ $editorModes = [
                             </div>
                         </dialog>
 
-                        <!-- Open the modal using ID.showModal() method -->
-                        <button class="btn" onclick="ai_modal.showModal()">
-                            
-                        </button>
                         <dialog id="ai_modal" class="modal">
                             <div class="modal-box max-w-5xl">
-                                <h3 class="text-lg font-bold">Hello!</h3>
-                                <p class="py-4">Press ESC key or click the button below to close</p>
+                                <form method="dialog">
+                                    <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                                        <x-heroicon-o-x-mark class="w-4 h-4"/>
+                                    </button>
+                                </form>
+
+                                <h3 class="text-lg font-bold">AI Assistant</h3>
 
                                 <form action="{{route('projects.versions.store', $project)}}" method="POST">
                                     @csrf
@@ -157,7 +166,8 @@ $editorModes = [
                                         <div class="col-span-3">
                                             <textarea name="description"
                                                       id="ai-description"
-                                                      rows="10"
+                                                      x-autosize
+                                                      rows="3"
                                                       class="textarea textarea-bordered w-full"></textarea>
                                         </div>
 
