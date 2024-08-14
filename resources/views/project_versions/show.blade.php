@@ -22,6 +22,9 @@
     @vite('resources/css/project.css')
 </head>
 <body class="bg-base-100 min-h-screen flex flex-col">
+<div class="navbar bg-base-100 fixed shadow">
+    <span class="text-xl font-semibold mx-4 text-base-content">{{$project->name}}</span>
+</div>
 
 <div class="container mx-auto grow flex flex-col justify-center mb-12">
     <form action="{{route('projects.submissions.store', [$project])}}" method="POST">
@@ -46,7 +49,6 @@
         </p>
     </div>
 </footer>
-
 </body>
 </html>
 
