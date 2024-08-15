@@ -13,6 +13,17 @@
           content="{{'https://staging.siteshooter.app/snap/' . config('app.siteshooter_token') . '?url='.route('project.page', $project)}}">
     <meta property="og:url" content="{{$project->url()}}">
     <meta property="og:site_name" content="{{config('app.name')}}">
+
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@getlaunchsoon">
+{{--    <meta name="twitter:creator" content="@SarahMaslinNir">--}}
+    <meta name="twitter:title" content="{{$project->name}}">
+{{--    <meta name="twitter:description" content="NEWARK - The guest list and parade of limousines with celebrities emerging from them seemed more suited to a red carpet event in Hollywood or New York than than a gritty stretch of Sussex Avenue near the former site of the James M. Baxter Terrace public housing project here.">--}}
+    <meta name="twitter:image"
+          content="{{'https://staging.siteshooter.app/snap/' . config('app.siteshooter_token') . '?url='.route('project.page', $project)}}">
+
+
     @if($project->custom_domain)
         <meta name="auth" property="og:auth" content="{{$project->custom_domain}}">
     @endif
