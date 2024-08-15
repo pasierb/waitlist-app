@@ -8,6 +8,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <meta property="og:title" content="{{$project->name}}">
+    <meta property="og:description" content="{{$project->name}}">
+    <meta name="og:image:width" content="1200">
+    <meta name="og:image:height" content="627">
     <meta name="image"
           property="og:image"
           content="{{'https://staging.siteshooter.app/snap/' . config('app.siteshooter_token') . '?url='.route('project.page', $project)}}">
@@ -19,9 +22,12 @@
     <meta name="twitter:site" content="@getlaunchsoon">
 {{--    <meta name="twitter:creator" content="@SarahMaslinNir">--}}
     <meta name="twitter:title" content="{{$project->name}}">
-{{--    <meta name="twitter:description" content="NEWARK - The guest list and parade of limousines with celebrities emerging from them seemed more suited to a red carpet event in Hollywood or New York than than a gritty stretch of Sussex Avenue near the former site of the James M. Baxter Terrace public housing project here.">--}}
+    <meta name="twitter:description" content="{{$project->name}}">
+    <meta name="twitter:image:alt" content="Banner">
     <meta name="twitter:image"
           content="{{'https://staging.siteshooter.app/snap/' . config('app.siteshooter_token') . '?url='.route('project.page', $project)}}">
+    <meta name="twitter:image:width" content="1200">
+    <meta name="twitter:image:height" content="627">
 
 
     @if($project->custom_domain)
