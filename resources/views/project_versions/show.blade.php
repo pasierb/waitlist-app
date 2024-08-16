@@ -8,12 +8,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <meta property="og:title" content="{{$project->name}}">
-    <meta property="og:description" content="{{$project->name}}">
-    <meta name="og:image:width" content="1200">
-    <meta name="og:image:height" content="627">
+    <meta property="og:description" content="{{$project->description}}">
+
+{{--    <meta name="og:image:width" content="1200">--}}
+{{--    <meta name="og:image:height" content="627">--}}
     <meta name="image"
           property="og:image"
-          content="{{'https://staging.siteshooter.app/snap/' . config('app.siteshooter_token') . '?url='.route('project.page', $project)}}">
+          content="{{$project->ogimage_url}}">
     <meta property="og:url" content="{{$project->url()}}">
     <meta property="og:site_name" content="{{config('app.name')}}">
 
@@ -22,12 +23,12 @@
     <meta name="twitter:site" content="@getlaunchsoon">
 {{--    <meta name="twitter:creator" content="@SarahMaslinNir">--}}
     <meta name="twitter:title" content="{{$project->name}}">
-    <meta name="twitter:description" content="{{$project->name}}">
+    <meta name="twitter:description" content="{{$project->description}}">
     <meta name="twitter:image:alt" content="Banner">
     <meta name="twitter:image"
-          content="{{'https://staging.siteshooter.app/snap/' . config('app.siteshooter_token') . '?url='.route('project.page', $project)}}">
-    <meta name="twitter:image:width" content="1200">
-    <meta name="twitter:image:height" content="627">
+          content="{{$project->ogimage_url}}">
+{{--    <meta name="twitter:image:width" content="1200">--}}
+{{--    <meta name="twitter:image:height" content="627">--}}
 
 
     @if($project->custom_domain)

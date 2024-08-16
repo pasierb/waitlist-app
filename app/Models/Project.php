@@ -44,11 +44,13 @@ class Project extends Model
 
     protected $fillable = [
         'name',
+        'description',
         'slug',
         'published_version_id',
         'redirect_to_after_submission',
         'redirect_after_submission',
         'custom_domain',
+        'ogimage_url',
     ];
 
     /**

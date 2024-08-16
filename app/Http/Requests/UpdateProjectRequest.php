@@ -39,6 +39,8 @@ class UpdateProjectRequest extends FormRequest
                 Rule::unique('projects')->ignore($request->route('project')),
                 Rule::notIn(['www', 'admin', 'dashboard', 'cdn']),
             ],
+            'description' => 'nullable|string',
+            'ogimage_url' => 'nullable|url:https',
             'redirect_after_submission' => 'integer',
             'redirect_to_after_submission' => 'nullable|url:https|required_if_accepted:redirect_after_submission',
             'custom_domain' => [

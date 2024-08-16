@@ -32,6 +32,8 @@ class StoreProjectRequest extends FormRequest
                 'unique:projects',
                 Rule::notIn(['www', 'admin', 'dashboard', 'cdn']),
             ],
+            'description' => 'nullable|string',
+            'ogimage_url' => 'nullable|url:https',
             'redirect_to_after_submission' => 'nullable|url:https|required_if_accepted:redirect_after_submission',
             'redirect_after_submission' => 'integer',
             'custom_domain' => [
