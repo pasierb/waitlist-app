@@ -19,7 +19,6 @@
         <tr>
             <th>Name</th>
             <th>URL</th>
-            <th>Published preview</th>
             <th class="text-right">Submissions</th>
         </tr>
         </thead>
@@ -38,14 +37,6 @@
                         </a>
                     @else
                         <span class="text-base-content/70">Not published</span>
-                    @endif
-                </td>
-                <td>
-                    @if($project->published_version_id)
-                        <img src="{{
-    'https://staging.siteshooter.app/snap/' . config('app.siteshooter_token') . '?url='.
-                         route('project.page', $project) . '?v='. $project->publishedVersion()->first()->name}}"
-                             alt="{{$project->publishedVersion()->first()->name}}" class="h-12 w-auto">
                     @endif
                 </td>
                 <td class="text-right">
