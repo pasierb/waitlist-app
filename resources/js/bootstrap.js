@@ -7,5 +7,11 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 if (import.meta.env.APP_ENV === 'production') {
     Sentry.init({
         dsn: import.meta.env.VITE_SENTRY_DSN_PUBLIC,
+        integrations: [
+            Sentry.feedbackIntegration({
+                // Additional SDK configuration goes in here, for example:
+                colorScheme: "system",
+            }),
+        ],
     });
 }
