@@ -23,6 +23,7 @@ class StoreProjectVersionRequest extends FormRequest
     {
         return [
             'description' => ['required', 'string'],
+            'source_version_id' => ['nullable', 'integer'],
         ];
     }
 }

@@ -37,11 +37,17 @@ class ProjectVersionController extends Controller
             return response()->isForbidden();
         }
 
+        $sourceVersion = $project->versions()->where('id', $request->input('source_version_id'))->first();
 
         $version = $projectVersionSuggestionService->suggestVersion($request->input('description'));
         $version->project()->associate($project);
         $version->prompt = $request->input('description');
         $version->name = 'v' . ($project->versions()->count() + 1);
+
+        if ($sourceVersion) {
+            $version->success_editor_data = $sourceVersion->success_editor_data;
+        }
+
         $version->save();
 
         return response()->redirectTo(route('projects.versions.edit', [$project, $version]));

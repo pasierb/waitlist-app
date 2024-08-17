@@ -145,7 +145,7 @@ $editorModes = [
                         </dialog>
 
                         <x-dialog title="AI Assistant">
-                            <form action="{{route('projects.versions.store', $project)}}" method="POST"
+                            <form action="{{route('projects.versions.store', ['project' => $project, 'source_version_id' => $version->id])}}" method="POST"
                                   x-ref="aiAssistantForm">
                                 @csrf
                                 <div class="grid grid-cols-5">
