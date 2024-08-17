@@ -127,5 +127,10 @@
         </div>
     </footer>
 </div>
+<script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+        window.sentryFeedback.createWidget();
+    });
+</script>
 </body>
 </html>

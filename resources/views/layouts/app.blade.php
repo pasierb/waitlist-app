@@ -20,7 +20,7 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <x-feature-flags />
+    <x-feature-flags/>
 </head>
 <body class="font-sans antialiased"
       x-data="{asideOpen: false}">
@@ -88,5 +88,10 @@
 </div>
 
 @stack('scripts')
+<script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+        window.sentryFeedback.createWidget();
+    });
+</script>
 </body>
 </html>
