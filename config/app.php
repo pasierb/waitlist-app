@@ -129,5 +129,5 @@ return [
 
     'contact_email' => 'michal@getlaunchsoon.com',
 
-    'siteshooter_token' => env('SITESHOOTER_TOKEN', ''),
+    'ai_prompts_per_month' => 50,
 ];

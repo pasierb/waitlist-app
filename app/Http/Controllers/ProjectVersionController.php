@@ -7,7 +7,9 @@ use App\Http\Requests\UpdateProjectVersionRequest;
 use App\Models\Project;
 use App\Models\ProjectVersion;
 use App\Services\ProjectVersionSuggestionService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Pennant\Feature;
 
 class ProjectVersionController extends Controller
@@ -38,6 +40,10 @@ class ProjectVersionController extends Controller
         }
 
         $sourceVersion = $project->versions()->where('id', $request->input('source_version_id'))->first();
+        if (!Auth::user()->isGod() && Auth::user()->hasExhausedAiCredits()) {
+            return response()->redirectTo(route('projects.versions.edit', [$project, $sourceVersion]))
+                ->with('error', 'You have exhausted your AI credits for this month');
+        }
 
         $version = $projectVersionSuggestionService->suggestVersion($request->input('description'));
         $version->project()->associate($project);

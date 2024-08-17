@@ -43,6 +43,21 @@
                 </div>
             </div>
         @endif
+
+        @if(Session::has('error'))
+            <div class="toast toast-center">
+                <div class="alert alert-error "
+                     x-data
+                     x-ref="alertError"
+                     x-init="setTimeout(() => {$el.classList.add('animate-drop')}, 3000)">
+                    <x-heroicon-o-check-circle class="w-4 h-4"/>
+                    <span class="text-sm">{{Session::get('error')}}</span>
+                    <button class="btn btn-sm btn-ghost" x-on:click="$refs.alertError.remove()">
+                        <x-heroicon-o-x-mark class="w-4 h-4"/>
+                    </button>
+                </div>
+            </div>
+        @endif
     </div>
     <div class="drawer-side">
         <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>

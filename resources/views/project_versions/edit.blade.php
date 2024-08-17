@@ -119,7 +119,11 @@ $editorModes = [
                             </div>
 
                             @feature('ai-assistant')
-                            <div class="col-span-2"></div>
+                            <div class="col-span-2">
+                                @error('description')
+                                <span class="text-sm text-error">{{$message}}</span>
+                                @enderror
+                            </div>
                             <div class="col-span-3">
                                 <button class="btn" onclick="ai_modal.showModal()">
                                     <x-heroicon-o-sparkles class="w-6 h-6"/>
@@ -145,16 +149,27 @@ $editorModes = [
                         </dialog>
 
                         <x-dialog title="AI Assistant">
-                            <form action="{{route('projects.versions.store', ['project' => $project, 'source_version_id' => $version->id])}}" method="POST"
-                                  x-ref="aiAssistantForm">
+                            <form
+                                action="{{route('projects.versions.store', ['project' => $project, 'source_version_id' => $version->id])}}"
+                                method="POST"
+                                x-ref="aiAssistantForm">
                                 @csrf
                                 <div class="grid grid-cols-5">
-                                    <div class="col-span-2 sticky">
+                                    <div class="col-span-2 sticky top-0">
                                         <label for="ai-description" class="label flex flex-col items-start">
                                             <span class="label-text">Description</span>
-                                            <span class="label-text-alt">
-                                                    Describe the project version in a few words
-                                                </span>
+                                            <div class="label-text-alt flex flex-col gap-2">
+                                                <p>For the best results, provide a detailed description:</p>
+
+                                                <div class="pl-4 mt-4">
+                                                    <ol class="list-decimal">
+                                                        <li>What is the project about?</li>
+                                                        <li>Compelling value proposition</li>
+                                                        <li>What user will get</li>
+                                                        <li>Why user should leave contact - FOMO (Fear of missing out)</li>
+                                                    </ol>
+                                                </div>
+                                            </div>
                                         </label>
                                     </div>
                                     <div class="col-span-3">
@@ -162,7 +177,7 @@ $editorModes = [
                                                       id="ai-description"
                                                       x-autosize
                                                       rows="3"
-                                                      class="textarea textarea-bordered w-full">{{$version->prompt}}</textarea>
+                                                      class="textarea textarea-bordered w-full max-h-96">{{$version->prompt}}</textarea>
                                     </div>
                                 </div>
                             </form>

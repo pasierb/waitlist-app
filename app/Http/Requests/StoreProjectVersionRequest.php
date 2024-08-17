@@ -22,7 +22,7 @@ class StoreProjectVersionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'description' => ['required', 'string'],
+            'description' => ['required', 'string', 'max:2000'],
             'source_version_id' => ['nullable', 'integer'],
         ];
     }

@@ -25,7 +25,7 @@
         <p class="text-sm">
             Powered by
             <a class="link" href="{{route('root')}}">
-                <img src="{{asset('img/logo.png')}}" class="w-6 h-6 inline-block"/>
+                <img src="{{asset('img/logo.png')}}" class="w-6 h-6 inline-block" />
                 {{config('app.name')}}
             </a>
         </p>

@@ -15,7 +15,7 @@
                 @endisset
             </h3>
         </div>
-        <div class="flex-grow overflow-scroll">
+        <div class="flex-grow overflow-scroll relative">
             {{$slot}}
         </div>
         <div class="modal-action mt-2">

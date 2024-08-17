@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Events\UserCreated;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -32,6 +33,20 @@ class User extends Authenticatable
     public function isGod(): bool
     {
         return $this->is_god;
+    }
+
+    public function aiPromptsLastThirtyDays(): int
+    {
+        $thirtyDaysAgo = Carbon::now()->subDays(30);
+        return ProjectVersion::whereNotNull('prompt')
+            ->whereIn('project_id', $this->projects()->pluck('id')->toArray())
+            ->where('created_at', '>=', $thirtyDaysAgo)
+            ->count();
+    }
+
+    public function hasExhausedAiCredits(): int
+    {
+        return $this->aiPromptsLastThirtyDays() > config('app.ai_prompts_per_month');
     }
 
     /**
