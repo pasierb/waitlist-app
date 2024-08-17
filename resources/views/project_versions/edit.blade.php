@@ -144,47 +144,34 @@ $editorModes = [
                             </div>
                         </dialog>
 
-                        <dialog id="ai_modal" class="modal">
-                            <div class="modal-box max-w-5xl">
-                                <form method="dialog">
-                                    <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                                        <x-heroicon-o-x-mark class="w-4 h-4"/>
-                                    </button>
-                                </form>
-
-                                <h3 class="text-lg font-bold">AI Assistant</h3>
-
-                                <form action="{{route('projects.versions.store', $project)}}" method="POST">
-                                    @csrf
-                                    <div class="grid grid-cols-5">
-                                        <div class="col-span-2">
-                                            <label for="ai-description" class="label flex flex-col items-start">
-                                                <span class="label-text">Description</span>
-                                                <span class="label-text-alt">
+                        <x-dialog title="AI Assistant">
+                            <form action="{{route('projects.versions.store', $project)}}" method="POST"
+                                  x-ref="aiAssistantForm">
+                                @csrf
+                                <div class="grid grid-cols-5">
+                                    <div class="col-span-2 sticky">
+                                        <label for="ai-description" class="label flex flex-col items-start">
+                                            <span class="label-text">Description</span>
+                                            <span class="label-text-alt">
                                                     Describe the project version in a few words
                                                 </span>
-                                            </label>
-                                        </div>
-                                        <div class="col-span-3">
+                                        </label>
+                                    </div>
+                                    <div class="col-span-3">
                                             <textarea name="description"
                                                       id="ai-description"
                                                       x-autosize
                                                       rows="3"
                                                       class="textarea textarea-bordered w-full">{{$version->prompt}}</textarea>
-                                        </div>
-
-                                        <button class="btn btn-primary">Save</button>
                                     </div>
-                                </form>
-
-                                <div class="modal-action">
-                                    <form method="dialog">
-                                        <!-- if there is a button in form, it will close the modal -->
-                                        <button class="btn">Close</button>
-                                    </form>
                                 </div>
-                            </div>
-                        </dialog>
+                            </form>
+
+                            <x-slot:footer>
+                                <button class="btn btn-primary" x-on:click="$refs.aiAssistantForm.submit()">Save
+                                </button>
+                            </x-slot>
+                        </x-dialog>
 
                         <div role="tablist" class="tabs tabs-bordered mt-6">
                             @foreach($editorModes as $editorMode)

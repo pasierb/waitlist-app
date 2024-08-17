@@ -11,10 +11,13 @@ window.sentryFeedback =
         autoInject: false,
     });
 
-Sentry.init({
-    dsn: import.meta.env.VITE_SENTRY_DSN_PUBLIC,
-    integrations: [
-        window.sentryFeedback
-    ],
-});
+if (import.meta.env.VITE_APP_ENV === 'production') {
+    Sentry.init({
+        dsn: import.meta.env.VITE_SENTRY_DSN_PUBLIC,
+        environment: import.meta.env.VITE_APP_ENV,
+        integrations: [
+            window.sentryFeedback
+        ],
+    });
+}
 
