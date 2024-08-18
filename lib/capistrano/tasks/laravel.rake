@@ -13,11 +13,18 @@ namespace :deploy do
     on roles(:app) do
       within release_path do
         execute :php, "artisan", "migrate", "--force"
+      end
+    end
+  end
+
+  after :published, :clear_cache do
+      on roles(:app) do
+          within current_path do
         execute :php, "artisan", "storage:link"
         execute :php, "artisan", "cache:clear"
         execute :php, "artisan", "optimize:clear"
         execute :php, "artisan", "optimize"
+        end
       end
-    end
   end
 end

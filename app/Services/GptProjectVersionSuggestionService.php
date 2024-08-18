@@ -103,7 +103,7 @@ EOD;
 
     private static $blockEditorResponseSchema = [
         'name' => 'editor_blocks',
-        'strict' => true,
+        'strict' => false,
         'schema' => [
             "type" => "object",
             "properties" => [
