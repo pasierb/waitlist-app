@@ -1,4 +1,4 @@
-<div class="prose text-center mb-4">
+<div class="prose text-center mb-4" id="{{$block->id}}">
     @if($data->level == 1)
         <h1 class="text-6xl mt-20">
             {!! $data->text  !!}
