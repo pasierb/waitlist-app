@@ -15,7 +15,9 @@
 <div class="container mx-auto grow flex flex-col justify-center">
     <div class="flex flex-col gap-4 items-center">
         @foreach(json_decode($version->success_editor_data)->blocks as $block)
-            @include('projects.blocks.' . $block->type, ['data' => $block->data])
+            @if (View::exists('projects.blocks.' . $block->type))
+                @include('projects.blocks.' . $block->type, ['data' => $block->data])
+            @endif
         @endforeach
     </div>
 </div>
@@ -25,7 +27,7 @@
         <p class="text-sm">
             Powered by
             <a class="link" href="{{route('root')}}">
-                <img src="{{asset('img/logo.png')}}" class="w-6 h-6 inline-block" />
+                <img src="{{asset('img/logo.png')}}" class="w-6 h-6 inline-block"/>
                 {{config('app.name')}}
             </a>
         </p>

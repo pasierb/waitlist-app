@@ -10,8 +10,8 @@
     <meta property="og:title" content="{{$project->name}}">
     <meta property="og:description" content="{{$project->description}}">
 
-{{--    <meta name="og:image:width" content="1200">--}}
-{{--    <meta name="og:image:height" content="627">--}}
+    {{--    <meta name="og:image:width" content="1200">--}}
+    {{--    <meta name="og:image:height" content="627">--}}
     <meta name="image"
           property="og:image"
           content="{{$project->ogimage_url}}">
@@ -21,14 +21,14 @@
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@getlaunchsoon">
-{{--    <meta name="twitter:creator" content="@SarahMaslinNir">--}}
+    {{--    <meta name="twitter:creator" content="@SarahMaslinNir">--}}
     <meta name="twitter:title" content="{{$project->name}}">
     <meta name="twitter:description" content="{{$project->description}}">
     <meta name="twitter:image:alt" content="Banner">
     <meta name="twitter:image"
           content="{{$project->ogimage_url}}">
-{{--    <meta name="twitter:image:width" content="1200">--}}
-{{--    <meta name="twitter:image:height" content="627">--}}
+    {{--    <meta name="twitter:image:width" content="1200">--}}
+    {{--    <meta name="twitter:image:height" content="627">--}}
 
 
     @if($project->custom_domain)
@@ -51,7 +51,9 @@
 
         <div class="flex flex-col gap-4 items-center">
             @foreach(json_decode($version->block_editor_data)->blocks as $block)
-                @include('projects.blocks.' . $block->type, ['data' => $block->data, 'project' => $project, 'version' => $version])
+                @if (View::exists('projects.blocks.' . $block->type))
+                    @include('projects.blocks.' . $block->type, ['data' => $block->data, 'project' => $project, 'version' => $version])
+                @endif
             @endforeach
         </div>
     </form>
