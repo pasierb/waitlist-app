@@ -126,9 +126,12 @@
                         <p class="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
                             Build waitlists that look like pages not forms
                         </p>
-                        <p class="mt-6 text-lg leading-8 text-gray-600">Lorem ipsum, dolor sit amet consectetur
-                            adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate
-                            blanditiis ratione.</p>
+                        <p class="mt-6 text-lg leading-8 text-gray-600">
+                            A well-designed waitlist page does more than just collect emails—it builds anticipation and
+                            engages your audience. At LaunchSoon, we know what it takes to create a high-converting
+                            waitlist, and we’ve built our platform to help you do just that. From persuasive copy to
+                            sleek design, we’ve got you covered.
+                        </p>
                         <dl class="mt-10 max-w-xl space-y-8 text-base leading-7 lg:max-w-none">
                             @foreach($features as $feature)
                                 <div class="relative pl-9">
