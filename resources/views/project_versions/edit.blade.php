@@ -177,7 +177,7 @@ $editorModes = [
                                                       id="ai-description"
                                                       x-autosize
                                                       rows="3"
-                                                      class="textarea textarea-bordered w-full max-h-96">{{$version->lastPrompt()}}</textarea>
+                                                      class="textarea textarea-bordered w-full max-h-96">{{old('description') ?? $version->lastPrompt()}}</textarea>
                                     </div>
                                 </div>
                             </form>
