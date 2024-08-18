@@ -1,4 +1,4 @@
-<div class="join flex w-full max-w-sm">
+<div class="join flex w-full max-w-sm" id="{{$block->id}}">
     <input class="input input-bordered join-item grow"
            required
            name="email"
