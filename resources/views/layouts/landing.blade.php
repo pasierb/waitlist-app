@@ -122,7 +122,8 @@
             <p class="text-neutral-content/80 text-sm">
                 Hi! I'm Michal, the founder of LaunchLoom. I'm here to help you with any questions you might have.
                 Feel free to reach out to me at
-                <a href="mailto:michal@launchloom.io" class="link link-hover">michal@launchloom.io</a>
+                <a href="mailto:{{config('app.contact_email')}}" class="link link-hover">{{config('app.contact_email')}}</a>
+                or on X <a href="https://x.com/notMichal_" class="link link-hover">@notMichal_</a>
             </p>
         </div>
     </footer>
