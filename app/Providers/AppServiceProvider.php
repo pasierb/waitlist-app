@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Feature::define('ai-assistant', fn (User $user) => match (true) {
             $user->isGod() => true,
-            default => false,
+            default => true,
         });
     }
 }
