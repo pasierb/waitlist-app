@@ -44,6 +44,10 @@
         <div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-40">
             <div class="sm:mt-24 lg:mt-0 lg:flex-shrink-0 lg:flex-grow">
                 <div class="mx-auto w-[30rem] max-w-full drop-shadow-xl">
+                    <p class="text-xl mb-8 text-center font-semibold text-secondary">
+                        Demo waitlist page build with LaunchSoon 👇
+                    </p>
+
                     <div class="mockup-browser border-base-300 border">
                         <div class="mockup-browser-toolbar">
                             <div class="input border-base-300 border text-sm">https://getlaunchsoon.com/p/frobozzle
@@ -61,7 +65,7 @@
                         class="relative flex items-center gap-x-4 rounded-full px-4 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
                         <span class="font-semibold text-indigo-600">Sample</span>
                         <span class="h-4 w-px bg-gray-900/10" aria-hidden="true"></span>
-                        <a href="#" class="flex items-center gap-x-1">
+                        <a href="{{ route('examples') }}" class="flex items-center gap-x-1">
                             <span class="absolute inset-0" aria-hidden="true"></span>
                             See examples gallery
                             <svg class="-mr-2 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"

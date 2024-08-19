@@ -2,6 +2,7 @@ import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
 import daisyui from "daisyui";
 import typography from '@tailwindcss/typography';
+import aspectRatio from '@tailwindcss/aspect-ratio';
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -18,8 +19,8 @@ export default {
             },
             keyframes: {
                 drop: {
-                    '10%': { transform: 'translateY(-10px); opacity: 0.7' },
-                    '100%': { transform: 'translateY(150px); opacity: 0' },
+                    '10%': {transform: 'translateY(-10px); opacity: 0.7'},
+                    '100%': {transform: 'translateY(150px); opacity: 0'},
                 }
             },
             animation: {
@@ -74,5 +75,5 @@ export default {
         'collapse-content',
     ],
 
-    plugins: [forms, typography, daisyui],
+    plugins: [forms, typography, aspectRatio, daisyui],
 };
