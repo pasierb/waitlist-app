@@ -168,7 +168,14 @@ $editorModes = [
                             </div>
                         </dialog>
 
-                        <x-dialog title="AI Assistant">
+                        <x-dialog>
+                            <x-slot:title>
+                                <div class="flex flex-row gap-2 items-center">
+                                    <img x-bind:src="personas[persona].imageUrl" class="w-6 h-6 rounded-full"/>
+                                    <span x-text="personas[persona].name"></span>
+                                </div>
+                            </x-slot:title>
+
                             <form
                                 action="{{route('projects.versions.store', ['project' => $project, 'source_version_id' => $version->id])}}"
                                 method="POST"
