@@ -9,7 +9,7 @@
         <div class="hero-content text-center">
             <div class="max-w-xl">
                 <h1 class="text-5xl font-bold sm:text-6xl">
-                    Build waitlists that look like pages, not forms
+                    Build waitlists that look like <span class="bg-amber-200/20">pages, not forms</span>
                 </h1>
 
                 <div class="py-6">
