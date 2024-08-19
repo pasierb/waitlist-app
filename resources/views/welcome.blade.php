@@ -42,6 +42,19 @@
             <rect width="100%" height="100%" stroke-width="0" fill="url(#83fd4e5a-9d52-42fc-97b6-718e5d7ee527)"/>
         </svg>
         <div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-40">
+            <div class="mt-16 sm:mt-24 lg:mt-0 lg:flex-shrink-0 lg:flex-grow">
+                <div class="mx-auto w-[30rem] max-w-full drop-shadow-xl">
+                    <div class="mockup-browser border-base-300 border">
+                        <div class="mockup-browser-toolbar">
+                            <div class="input border-base-300 border text-sm">https://getlaunchsoon.com/p/frobozzle
+                            </div>
+                        </div>
+                        <div class="border-base-300 flex justify-center border-t">
+                            <img src="img/waitlist-page.png" class="" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="mx-auto max-w-2xl lg:mx-0 lg:flex-auto">
                 <div class="flex">
                     <div
@@ -76,22 +89,10 @@
                     <a href="#" class="btn btn-ghost">Learn more <span aria-hidden="true">→</span></a>
                 </div>
             </div>
-            <div class="mt-16 sm:mt-24 lg:mt-0 lg:flex-shrink-0 lg:flex-grow">
-                <div class="mx-auto w-[30rem] max-w-full drop-shadow-xl">
-                    <div class="mockup-browser border-base-300 border">
-                        <div class="mockup-browser-toolbar">
-                            <div class="input border-base-300 border text-sm">https://getlaunchsoon.com/p/frobozzle
-                            </div>
-                        </div>
-                        <div class="border-base-300 flex justify-center border-t">
-                            <img src="img/waitlist-page.png" class="" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
+    <x-copywriters-intro></x-copywriters-intro>
 
     <?php
     $features = [

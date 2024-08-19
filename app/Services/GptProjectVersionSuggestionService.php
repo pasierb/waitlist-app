@@ -7,17 +7,17 @@ use OpenAI\Laravel\Facades\OpenAI;
 
 class GptProjectVersionSuggestionService extends ProjectVersionSuggestionService
 {
-    public function suggestVersion(string $projectDescription): ProjectVersion
+    public function suggestVersion(string $projectDescription, CopyWriters\CopyWriterPersona $persona): ProjectVersion
     {
-        return $this->prompt($projectDescription);
+        return $this->prompt($projectDescription, $persona);
     }
 
-    private function prompt(string $productDescription): ProjectVersion
+    private function prompt(string $productDescription, $persona): ProjectVersion
     {
         $result = OpenAI::chat()->create([
             'model' => 'gpt-4o-mini',
             'messages' => [
-                ['role' => 'system', 'content' => $this->getSystemMessage()],
+                ['role' => 'system', 'content' => $this->getSystemMessage($persona)],
                 ['role' => 'user', 'content' => $productDescription],
             ],
             'response_format' => [
@@ -53,12 +53,16 @@ class GptProjectVersionSuggestionService extends ProjectVersionSuggestionService
         ]);
     }
 
-    private function getSystemMessage()
+    private function getSystemMessage(CopyWriters\CopyWriterPersona $persona)
     {
         return <<<EOD
 You are a marketing expert for. Your goal is to design a landing page for a not launched yet product.
 That page should be informative and encourage users to leave email to receive information about product launch.
 Avoid over-hyping product, be authentic and relatable.
+
+You are {$persona->name}.
+
+{$persona->description}
 
 Good landing page should have:
 

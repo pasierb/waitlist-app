@@ -1,4 +1,7 @@
 <?php
+
+use App\Services\CopyWriters\CopyWriterPersona;
+
 $themes = [
     "light",
     "dark",
@@ -78,7 +81,7 @@ $editorModes = [
     </style>
 
     <div class="h-full flex flex-col"
-         x-data="{colorTheme: '{{$version->color_theme}}', selectedTab: 'settings', editorMode: 'form'}"
+         x-data="{colorTheme: '{{$version->color_theme}}', selectedTab: 'settings', editorMode: 'form', 'persona': 'max', 'personas': {{json_encode(CopyWriterPersona::availablePersonas())}}}"
          x-init="$watch('colorTheme', saveProjectVersion), $watch('editorMode', () => $dispatch('editor-mode-change', editorMode))">
         @include('projects.navbar')
 
@@ -120,14 +123,31 @@ $editorModes = [
 
                             @feature('ai-assistant')
                             <div class="col-span-2">
+                                <details class="dropdown dropdown-hover">
+                                    <summary class="btn m-1">
+                                        <img x-bind:src="personas[persona].imageUrl" class="w-6 h-6 rounded-full"/>
+                                        <span x-text="personas[persona].name"></span>
+                                    </summary>
+                                    <ul class="menu dropdown-content bg-base-100 rounded-box z-[100] w-52 p-2 shadow">
+                                        @foreach(CopyWriterPersona::availablePersonas() as $key => $persona)
+                                            <li>
+                                                <button x-on:click="persona = '{{$key}}'">{{$persona->name}}</button>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </details>
+
+                                @error('persona')
+                                <span class="text-sm text-error">{{$message}}</span>
+                                @enderror
+
                                 @error('description')
                                 <span class="text-sm text-error">{{$message}}</span>
                                 @enderror
                             </div>
                             <div class="col-span-3">
                                 <button class="btn" onclick="ai_modal.showModal()">
-                                    <x-heroicon-o-sparkles class="w-6 h-6"/>
-                                    <span>AI Assistant</span>
+                                    <x-heroicon-o-chat-bubble-bottom-center-text class="w-6 h-6"/>
                                 </button>
                             </div>
                             @endfeature
@@ -154,6 +174,8 @@ $editorModes = [
                                 method="POST"
                                 x-ref="aiAssistantForm">
                                 @csrf
+                                <input type="hidden" name="persona" x-model="persona"/>
+
                                 <div class="grid grid-cols-5">
                                     <div class="col-span-2 sticky top-0">
                                         <label for="ai-description" class="label flex flex-col items-start">
@@ -166,7 +188,8 @@ $editorModes = [
                                                         <li>What is the project about?</li>
                                                         <li>Compelling value proposition</li>
                                                         <li>What user will get</li>
-                                                        <li>Why user should leave contact - FOMO (Fear of missing out)</li>
+                                                        <li>Why user should leave contact - FOMO (Fear of missing out)
+                                                        </li>
                                                     </ol>
                                                 </div>
                                             </div>

@@ -6,6 +6,7 @@ use App\Http\Requests\StoreProjectVersionRequest;
 use App\Http\Requests\UpdateProjectVersionRequest;
 use App\Models\Project;
 use App\Models\ProjectVersion;
+use App\Services\CopyWriters\CopyWriterPersona;
 use App\Services\ProjectVersionSuggestionService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -39,15 +40,20 @@ class ProjectVersionController extends Controller
             return response()->isForbidden();
         }
 
+
         $sourceVersion = $project->versions()->where('id', $request->input('source_version_id'))->first();
         if (!Auth::user()->isGod() && Auth::user()->hasExhausedAiCredits()) {
             return response()->redirectTo(route('projects.versions.edit', [$project, $sourceVersion]))
                 ->with('error', 'You have exhausted your AI credits for this month');
         }
 
-        $version = $projectVersionSuggestionService->suggestVersion($request->input('description'));
+        $personaKey = $request->input('persona');
+
+        $persona = CopyWriterPersona::getPersona($personaKey);
+        $version = $projectVersionSuggestionService->suggestVersion($request->input('description'), $persona);
         $version->project()->associate($project);
         $version->prompt = $request->input('description');
+        $version->persona = $personaKey;
         $version->name = 'v' . ($project->versions()->count() + 1);
 
         if ($sourceVersion) {
