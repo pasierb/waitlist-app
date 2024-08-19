@@ -1,6 +1,15 @@
 <x-app-layout>
     @include('projects.navbar')
 
+    <div class="px-4 py-2 border-b flex flex-row justify-between">
+        <div></div>
+        <div>
+            <a href="{{route('projects.submissions.export', $project)}}" class="btn btn-sm">
+                @svg('heroicon-o-arrow-down-on-square', 'h-4 w-4')
+            </a>
+        </div>
+    </div>
+
     <table class="table">
         <thead>
         <tr>

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\SubmissionsExport;
 use App\Models\Project;
 use App\Models\Submission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SubmissionController extends Controller
 {
@@ -83,5 +85,10 @@ class SubmissionController extends Controller
         $submission->delete();
 
         return redirect()->route('projects.submissions.index', $project);
+    }
+
+    public function export(Project $project)
+    {
+        return Excel::download(new SubmissionsExport($project), 'submissions.xlsx');
     }
 }

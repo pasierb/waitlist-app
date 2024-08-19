@@ -23,6 +23,9 @@ Route::resource('projects', ProjectController::class)
 Route::resource('projects.submissions', SubmissionController::class)
     ->only(['index', 'destroy'])
     ->middleware(['auth', 'verified']);
+Route::get('/projects/{project}/submissions/export', [SubmissionController::class, 'export'])
+    ->name('projects.submissions.export')
+    ->middleware(['auth', 'verified']);
 Route::resource('projects.versions', ProjectVersionController::class)
     ->middleware(['auth', 'verified']);
 Route::post('/projects/{project}/versions/{version}/publish', [ProjectVersionController::class, 'publish'])
