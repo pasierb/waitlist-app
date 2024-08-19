@@ -4,18 +4,22 @@
     <x-ga/>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="waitlist, landing page, launch, CMS">
+    <meta name="keywords" content="waitlist, landing page, launch, CMS, page builder">
     <meta name="robots" content="index, follow">
     <meta name="language" content="English">
 
     <meta name="title" property="og:title" content="{{config('app.name')}}"/>
-    <meta name="description"
-          property="og:description"
-          content="Create eye-catching waitlist landing pages in minutes. No coding required. Capture and manage potential customers effortlessly with our intuitive visual editor.">
-    <meta name="image"
-          property="og:image"
-          content="{{'https://staging.siteshooter.app/snap/' . config('app.siteshooter_token') . '?url='.config('app.url')}}">
-    <meta property="og:url" content="{{config('app.url')}}">
+    <meta name="description" property="og:description" content="{{config('app.description')}}">
+    <meta name="image" property="og:image" content="{{asset('img/og-image.png')}}">
+    <meta name="url" property="og:url" content="{{config('app.url')}}">
+    <meta name="twitter:title" content="{{config('app.name')}}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@getlaunchsoon">
+    <meta name="twitter:creator" content="@getlaunchsoon">
+    <meta name="twitter:description" content="{{config('app.description')}}">
+    <meta name="twitter:image:alt" content="Banner">
+    <meta name="twitter:image" content="{{asset('img/og-image.png')}}">
+    <meta name="auth" property="og:auth" content="{{config('app.url')}}">
 
     <title>
         {{config('app.name')}}
@@ -122,7 +126,8 @@
             <p class="text-neutral-content/80 text-sm">
                 Hi! I'm Michal, the founder of LaunchLoom. I'm here to help you with any questions you might have.
                 Feel free to reach out to me at
-                <a href="mailto:{{config('app.contact_email')}}" class="link link-hover">{{config('app.contact_email')}}</a>
+                <a href="mailto:{{config('app.contact_email')}}"
+                   class="link link-hover">{{config('app.contact_email')}}</a>
                 or on X <a href="https://x.com/notMichal_" class="link link-hover">@notMichal_</a>
             </p>
         </div>
