@@ -39,11 +39,16 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-base-100 min-h-screen flex flex-col">
-<div class="navbar bg-base-200/90 fixed shadow">
-    <div class="flex flex-row justify-between mx-auto px-4 container">
-        <a href="#" class="text-xl font-semibold text-base-content">{{$project->name}}</a>
-        @yield('navbar')
+<body class="bg-base-100 min-h-screen flex flex-col items-center">
+
+<div class="container mx-auto fixed mt-4 px-4">
+    <div class="navbar bg-base-200/90 shadow">
+        <div class="navbar-start">
+            <a href="#" class="text-xl font-semibold text-base-content">{{$project->name}}</a>
+        </div>
+        <div class="navbar-end">
+            @yield('navbar')
+        </div>
     </div>
 </div>
 
