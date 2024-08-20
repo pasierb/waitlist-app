@@ -51,6 +51,7 @@ class Project extends Model
         'redirect_after_submission',
         'custom_domain',
         'ogimage_url',
+        'logo_url',
     ];
 
     /**

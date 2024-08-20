@@ -36,6 +36,23 @@
         @enderror
     </div>
 
+    <div class="col-span-2">
+        <label for="name-input" class="label flex flex-col items-start">
+            <span class="label-text">Logo URL</span>
+        </label>
+    </div>
+    <div class="col-span-3 flex flex-col items-start">
+        <input type="text"
+               id="name-input"
+               name="logo_url"
+               required
+               value="{{$project->logo_url}}"
+               class="input input-bordered w-full @error('logo_url') input-error @enderror"/>
+        @error('logo_url')
+        <span class="text-sm text-error">{{$message}}</span>
+        @enderror
+    </div>
+
     @unless($project->id)
         <div class="col-span-2 sticky top-0">
             <label for="ai-description" class="label flex flex-col items-start">

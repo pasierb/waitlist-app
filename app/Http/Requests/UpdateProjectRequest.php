@@ -41,6 +41,7 @@ class UpdateProjectRequest extends FormRequest
             ],
             'description' => 'nullable|string',
             'ogimage_url' => 'nullable|url:https',
+            'logo_url' => 'nullable|url:https',
             'redirect_after_submission' => 'integer',
             'redirect_to_after_submission' => 'nullable|url:https|required_if_accepted:redirect_after_submission',
             'custom_domain' => [

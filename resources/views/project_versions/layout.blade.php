@@ -42,9 +42,14 @@
 <body class="bg-base-100 min-h-screen flex flex-col items-center">
 
 <div class="container mx-auto fixed mt-4 px-4">
-    <div class="navbar bg-base-200/90 shadow">
+    <div class="navbar bg-base-100/95 shadow-xl">
         <div class="navbar-start">
-            <a href="#" class="text-xl font-semibold text-base-content">{{$project->name}}</a>
+            <a href="#" class="text-xl font-semibold text-base-content flex flex-row items-center gap-2">
+                @if($project->logo_url)
+                    <img src="{{$project->logo_url}}" class="w-12 h-12 inline-block" />
+                @endif
+                {{$project->name}}
+            </a>
         </div>
         <div class="navbar-end">
             @yield('navbar')
