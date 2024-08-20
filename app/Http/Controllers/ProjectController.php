@@ -6,6 +6,7 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use App\Models\ProjectVersion;
+use App\Services\CopyWriters\CopyWriterPersona;
 use App\Services\ProjectVersionSuggestionService;
 use Database\Factories\ProjectVersionFactory;
 use Illuminate\Http\Request;
@@ -38,11 +39,22 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProjectRequest $request)
+    public function store(StoreProjectRequest $request, ProjectVersionSuggestionService $projectVersionSuggestionService)
     {
         $project = new Project($request->validated());
         $project->user_id = Auth::id();
         $project->saveOrFail();
+
+        if ($request->input('copy_writer_instructions')) {
+            $project->versions()->delete();
+
+            $version = $projectVersionSuggestionService->suggestVersion($request->input('copy_writer_instructions'), CopyWriterPersona::getPersona('max'));
+            $version->project()->associate($project);
+            $version->prompt = $request->input('copy_writer_instructions');
+            $version->persona = 'max';
+            $version->name = 'v' . ($project->versions()->count() + 1);
+            $version->save();
+        }
 
         return redirect()->route('projects.versions.edit', [$project, $project->versions()->first()]);
     }

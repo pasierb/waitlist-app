@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\CopyWriters\CopyWriterPersona;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
@@ -17,10 +18,12 @@ class ProjectVersion extends Model
         parent::boot();
 
         static::creating(function ($model) {
+            $model->setName();
             $model->fillBlockIds();
         });
 
         static::updating(function ($model) {
+            $model->setName();
             $model->fillBlockIds();
         });
     }
@@ -50,6 +53,30 @@ class ProjectVersion extends Model
         });
     }
 
+    public function getName()
+    {
+        $result = $this->name;
+
+        if ($this->persona) {
+            $result .= ' (' . CopyWriterPersona::getPersona($this->persona)->name . ')';
+        }
+
+        return $result;
+    }
+
+    public function latestPersonaKey(): ?string
+    {
+        $key = $this->persona;
+
+        if (!$key) {
+            $key = ProjectVersion::where('project_id', $this->project_id)
+                ->whereNotNull('persona')
+                ->orderBy('created_at', 'desc')
+                ->pluck('persona')->first();
+        }
+
+        return $key;
+    }
 
     public function lastPrompt()
     {
@@ -78,6 +105,11 @@ class ProjectVersion extends Model
         $blockEditorData->blocks = $mapped;
 
         $this->block_editor_data = json_encode($blockEditorData);
+    }
+
+    private function setName()
+    {
+        $this->name = 'v' . (ProjectVersion::where('project_id', $this->project_id)->count() + 1);
     }
 
     protected $fillable = [

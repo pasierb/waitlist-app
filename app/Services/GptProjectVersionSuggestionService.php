@@ -30,6 +30,7 @@ class GptProjectVersionSuggestionService extends ProjectVersionSuggestionService
 
         return new ProjectVersion([
             'color_theme' => 'lofi',
+            'copywriter_persona' => $persona->key,
             'block_editor_data' => json_encode([
                 'blocks' => $data->blocks,
             ]),

@@ -4,7 +4,12 @@ namespace App\Services\CopyWriters;
 
 class CopyWriterPersona
 {
-    public function __construct(public string $name, public string $description, public string $imageUrl)
+    public function __construct(
+        public string $key,
+        public string $name,
+        public string $description,
+        public string $imageUrl,
+    )
     {
     }
 
@@ -36,6 +41,7 @@ class CopyWriterPersona
 }
 
 CopyWriterPersona::$tom = new CopyWriterPersona(
+    'tom',
     'Techie Tom',
     <<<EOD
 Tom is your tech-savvy, no-nonsense copywriter who gets straight to the point.
@@ -48,6 +54,7 @@ EOD,
 );
 
 CopyWriterPersona::$ella = new CopyWriterPersona(
+    'ella',
     'Ella Enthusiast',
     <<<EOD
 Ella is your go-to for vibrant, energetic copy that excites and engages.
@@ -59,6 +66,7 @@ EOD,
 );
 
 CopyWriterPersona::$max = new CopyWriterPersona(
+    'max',
     'Max Mentor',
     <<<EOD
 Max brings a calm, authoritative voice to your copy, perfect for brands that want to convey trust and expertise.
@@ -70,6 +78,7 @@ EOD,
 );
 
 CopyWriterPersona::$sophia = new CopyWriterPersona(
+    'sophia',
     'Sophia Storyteller',
     <<<EOD
 Sophia weaves narratives that connect on an emotional level. Her warm, conversational tone is ideal for brands that

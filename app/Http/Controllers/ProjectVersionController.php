@@ -54,7 +54,6 @@ class ProjectVersionController extends Controller
         $version->project()->associate($project);
         $version->prompt = $request->input('description');
         $version->persona = $personaKey;
-        $version->name = 'v' . ($project->versions()->count() + 1);
 
         if ($sourceVersion) {
             $version->success_editor_data = $sourceVersion->success_editor_data;

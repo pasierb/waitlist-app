@@ -26,7 +26,7 @@
       x-data="{asideOpen: false}">
 <div class="drawer lg:drawer-open">
     <input id="my-drawer" type="checkbox" class="drawer-toggle"/>
-    <div class="drawer-content min-h-screen bg-base-100">
+    <div class="drawer-content min-h-screen bg-base-100 pb-16">
         {{$slot}}
 
         @if(Session::has('success'))

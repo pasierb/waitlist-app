@@ -33,9 +33,10 @@ class StoreProjectRequest extends FormRequest
                 Rule::notIn(['www', 'admin', 'dashboard', 'cdn']),
             ],
             'description' => 'nullable|string',
+            'copy_writer_instructions' => 'nullable|string',
             'ogimage_url' => 'nullable|url:https',
             'redirect_to_after_submission' => 'nullable|url:https|required_if_accepted:redirect_after_submission',
-            'redirect_after_submission' => 'integer',
+            'redirect_after_submission' => 'nullable|integer',
             'custom_domain' => [
                 'nullable',
                 'string',

@@ -52,7 +52,7 @@ $navLinks = [
                         @foreach($project->versions()->latest()->get() as $v)
                             <li>
                                 <a href="{{route('projects.versions.edit', [$project, $v])}}">
-                                    {{$v->name}}
+                                    {{$v->getName()}}
                                     @if($v->id === $project->published_version_id)
                                         <x-heroicon-o-check class="h-4 text-success"/>
                                     @endif

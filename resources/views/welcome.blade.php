@@ -19,7 +19,7 @@
                     </p>
                 </div>
 
-                <a href="{{route('dashboard')}}" class="btn btn-lg btn-neutral">Try for free!</a>
+                <a href="{{route('register')}}" class="btn btn-lg btn-neutral">Try for free!</a>
             </div>
         </div>
     </div>

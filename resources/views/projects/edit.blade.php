@@ -13,7 +13,7 @@
                           class="flex flex-col gap-2 rounded-lg p-4">
                         @csrf
                         @method('PUT')
-                        @include('projects.form-fields')
+                        <x-project-form-fields :project="$project"/>
                     </form>
 
                     <div class="mt-12">

@@ -81,7 +81,13 @@ $editorModes = [
     </style>
 
     <div class="h-full flex flex-col"
-         x-data="{colorTheme: '{{$version->color_theme}}', selectedTab: 'settings', editorMode: 'form', 'persona': 'max', 'personas': {{json_encode(CopyWriterPersona::availablePersonas())}}}"
+         x-data="{
+            colorTheme: '{{$version->color_theme}}',
+            selectedTab: 'settings',
+            editorMode: 'form',
+            'persona': '{{ $version->latestPersonaKey() ?? 'max' }}',
+            'personas': {{json_encode(CopyWriterPersona::availablePersonas())}}
+         }"
          x-init="$watch('colorTheme', saveProjectVersion), $watch('editorMode', () => $dispatch('editor-mode-change', editorMode))">
         @include('projects.navbar')
 
@@ -158,8 +164,8 @@ $editorModes = [
                                 <div class="grid grid-cols-3 gap-2">
                                     @foreach($themes as $theme)
                                         <x-theme-button
-                                            x-on:click="colorTheme = '{{$theme}}', my_modal_1.close()"
-                                            :theme="$theme"/>
+                                                x-on:click="colorTheme = '{{$theme}}', my_modal_1.close()"
+                                                :theme="$theme"/>
                                     @endforeach
                                 </div>
                                 <div class="modal-action">
@@ -177,9 +183,9 @@ $editorModes = [
                             </x-slot:title>
 
                             <form
-                                action="{{route('projects.versions.store', ['project' => $project, 'source_version_id' => $version->id])}}"
-                                method="POST"
-                                x-ref="aiAssistantForm">
+                                    action="{{route('projects.versions.store', ['project' => $project, 'source_version_id' => $version->id])}}"
+                                    method="POST"
+                                    x-ref="aiAssistantForm">
                                 @csrf
                                 <input type="hidden" name="persona" x-model="persona"/>
 
