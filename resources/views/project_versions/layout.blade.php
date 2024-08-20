@@ -41,6 +41,10 @@
 </head>
 <body class="bg-base-100 min-h-screen flex flex-col items-center">
 
+<div class="container mx-auto grow flex flex-col justify-center mb-12 px-4 mt-24">
+    @yield('content')
+</div>
+
 <div class="container mx-auto fixed mt-4 px-4">
     <div class="navbar bg-base-100/95 shadow-xl">
         <div class="navbar-start">
@@ -57,9 +61,6 @@
     </div>
 </div>
 
-<div class="container mx-auto grow flex flex-col justify-center mb-12 px-4 mt-24">
-    @yield('content')
-</div>
 
 <footer>
     <div class="container mx-auto text-center py-4 pb-16">

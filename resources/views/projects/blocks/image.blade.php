@@ -14,4 +14,6 @@ if ($data->withBackground) {
 }
 ?>
 
-<img src="{{$data->url}}" class="{{implode(' ', $classes)}}" />
+<div class="w-full">
+    <img src="{{$data->url}}" class="{{implode(' ', $classes)}} mx-auto" />
+</div>
