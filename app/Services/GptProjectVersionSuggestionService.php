@@ -279,6 +279,10 @@ EOD;
                                                     ],
                                                     "description" => [
                                                         "type" => "string"
+                                                    ],
+                                                    "icon" => [
+                                                        "type" => "string",
+                                                        "description" => "Icon name from https://heroicons.com/"
                                                     ]
                                                 ],
                                                 "required" => ["headline", "description"]
