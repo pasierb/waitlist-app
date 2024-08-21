@@ -73,11 +73,11 @@
 </div>
 
 <div class="container mx-auto fixed mt-4 px-4">
-    <div class="navbar bg-base-100/95 shadow-xl">
+    <div class="navbar bg-base-100/95 shadow-xl border-neutral border rounded-lg">
         <div class="navbar-start">
             <a href="#" class="text-xl font-bold text-base-content flex flex-row items-center gap-2">
                 @if($project->logo_url)
-                    <img src="{{$project->logo_url}}" class="w-12 h-12 inline-block"/>
+                    <img src="{{$project->logo_url}}" class="max-h-12 max-w-24 inline-block"/>
                 @endif
                 <span class="text-2xl" style="font-family: '{{$version->name_font}}', sans-serif">
                     {{$project->name}}
