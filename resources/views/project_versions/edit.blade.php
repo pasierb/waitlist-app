@@ -60,6 +60,19 @@ $editorModes = [
         'label' => 'Success page',
     ],
 ];
+
+$fonts = [
+    'Montserrat',
+    'Roboto',
+    'Open Sans',
+    'Lato',
+    'Raleway',
+    'Merriweather',
+    'Playfair Display',
+    'PT Sans',
+    'Poppins',
+    'IBM Plex Sans',
+];
 ?>
 <x-app-layout>
     <style>
@@ -85,8 +98,11 @@ $editorModes = [
             colorTheme: '{{$version->color_theme}}',
             selectedTab: 'settings',
             editorMode: 'form',
-            'persona': '{{ $version->latestPersonaKey() ?? 'max' }}',
-            'personas': {{json_encode(CopyWriterPersona::availablePersonas())}}
+            headerFont: '{{$version->header_font ?? 'Poppins'}}',
+            textFont: '{{$version->text_font ?? 'Poppins'}}',
+            nameFont: '{{$version->name_font ?? 'Poppins'}}',
+            persona: '{{ $version->latestPersonaKey() ?? 'max' }}',
+            personas: {{json_encode(CopyWriterPersona::availablePersonas())}}
          }"
          x-init="$watch('colorTheme', saveProjectVersion), $watch('editorMode', () => $dispatch('editor-mode-change', editorMode))">
         @include('projects.navbar')
@@ -106,6 +122,18 @@ $editorModes = [
                             <input type="hidden"
                                    name="success_editor_data"
                                    value="{{$version->success_editor_data}}"/>
+                            <input type="hidden"
+                                   name="header_font"
+                                   x-model="headerFont"
+                                   value="{{$version->header_font}}"/>
+                            <input type="hidden"
+                                   name="text_font"
+                                   x-model="textFont"
+                                   value="{{$version->text_font}}"/>
+                            <input type="hidden"
+                                   name="name_font"
+                                   x-model="nameFont"
+                                   value="{{$version->name_font}}"/>
                         </form>
 
                         <div class="grid grid-cols-5 gap-2">
@@ -157,6 +185,45 @@ $editorModes = [
                                 </button>
                             </div>
                             @endfeature
+
+                            <div class="label col-span-2">
+                                <span class="label-text">Project name font</span>
+                            </div>
+                            <div class="col-span-3">
+                                <select name="name_font" class="select select-bordered w-full max-w-xs"
+                                        x-model="nameFont"
+                                        x-on:change="saveProjectVersion()">
+                                    @foreach($fonts as $font)
+                                        <option value="{{$font}}">{{$font}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="label col-span-2">
+                                <span class="label-text">Headers font</span>
+                            </div>
+                            <div class="col-span-3">
+                                <select name="header_font" class="select select-bordered w-full max-w-xs"
+                                        x-model="headerFont"
+                                        x-on:change="saveProjectVersion()">
+                                    @foreach($fonts as $font)
+                                        <option value="{{$font}}">{{$font}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="label col-span-2">
+                                <span class="label-text">Text font</span>
+                            </div>
+                            <div class="col-span-3">
+                                <select name="text_font" class="select select-bordered w-full max-w-xs"
+                                        x-model="textFont"
+                                        x-on:change="saveProjectVersion()">
+                                    @foreach($fonts as $font)
+                                        <option value="{{$font}}">{{$font}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
 
                         <dialog id="my_modal_1" class="modal">
@@ -304,6 +371,9 @@ $editorModes = [
                     color_theme: form.querySelector('[name="color_theme"]').value,
                     block_editor_data: form.querySelector('[name="block_editor_data"]').value,
                     success_editor_data: form.querySelector('[name="success_editor_data"]').value,
+                    header_font: form.querySelector('[name="header_font"]').value,
+                    text_font: form.querySelector('[name="text_font"]').value,
+                    name_font: form.querySelector('[name="name_font"]').value,
                 }).then(() => {
                     refreshIframe(previewIframe);
                     refreshIframe(successPreviewIframe);

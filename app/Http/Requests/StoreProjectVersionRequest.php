@@ -25,6 +25,9 @@ class StoreProjectVersionRequest extends FormRequest
             'description' => ['required', 'string', 'max:2000'],
             'persona' => ['required', 'string'],
             'source_version_id' => ['nullable', 'integer'],
+            'header_font' => 'nullable|string',
+            'text_font' => 'nullable|string',
+            'name_font' => 'nullable|string',
         ];
     }
 }

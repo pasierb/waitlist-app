@@ -1,4 +1,4 @@
-<div class="text-center">
+<div class="text-center" style="font-family: '{{$version->header_font}}', sans-serif">
     @if($data->level == 1)
         <h1 class="text-6xl mt-20 font-semibold max-w-3xl mx-auto">
             {!! $data->text  !!}

@@ -118,5 +118,8 @@ class ProjectVersion extends Model
         'color_theme',
         'published',
         'name',
+        'header_font',
+        'text_font',
+        'name_font',
     ];
 }

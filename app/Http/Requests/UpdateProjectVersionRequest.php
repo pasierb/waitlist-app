@@ -25,6 +25,9 @@ class UpdateProjectVersionRequest extends FormRequest
             'block_editor_data' => 'required|string',
             'success_editor_data' => 'required|string',
             'color_theme' => 'required|string',
+            'header_font' => 'nullable|string',
+            'text_font' => 'nullable|string',
+            'name_font' => 'nullable|string',
         ];
     }
 }
