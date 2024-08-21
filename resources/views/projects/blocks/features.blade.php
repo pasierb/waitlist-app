@@ -11,7 +11,7 @@
                 {{$item->headline}}
             </dt>
             <dd class="mt-2">
-                {!! $item->description !!}
+                {!! Illuminate\Mail\Markdown::parse($item->description) !!}
             </dd>
         </div>
     @endforeach
