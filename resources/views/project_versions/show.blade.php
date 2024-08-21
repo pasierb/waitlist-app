@@ -25,7 +25,7 @@ $emailInputBlock = Arr::first(json_decode($version->block_editor_data)->blocks, 
         <div class="flex flex-col gap-4 items-center">
             @foreach(json_decode($version->block_editor_data)->blocks as $block)
                 @if (View::exists('projects.blocks.' . $block->type))
-                    <div class="ls-block-{{$block->type}} w-full" id="{{$block->id}}">
+                    <div class="ls-block-{{$block->type}} container mx-auto" id="{{$block->id}}">
                         @include('projects.blocks.' . $block->type, ['block' => $block, 'data' => $block->data, 'project' => $project, 'version' => $version])
                     </div>
                 @endif

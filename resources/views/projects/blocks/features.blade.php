@@ -1,4 +1,4 @@
-<dl class="col-span-2 grid grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 my-8">
+<dl class="col-span-2 grid grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 my-8 max-w-4xl mx-auto">
     @foreach($data->items as $item)
         <div class="relative pl-9">
             <dt class="font-semibold text-base-content">
