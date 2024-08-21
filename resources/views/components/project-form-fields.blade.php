@@ -45,7 +45,6 @@
         <input type="text"
                id="name-input"
                name="logo_url"
-               required
                value="{{$project->logo_url}}"
                class="input input-bordered w-full @error('logo_url') input-error @enderror"/>
         @error('logo_url')
