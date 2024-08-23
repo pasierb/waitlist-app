@@ -17,7 +17,7 @@ class CheckoutController extends Controller
             return redirect()->route('dashboard');
         }
 
-        $stripePriceId = config('app.stripe_lifetime_access_price_id');
+        $stripePriceId = config('app.stripe_single_waitlist_price_id');
         $quantity = 1;
         $successUrl = route('checkout-success') . '?session_id={CHECKOUT_SESSION_ID}';
 

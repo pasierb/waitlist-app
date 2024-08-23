@@ -51,6 +51,9 @@
     <div class="navbar-center hidden md:flex">
         <ul class="menu menu-horizontal px-1">
             <li>
+                <a href="{{route('examples')}}">Examples</a>
+            </li>
+            <li>
                 <a href="{{route('pricing')}}">Pricing</a>
             </li>
         </ul>

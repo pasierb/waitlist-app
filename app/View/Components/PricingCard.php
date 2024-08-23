@@ -17,18 +17,16 @@ class PricingCard extends Component
     }
 
     private function title() {
-        if ($this->plan == 'lifetime') {
-            return 'Premium';
+        if ($this->plan == 'single') {
+            return 'Single waitlist';
         }
 
-        if ($this->plan == 'free') {
-            return 'Free';
-        }
+        return '';
     }
 
     private function selectRoute() {
         switch($this->plan) {
-            case 'lifetime':
+            case 'single':
                 return route('checkout');
             case 'free':
                 return route('dashboard');
@@ -37,8 +35,8 @@ class PricingCard extends Component
 
     private function price() {
         switch($this->plan) {
-            case 'lifetime':
-                return '$65';
+            case 'single':
+                return '$'.config('app.single_waitlist_price');
             case 'free':
                 return '$0';
         }
@@ -46,13 +44,7 @@ class PricingCard extends Component
 
     private function isCurrentPlan(): bool
     {
-        if (!Auth::user()) return false;
-
-        if ($this->plan == 'lifetime' && Auth::user()->isPremium()) {
-            return true;
-        }
-
-        return true;
+        return false;
     }
 
     /**

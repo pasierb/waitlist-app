@@ -7,7 +7,7 @@
 @section('content')
     <div class="container mx-auto py-24">
         <div class="text-center mx-auto">
-            <h1 class="font-semibold text-4xl">Pricing Plans</h1>
+            <h1 class="font-semibold text-4xl">Pricing</h1>
 
             <div class="mt-8 prose mx-auto">
                 <p>

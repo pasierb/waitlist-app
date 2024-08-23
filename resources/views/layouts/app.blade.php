@@ -76,6 +76,12 @@
                             {{__('Projects')}}
                         </a>
                     </li>
+                    <li>
+                        <a href="{{route('orders.index')}}">
+                            <x-heroicon-o-folder class="w-4 h-4"/>
+                            {{__('Billing')}}
+                        </a>
+                    </li>
                 </ul>
 
                 <ul class="menu rounded-box">

@@ -106,6 +106,13 @@ class ProjectVersionController extends Controller
 
     public function publish(Project $project, ProjectVersion $version, Request $request)
     {
+        $hasOrder = Auth::user()->orders()->where('project_id', $project)->where('is_consumed', 1)->count() > 0;
+
+        if (Auth::user()->credits()->count() < 1) {
+            $request->session()->flash('error', 'You do not have license to publish this version');
+            return redirect()->route('projects.versions.edit', [$project, $version]);
+        }
+
         $version->publish();
         $newDraftVersion = $project->versions()->latest()->first();
 

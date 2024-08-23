@@ -25,6 +25,11 @@ class User extends Authenticatable
         return $this->hasMany(Order::class);
     }
 
+    public function credits()
+    {
+        return $this->orders()->where('is_completed', 0);
+    }
+
     public function isPremium(): bool
     {
         return $this->orders()->where('is_completed', 1)->exists();
