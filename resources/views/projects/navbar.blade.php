@@ -16,6 +16,13 @@ $navLinks = [
         'icon' => 'heroicon-o-circle-stack',
         'label' => 'Submissions (' . ($project->submissions->count()) . ')',
     ]
+, [
+    'href' => "https://plausible.io/getlaunchsoon.com?filters=((is,page,(". route('project.page', [$project], false) . ")))",
+    'target' => '_blank',
+    'routeName' => 'projects.analytics',
+    'icon' => 'heroicon-o-chart-bar',
+    'label' => 'Analytics',
+]
 ];
 ?>
 
@@ -26,6 +33,7 @@ $navLinks = [
             @foreach($navLinks as $navLink)
                 <li>
                     <a href="{{$navLink['href']}}"
+                       @isset($navLink['target']) target="{{$navLink['target']}}" @endif
                        class="{{request()->routeIs($navLink['routeName']) ? 'active' : ''}}">
                         @svg($navLink['icon'], 'h-4 w-4')
                         {{$navLink['label']}}
