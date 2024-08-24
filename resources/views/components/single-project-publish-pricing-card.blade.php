@@ -16,9 +16,8 @@ $features = [
         <span class="text-5xl font-bold tracking-tight text-gray-900">
             ${{$price}}
         </span>
-            <span class="ml-2">
-                asd
-            </span>
+        <span class="ml-2">
+        </span>
     </p>
 
     <div class="mt-10">

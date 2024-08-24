@@ -42,6 +42,8 @@ $canPublish = $credits > 0 || $project->isPublished();
             </button>
         </form>
     @else
+    <div class="max-w-sm mx-auto">
         <x-single-project-publish-pricing-card :project-version="$projectVersion"/>
+    </div>
     @endif
 </x-dialog>

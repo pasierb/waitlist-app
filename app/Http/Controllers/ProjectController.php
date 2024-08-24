@@ -106,7 +106,11 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        $project->deleteOrFail();
+        if ($project->isPublished()) {
+            $project->delete();
+        } else {
+            $project->forceDelete();
+        }
 
         return redirect()->route('projects.index');
     }
