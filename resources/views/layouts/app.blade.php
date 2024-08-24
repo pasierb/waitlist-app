@@ -76,6 +76,12 @@
                             {{__('Projects')}}
                         </a>
                     </li>
+                    <li>
+                        <a href="{{route('orders.index')}}">
+                            <x-heroicon-o-credit-card class="w-4 h-4"/>
+                            {{__('Orders')}}
+                        </a>
+                    </li>
                 </ul>
 
                 <ul class="menu rounded-box">

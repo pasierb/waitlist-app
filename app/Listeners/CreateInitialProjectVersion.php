@@ -3,10 +3,6 @@
 namespace App\Listeners;
 
 use App\Events\ProjectCreated;
-use App\Models\ProjectVersion;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Support\Facades\Log;
 
 class CreateInitialProjectVersion
 {
@@ -31,7 +27,7 @@ class CreateInitialProjectVersion
         }
 
         $project->versions()->create([
-            'name' => 'v' . ($project->versions()->count() + 1),
+            'name' => 'v'.($project->versions()->count() + 1),
             'color_theme' => 'lofi',
             'block_editor_data' => json_encode([
                 'blocks' => [
@@ -40,16 +36,16 @@ class CreateInitialProjectVersion
                         'data' => [
                             'level' => 1,
                             'text' => $project->name,
-                        ]
+                        ],
                     ],
                     [
                         'type' => 'email-input',
                         'data' => [
                             'button' => 'Sign up!',
                             'placeholder' => 'Enter your email',
-                        ]
-                    ]
-                ]
+                        ],
+                    ],
+                ],
             ]),
             'success_editor_data' => json_encode([
                 'blocks' => [
@@ -58,16 +54,16 @@ class CreateInitialProjectVersion
                         'data' => [
                             'level' => 1,
                             'text' => 'Thanks for signing up!',
-                        ]
+                        ],
                     ],
                     [
                         'type' => 'paragraph',
                         'data' => [
                             'text' => 'You\'ll receive an email shortly with more information.',
-                        ]
-                    ]
-                ]
-            ])
+                        ],
+                    ],
+                ],
+            ]),
         ]);
     }
 }

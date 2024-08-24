@@ -5,11 +5,12 @@ namespace App\Models;
 use App\Events\ProjectCreated;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Url\Url;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Project extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     public function submissions()
     {
@@ -26,6 +27,11 @@ class Project extends Model
         return $this->hasOne(ProjectVersion::class, 'id', 'published_version_id');
     }
 
+    public function isPublished(): bool
+    {
+        return $this->published_version_id !== null;
+    }
+
     public function latestDraftVersion()
     {
         return $this->versions()
@@ -36,10 +42,7 @@ class Project extends Model
 
     public function url(): string
     {
-        $host = $this->slug . '.' . Url::fromString(config('app.url'))->getHost();
-
-        return Url::fromString(config('app.url'))
-            ->withHost($host);
+        return route('project.page', $this);
     }
 
     protected $fillable = [

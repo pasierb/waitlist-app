@@ -36,7 +36,7 @@ class SubmissionController extends Controller
     {
         $data = $request->has('data') ? $request->all('data')['data'] : [];
         $submission = $project->submissions()->firstOrNew([
-            'email' => $request->input('email')
+            'email' => $request->input('email'),
         ]);
         $submission->data = json_encode($data);
         $submission->save();
@@ -45,6 +45,7 @@ class SubmissionController extends Controller
             return redirect($project->redirect_to_after_submission);
         } else {
             $version = $project->publishedVersion()->first();
+
             return view('project_versions.success', compact('project', 'version'));
         }
     }

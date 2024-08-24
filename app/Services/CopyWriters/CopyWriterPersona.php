@@ -9,13 +9,14 @@ class CopyWriterPersona
         public string $name,
         public string $description,
         public string $imageUrl,
-    )
-    {
-    }
+    ) {}
 
     public static CopyWriterPersona $tom;
+
     public static CopyWriterPersona $ella;
+
     public static CopyWriterPersona $sophia;
+
     public static CopyWriterPersona $max;
 
     public static function availablePersonas()
@@ -43,7 +44,7 @@ class CopyWriterPersona
 CopyWriterPersona::$tom = new CopyWriterPersona(
     'tom',
     'Techie Tom',
-    <<<EOD
+    <<<'EOD'
 Tom is your tech-savvy, no-nonsense copywriter who gets straight to the point.
 He specializes in clear, concise, and jargon-free content that cuts through the fluff and delivers value fast.
 Perfect for tech startups, SaaS products, or any brand targeting a knowledgeable audience,
@@ -56,7 +57,7 @@ EOD,
 CopyWriterPersona::$ella = new CopyWriterPersona(
     'ella',
     'Ella Enthusiast',
-    <<<EOD
+    <<<'EOD'
 Ella is your go-to for vibrant, energetic copy that excites and engages.
 She specializes in creating upbeat, motivational content that’s perfect for brands looking to build excitement and drive action.
 Whether you’re launching a new product or creating a buzz around your brand, Ella’s enthusiastic tone will capture
@@ -68,7 +69,7 @@ EOD,
 CopyWriterPersona::$max = new CopyWriterPersona(
     'max',
     'Max Mentor',
-    <<<EOD
+    <<<'EOD'
 Max brings a calm, authoritative voice to your copy, perfect for brands that want to convey trust and expertise.
 With years of experience in content strategy, Max specializes in educational, informative copy that builds
 credibility and guides your audience toward making informed decisions. Ideal for brands offering professional
@@ -80,7 +81,7 @@ EOD,
 CopyWriterPersona::$sophia = new CopyWriterPersona(
     'sophia',
     'Sophia Storyteller',
-    <<<EOD
+    <<<'EOD'
 Sophia weaves narratives that connect on an emotional level. Her warm, conversational tone is ideal for brands that
 want to tell a story and build a relationship with their audience. Sophia excels at creating relatable, human-centered
 content that draws readers in and keeps them hooked from start to finish. Perfect for lifestyle brands, non-profits,

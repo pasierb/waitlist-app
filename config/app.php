@@ -14,7 +14,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
-    'description' => "Build waitlists that look like pages, not forms",
+    'description' => 'Build waitlists that look like pages, not forms',
 
     /*
     |--------------------------------------------------------------------------
@@ -125,8 +125,10 @@ return [
     ],
 
     'stripe_lifetime_access_price_id' => env('STRIPE_LIFETIME_ACCESS_PRICE_ID', ''),
-
     'lifetime_access_price' => env('LIFETIME_PRICE', 65),
+
+    'stripe_single_waitlist_price_id' => env('STRIPE_SINGLE_WAITLIST_PRICE_ID', default: ''),
+    'single_waitlist_price' => env('SINGLE_WAITLIST_PRICE', default: 39),
 
     'contact_email' => 'michal@getlaunchsoon.com',
 

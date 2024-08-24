@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('project_versions', function (Blueprint $table) {
-            $table->string('persona')->after('color_theme')->nullable();
+        Schema::table('orders', function (Blueprint $table) {
+            $table->timestamp('consumed_at')->nullable();
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('project_versions', function (Blueprint $table) {
-            $table->dropColumn('persona');
+        Schema::table('orders', function (Blueprint $table) {
+            $table->dropColumn('consumed_at');
         });
     }
 };

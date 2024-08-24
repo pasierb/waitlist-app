@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\Project;
-use App\Models\ProjectVersion;
+//use App\Models\Project;
+//use App\Models\ProjectVersion;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,10 +21,10 @@ class ProjectVersionFactory extends Factory
         return [
             'color_theme' => 'lofi',
             'block_editor_data' => json_encode([
-                'blocks' => []
+                'blocks' => [],
             ]),
             'success_editor_data' => json_encode([
-                'blocks' => []
+                'blocks' => [],
             ]),
             'published' => 0,
         ];

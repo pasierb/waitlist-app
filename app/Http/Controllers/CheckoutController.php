@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProjectVersion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Laravel\Cashier\Cashier;
 
 class CheckoutController extends Controller
@@ -13,13 +15,11 @@ class CheckoutController extends Controller
      */
     public function create(Request $request)
     {
-        if (Auth::user()->isPremium()) {
-            return redirect()->route('dashboard');
-        }
-
-        $stripePriceId = config('app.stripe_lifetime_access_price_id');
+        $stripePriceId = config('app.stripe_single_waitlist_price_id');
         $quantity = 1;
-        $successUrl = route('checkout-success') . '?session_id={CHECKOUT_SESSION_ID}';
+        $successUrl = route('checkout-success', [
+            'project_version_id' => $request->input('project_version_id', 0),
+        ]).'&session_id={CHECKOUT_SESSION_ID}';
 
         return Auth::user()->checkout([$stripePriceId => $quantity], [
             'success_url' => $successUrl,
@@ -50,13 +50,33 @@ class CheckoutController extends Controller
             return redirect()->route('checkout-cancel');
         }
 
-        Auth::user()->orders()->create([
+        $order = Auth::user()->orders()->create([
             'payment_status' => $session->payment_status,
             'is_completed' => $session->payment_status === 'paid',
         ]);
 
-        $request->session()->flash('success', 'Payment successful!');
-        return redirect()->route('dashboard');
+        if ($request->has('project_version_id')) {
+            $version = ProjectVersion::find($request->input('project_version_id'));
+            if ($version !== null) {
+                $project = $version->project()->first();
+                $newDraftVersion = DB::transaction(function () use ($order, $version, $project) {
+                    $order->consume($project);
+
+                    return $version->publish();
+                });
+
+                $request->session()->flash('success', 'Payment successful! Your project is now live!');
+
+                return redirect()->route('projects.versions.edit', [
+                    'project' => $project,
+                    'version' => $newDraftVersion,
+                ]);
+            }
+        }
+
+        $request->session()->flash('success', 'Payment successful! You can now use your license to publish your project.');
+
+        return redirect()->route('projects.create');
     }
 
     /**

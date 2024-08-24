@@ -43,6 +43,7 @@ Route::get('/p', [ProjectController::class, 'find'])->name('projects.find');
 Route::get('/projects/{project}', [ProjectController::class, 'show'])->name('projects.show');
 Route::post('/projects/{project}/submissions', [SubmissionController::class, 'store'])
     ->name('projects.submissions.store');
+Route::view('/orders', 'orders.index')->name('orders.index')->middleware(['auth', 'verified']);
 
 Route::view('/terms', 'terms')->name('terms');
 Route::view('/privacy', 'privacy')->name('privacy');
@@ -67,4 +68,4 @@ Route::middleware(['auth'])->group(function () {
     Route::view('/stats', 'stats')->name('stats')->middleware(EnsureGodUser::class);
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

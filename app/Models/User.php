@@ -13,7 +13,7 @@ use Laravel\Pennant\Concerns\HasFeatures;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, Billable, HasFeatures;
+    use Billable, HasFactory, HasFeatures, Notifiable;
 
     public function projects()
     {
@@ -25,19 +25,20 @@ class User extends Authenticatable
         return $this->hasMany(Order::class);
     }
 
-    public function isPremium(): bool
+    public function credits()
     {
-        return $this->orders()->where('is_completed', 1)->exists();
+        return $this->orders()->whereNull('consumed_at');
     }
 
     public function isGod(): bool
     {
-        return $this->is_god;
+        return $this->is_god == 1;
     }
 
     public function aiPromptsLastThirtyDays(): int
     {
         $thirtyDaysAgo = Carbon::now()->subDays(30);
+
         return ProjectVersion::whereNotNull('prompt')
             ->whereIn('project_id', $this->projects()->pluck('id')->toArray())
             ->where('created_at', '>=', $thirtyDaysAgo)
@@ -89,6 +90,6 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $dispatchesEvents = [
-//        'created' => UserCreated::class,
+        //        'created' => UserCreated::class,
     ];
 }

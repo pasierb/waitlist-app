@@ -4,9 +4,9 @@ namespace App\Models;
 
 use App\Services\CopyWriters\CopyWriterPersona;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 class ProjectVersion extends Model
@@ -23,7 +23,6 @@ class ProjectVersion extends Model
         });
 
         static::updating(function ($model) {
-            $model->setName();
             $model->fillBlockIds();
         });
     }
@@ -35,22 +34,24 @@ class ProjectVersion extends Model
 
     public function publish()
     {
-        DB::transaction(function () {
-            $project = $this->project()->first();
+        $project = $this->project()->first();
+        $newVersion = new ProjectVersion([
+            'name' => 'v'.($project->versions()->count() + 1),
+            'published' => 0,
+            'color_theme' => $this->color_theme,
+            'block_editor_data' => $this->block_editor_data,
+            'success_editor_data' => $this->success_editor_data,
+        ]);
 
-            ProjectVersion::withoutTimestamps(fn() => $project->versions()->where('published', 1)->update(['published' => 0]));
+        DB::transaction(function () use ($newVersion, $project) {
+            ProjectVersion::withoutTimestamps(fn () => $project->versions()->where('published', 1)->update(['published' => 0]));
             $project->update(['published_version_id' => $this->id]);
             $this->update(['published' => 1]);
-
-            // Create new draft version
-            $project->versions()->create([
-                'name' => 'v' . ($project->versions()->count() + 1),
-                'published' => 0,
-                'color_theme' => $this->color_theme,
-                'block_editor_data' => $this->block_editor_data,
-                'success_editor_data' => $this->success_editor_data,
-            ]);
+            $newVersion->project()->associate($project);
+            $newVersion->save();
         });
+
+        return $newVersion;
     }
 
     public function getName()
@@ -58,7 +59,7 @@ class ProjectVersion extends Model
         $result = $this->name;
 
         if ($this->persona) {
-            $result .= ' (' . CopyWriterPersona::getPersona($this->persona)->name . ')';
+            $result .= ' ('.CopyWriterPersona::getPersona($this->persona)->name.')';
         }
 
         return $result;
@@ -68,7 +69,7 @@ class ProjectVersion extends Model
     {
         $key = $this->persona;
 
-        if (!$key) {
+        if (! $key) {
             $key = ProjectVersion::where('project_id', $this->project_id)
                 ->whereNotNull('persona')
                 ->orderBy('created_at', 'desc')
@@ -95,7 +96,7 @@ class ProjectVersion extends Model
         $blockEditorData = json_decode($this->block_editor_data);
 
         $mapped = Arr::map($blockEditorData->blocks, function ($block) {
-            if (!isset($block->id)) {
+            if (! isset($block->id)) {
                 $block->id = Str::uuid();
             }
 
@@ -109,7 +110,7 @@ class ProjectVersion extends Model
 
     private function setName()
     {
-        $this->name = 'v' . (ProjectVersion::where('project_id', $this->project_id)->count() + 1);
+        $this->name = 'v'.(ProjectVersion::where('project_id', $this->project_id)->count());
     }
 
     protected $fillable = [
