@@ -27,7 +27,7 @@ class User extends Authenticatable
 
     public function credits()
     {
-        return $this->orders()->where('is_consumed', 0);
+        return $this->orders()->whereNull('consumed_at');
     }
 
     public function isGod(): bool

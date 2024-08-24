@@ -21,22 +21,6 @@
             </div>
         </div>
 
-        @auth
-            @if(Auth::user()->isPremium())
-                <div class="max-w-4xl mx-auto my-8">
-                    <div role="alert" class="alert">
-                        <div></div>
-                        <span>
-                            You are already a premium user. Thank you for supporting {{config('app.name')}}!
-                        </span>
-                        <div>
-                            <a href="{{route('dashboard')}}" class="btn btn-sm">Go to dashboard</a>
-                        </div>
-                    </div>
-                </div>
-            @endif
-        @endauth
-
         <x-pricing-section />
     </div>
 @endsection

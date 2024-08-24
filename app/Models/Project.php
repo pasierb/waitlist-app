@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Events\ProjectCreated;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Url\Url;
 
 class Project extends Model
 {
@@ -41,10 +40,7 @@ class Project extends Model
 
     public function url(): string
     {
-        $host = $this->slug.'.'.Url::fromString(config('app.url'))->getHost();
-
-        return Url::fromString(config('app.url'))
-            ->withHost($host);
+        return route('project.page', $this);
     }
 
     protected $fillable = [

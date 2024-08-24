@@ -63,7 +63,8 @@ $navLinks = [
                 </div>
 
                 <button class="btn btn-sm" x-on:click="publishConfirmationDialog.showModal()">
-                    Go
+                    <x-heroicon-o-globe-alt class="h-4 w-4 mr-2"/>
+                    Publish
                 </button>
                 <x-project-publish-confirmation-dialog id="publishConfirmationDialog" :projectVersion="$version"/>
 

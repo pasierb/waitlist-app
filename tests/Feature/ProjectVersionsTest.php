@@ -38,3 +38,31 @@ it('publish succeeds if project is already published, even without credits', fun
     $project->refresh();
     $this->assertEquals($newVersion->id, $project->published_version_id);
 });
+
+it('consumes unconsumed order when user publishes', function () {
+    $user = User::factory()->create();
+    $project = Project::factory()->create(['user_id' => $user->id]);
+    $version = ProjectVersion::factory()->create(['project_id' => $project->id]);
+
+    // Create an unconsumed order for the user
+    $order = \App\Models\Order::factory()->create([
+        'user_id' => $user->id,
+        'payment_status' => 'paid',
+        'consumed_at' => null,
+    ]);
+
+    $response = $this->actingAs($user)
+        ->post('/projects/'.$project->id.'/versions/'.$version->id.'/publish');
+
+    $response->assertSessionHas('success', 'Version '.$version->name.' published successfully');
+    $response->assertRedirect(route('projects.versions.edit', [$project, $version->id + 1]));
+
+    // Check if the order has been consumed
+    $order->refresh();
+    $this->assertNotNull($order->consumed_at);
+    $this->assertEquals($project->id, $order->project_id);
+
+    // Verify the project is published
+    $project->refresh();
+    $this->assertEquals($version->id, $project->published_version_id);
+});

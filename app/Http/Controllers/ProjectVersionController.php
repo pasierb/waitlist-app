@@ -10,6 +10,7 @@ use App\Services\CopyWriters\CopyWriterPersona;
 use App\Services\ProjectVersionSuggestionService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Laravel\Pennant\Feature;
 
 class ProjectVersionController extends Controller
@@ -113,7 +114,16 @@ class ProjectVersionController extends Controller
                 ->with('error', 'You cannot publish a version without a license.');
         }
 
-        $newDraftVersion = $version->publish();
+        $newDraftVersion = DB::transaction(function () use ($unconsumedOrder, $project, $version) {
+            if (! $project->isPublished()) {
+                if (! $unconsumedOrder) {
+                    throw new \Exception('Cannot publish without a license.');
+                }
+                $unconsumedOrder->consume($project);
+            }
+
+            return $version->publish();
+        });
         $request->session()->flash('success', 'Version '.$version->name.' published successfully');
 
         return redirect()->route('projects.versions.edit', [$project, $newDraftVersion]);

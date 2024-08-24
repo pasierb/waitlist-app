@@ -18,7 +18,7 @@ class CheckoutController extends Controller
         $stripePriceId = config('app.stripe_single_waitlist_price_id');
         $quantity = 1;
         $successUrl = route('checkout-success', [
-            'project_version_id' => $request->input('project_version_id'),
+            'project_version_id' => $request->input('project_version_id', 0),
         ]).'&session_id={CHECKOUT_SESSION_ID}';
 
         return Auth::user()->checkout([$stripePriceId => $quantity], [
@@ -58,24 +58,25 @@ class CheckoutController extends Controller
         if ($request->has('project_version_id')) {
             $version = ProjectVersion::find($request->input('project_version_id'));
             if ($version !== null) {
-                DB::transaction(function () use ($order, $version, $request) {
-                    $project = $version->project()->first();
+                $project = $version->project()->first();
+                $newDraftVersion = DB::transaction(function () use ($order, $version, $project) {
                     $order->consume($project);
-                    $version->publish();
 
-                    $request->session()->flash('success', 'Payment successful!');
-
-                    return redirect()->route('projects.versions.edit', [
-                        'project' => $version->project()->first(),
-                        'version' => $version,
-                    ]);
+                    return $version->publish();
                 });
+
+                $request->session()->flash('success', 'Payment successful! Your project is now live!');
+
+                return redirect()->route('projects.versions.edit', [
+                    'project' => $project,
+                    'version' => $newDraftVersion,
+                ]);
             }
         }
 
-        $request->session()->flash('success', 'Payment successful!');
+        $request->session()->flash('success', 'Payment successful! You can now use your license to publish your project.');
 
-        return redirect()->route('dashboard');
+        return redirect()->route('projects.create');
     }
 
     /**
