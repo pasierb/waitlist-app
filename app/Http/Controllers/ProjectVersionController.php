@@ -8,7 +8,6 @@ use App\Models\Project;
 use App\Models\ProjectVersion;
 use App\Services\CopyWriters\CopyWriterPersona;
 use App\Services\ProjectVersionSuggestionService;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Pennant\Feature;
@@ -40,9 +39,8 @@ class ProjectVersionController extends Controller
             return response()->isForbidden();
         }
 
-
         $sourceVersion = $project->versions()->where('id', $request->input('source_version_id'))->first();
-        if (!Auth::user()->isGod() && Auth::user()->hasExhausedAiCredits()) {
+        if (! Auth::user()->isGod() && Auth::user()->hasExhausedAiCredits()) {
             return response()->redirectTo(route('projects.versions.edit', [$project, $sourceVersion]))
                 ->with('error', 'You have exhausted your AI credits for this month');
         }
@@ -106,17 +104,18 @@ class ProjectVersionController extends Controller
 
     public function publish(Project $project, ProjectVersion $version, Request $request)
     {
-        $hasOrder = Auth::user()->orders()->where('project_id', $project)->where('is_consumed', 1)->count() > 0;
+        $user = auth()->user();
+        $unconsumedOrder = $user->orders()->whereNull('consumed_at')->first();
 
-        if (Auth::user()->credits()->count() < 1) {
-            $request->session()->flash('error', 'You do not have license to publish this version');
-            return redirect()->route('projects.versions.edit', [$project, $version]);
+        if (! $project->isPublished() && ! $unconsumedOrder) {
+            return redirect()->route('projects.versions.edit', [$project, $version])
+                ->with('errorCode', 'credits')
+                ->with('error', 'You cannot publish a version without a license.');
         }
 
-        $version->publish();
-        $newDraftVersion = $project->versions()->latest()->first();
+        $newDraftVersion = $version->publish();
+        $request->session()->flash('success', 'Version '.$version->name.' published successfully');
 
-        $request->session()->flash('success', 'Version ' . $version->name . ' published successfully');
         return redirect()->route('projects.versions.edit', [$project, $newDraftVersion]);
     }
 

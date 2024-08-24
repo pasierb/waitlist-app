@@ -4,7 +4,6 @@ namespace App\View\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Component;
 
 class PricingCard extends Component
@@ -12,11 +11,10 @@ class PricingCard extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(public string $plan, public array $features)
-    {
-    }
+    public function __construct(public string $plan, public array $features) {}
 
-    private function title() {
+    private function title()
+    {
         if ($this->plan == 'single') {
             return 'Single waitlist';
         }
@@ -24,8 +22,9 @@ class PricingCard extends Component
         return '';
     }
 
-    private function selectRoute() {
-        switch($this->plan) {
+    private function selectRoute()
+    {
+        switch ($this->plan) {
             case 'single':
                 return route('checkout');
             case 'free':
@@ -33,8 +32,9 @@ class PricingCard extends Component
         }
     }
 
-    private function price() {
-        switch($this->plan) {
+    private function price()
+    {
+        switch ($this->plan) {
             case 'single':
                 return '$'.config('app.single_waitlist_price');
             case 'free':

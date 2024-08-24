@@ -68,4 +68,4 @@ Route::middleware(['auth'])->group(function () {
     Route::view('/stats', 'stats')->name('stats')->middleware(EnsureGodUser::class);
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

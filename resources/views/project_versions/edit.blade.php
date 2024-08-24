@@ -241,7 +241,7 @@ $fonts = [
                             </div>
                         </dialog>
 
-                        <x-dialog>
+                        <x-dialog id="ai_modal">
                             <x-slot:title>
                                 <div class="flex flex-row gap-2 items-center">
                                     <img x-bind:src="personas[persona].imageUrl" class="w-6 h-6 rounded-full"/>

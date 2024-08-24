@@ -41,16 +41,16 @@ class GptProjectVersionSuggestionService extends ProjectVersionSuggestionService
                         'data' => [
                             'level' => 1,
                             'text' => 'Thanks for signing up!',
-                        ]
+                        ],
                     ],
                     [
                         'type' => 'paragraph',
                         'data' => [
                             'text' => 'You\'ll receive an email shortly with more information.',
-                        ]
-                    ]
-                ]
-            ])
+                        ],
+                    ],
+                ],
+            ]),
         ]);
     }
 
@@ -110,195 +110,194 @@ EOD;
         'name' => 'editor_blocks',
         'strict' => false,
         'schema' => [
-            "type" => "object",
-            "properties" => [
-                "blocks" => [
-                    "oneOf" => [
+            'type' => 'object',
+            'properties' => [
+                'blocks' => [
+                    'oneOf' => [
                         [
-                            "type" => "object",
-                            "properties" => [
-                                "type" => [
-                                    "type" => "string",
-                                    "enum" => ["paragraph"]
+                            'type' => 'object',
+                            'properties' => [
+                                'type' => [
+                                    'type' => 'string',
+                                    'enum' => ['paragraph'],
                                 ],
-                                "data" => [
-                                    "type" => "object",
-                                    "properties" => [
-                                        "text" => [
-                                            "type" => "string"
-                                        ]
-                                    ],
-                                    "required" => ["text"]
-                                ]
-                            ],
-                            "required" => ["type", "data"]
-                        ],
-                        [
-                            "type" => "object",
-                            "properties" => [
-                                "type" => [
-                                    "type" => "string",
-                                    "enum" => ["header"]
-                                ],
-                                "data" => [
-                                    "type" => "object",
-                                    "properties" => [
-                                        "text" => [
-                                            "type" => "string"
+                                'data' => [
+                                    'type' => 'object',
+                                    'properties' => [
+                                        'text' => [
+                                            'type' => 'string',
                                         ],
-                                        "level" => [
-                                            "type" => "integer",
-                                            "enum" => [1, 2, 3, 4]
-                                        ]
                                     ],
-                                    "required" => ["text", "level"]
-                                ]
+                                    'required' => ['text'],
+                                ],
                             ],
-                            "required" => ["type", "data"]
+                            'required' => ['type', 'data'],
                         ],
                         [
-                            "type" => "object",
-                            "properties" => [
-                                "type" => [
-                                    "type" => "string",
-                                    "enum" => ["list"]
+                            'type' => 'object',
+                            'properties' => [
+                                'type' => [
+                                    'type' => 'string',
+                                    'enum' => ['header'],
                                 ],
-                                "data" => [
-                                    "type" => "object",
-                                    "properties" => [
-                                        "style" => [
-                                            "type" => "string",
-                                            "enum" => ["ordered", "unordered"]
+                                'data' => [
+                                    'type' => 'object',
+                                    'properties' => [
+                                        'text' => [
+                                            'type' => 'string',
                                         ],
-                                        "items" => [
-                                            "type" => "array",
-                                            "items" => [
-                                                "type" => "string"
-                                            ]
-                                        ]
-                                    ],
-                                    "required" => ["style", "items"]
-                                ]
-                            ],
-                            "required" => ["type", "data"]
-                        ],
-                        [
-                            "type" => "object",
-                            "properties" => [
-                                "type" => [
-                                    "type" => "string",
-                                    "enum" => ["text-input"]
-                                ],
-                                "data" => [
-                                    "type" => "object",
-                                    "properties" => [
-                                        "label" => [
-                                            "type" => "string"
+                                        'level' => [
+                                            'type' => 'integer',
+                                            'enum' => [1, 2, 3, 4],
                                         ],
-                                        "placeholder" => [
-                                            "type" => "string"
-                                        ]
                                     ],
-                                    "required" => ["label", "placeholder"]
-                                ]
+                                    'required' => ['text', 'level'],
+                                ],
                             ],
-                            "required" => ["type", "data"]
+                            'required' => ['type', 'data'],
                         ],
                         [
-                            "type" => "object",
-                            "properties" => [
-                                "type" => [
-                                    "type" => "string",
-                                    "enum" => ["email-input"]
+                            'type' => 'object',
+                            'properties' => [
+                                'type' => [
+                                    'type' => 'string',
+                                    'enum' => ['list'],
                                 ],
-                                "data" => [
-                                    "type" => "object",
-                                    "properties" => [
-                                        "button" => [
-                                            "description" => "Button label",
-                                            "type" => "string"
+                                'data' => [
+                                    'type' => 'object',
+                                    'properties' => [
+                                        'style' => [
+                                            'type' => 'string',
+                                            'enum' => ['ordered', 'unordered'],
                                         ],
-                                        "placeholder" => [
-                                            "description" => "Input placeholder",
-                                            "type" => "string"
-                                        ]
+                                        'items' => [
+                                            'type' => 'array',
+                                            'items' => [
+                                                'type' => 'string',
+                                            ],
+                                        ],
                                     ],
-                                    "required" => ["buttonLabel", "placeholder"]
-                                ]
+                                    'required' => ['style', 'items'],
+                                ],
                             ],
-                            "required" => ["type", "data"]
+                            'required' => ['type', 'data'],
                         ],
                         [
-                            "type" => "object",
-                            "properties" => [
-                                "type" => [
-                                    "type" => "string",
-                                    "enum" => ["faq"]
+                            'type' => 'object',
+                            'properties' => [
+                                'type' => [
+                                    'type' => 'string',
+                                    'enum' => ['text-input'],
                                 ],
-                                "data" => [
-                                    "type" => "object",
-                                    "properties" => [
-                                        "items" => [
-                                            "type" => "array",
-                                            "items" => [
-                                                "type" => "object",
-                                                "properties" => [
-                                                    "question" => [
-                                                        "type" => "string"
+                                'data' => [
+                                    'type' => 'object',
+                                    'properties' => [
+                                        'label' => [
+                                            'type' => 'string',
+                                        ],
+                                        'placeholder' => [
+                                            'type' => 'string',
+                                        ],
+                                    ],
+                                    'required' => ['label', 'placeholder'],
+                                ],
+                            ],
+                            'required' => ['type', 'data'],
+                        ],
+                        [
+                            'type' => 'object',
+                            'properties' => [
+                                'type' => [
+                                    'type' => 'string',
+                                    'enum' => ['email-input'],
+                                ],
+                                'data' => [
+                                    'type' => 'object',
+                                    'properties' => [
+                                        'button' => [
+                                            'description' => 'Button label',
+                                            'type' => 'string',
+                                        ],
+                                        'placeholder' => [
+                                            'description' => 'Input placeholder',
+                                            'type' => 'string',
+                                        ],
+                                    ],
+                                    'required' => ['buttonLabel', 'placeholder'],
+                                ],
+                            ],
+                            'required' => ['type', 'data'],
+                        ],
+                        [
+                            'type' => 'object',
+                            'properties' => [
+                                'type' => [
+                                    'type' => 'string',
+                                    'enum' => ['faq'],
+                                ],
+                                'data' => [
+                                    'type' => 'object',
+                                    'properties' => [
+                                        'items' => [
+                                            'type' => 'array',
+                                            'items' => [
+                                                'type' => 'object',
+                                                'properties' => [
+                                                    'question' => [
+                                                        'type' => 'string',
                                                     ],
-                                                    "answer" => [
-                                                        "type" => "string"
-                                                    ]
+                                                    'answer' => [
+                                                        'type' => 'string',
+                                                    ],
                                                 ],
-                                                "required" => ["question", "answer"]
-                                            ]
-                                        ]
+                                                'required' => ['question', 'answer'],
+                                            ],
+                                        ],
                                     ],
-                                    "required" => ["items"]
-                                ]
+                                    'required' => ['items'],
+                                ],
                             ],
-                            "required" => ["type", "data"]
+                            'required' => ['type', 'data'],
                         ],
                         [
-                            "type" => "object",
-                            "properties" => [
-                                "type" => [
-                                    "type" => "string",
-                                    "enum" => ["features"]
+                            'type' => 'object',
+                            'properties' => [
+                                'type' => [
+                                    'type' => 'string',
+                                    'enum' => ['features'],
                                 ],
-                                "data" => [
-                                    "type" => "object",
-                                    "properties" => [
-                                        "items" => [
-                                            "type" => "array",
-                                            "items" => [
-                                                "type" => "object",
-                                                "properties" => [
-                                                    "headline" => [
-                                                        "type" => "string"
+                                'data' => [
+                                    'type' => 'object',
+                                    'properties' => [
+                                        'items' => [
+                                            'type' => 'array',
+                                            'items' => [
+                                                'type' => 'object',
+                                                'properties' => [
+                                                    'headline' => [
+                                                        'type' => 'string',
                                                     ],
-                                                    "description" => [
-                                                        "type" => "string"
+                                                    'description' => [
+                                                        'type' => 'string',
                                                     ],
-                                                    "icon" => [
-                                                        "type" => "string",
-                                                        "description" => "Icon name from https://heroicons.com/"
-                                                    ]
+                                                    'icon' => [
+                                                        'type' => 'string',
+                                                        'description' => 'Icon name from https://heroicons.com/',
+                                                    ],
                                                 ],
-                                                "required" => ["headline", "description"]
-                                            ]
-                                        ]
+                                                'required' => ['headline', 'description'],
+                                            ],
+                                        ],
                                     ],
-                                    "required" => ["items"]
-                                ]
+                                    'required' => ['items'],
+                                ],
                             ],
-                            "required" => ["type", "data"]
-                        ]
-                    ]
-                ]
+                            'required' => ['type', 'data'],
+                        ],
+                    ],
+                ],
             ],
-            "required" => ["blocks"]
-        ]
+            'required' => ['blocks'],
+        ],
     ];
 }
-

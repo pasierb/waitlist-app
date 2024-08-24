@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProjectVersion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Laravel\Cashier\Cashier;
 
 class CheckoutController extends Controller
@@ -13,13 +15,11 @@ class CheckoutController extends Controller
      */
     public function create(Request $request)
     {
-        if (Auth::user()->isPremium()) {
-            return redirect()->route('dashboard');
-        }
-
         $stripePriceId = config('app.stripe_single_waitlist_price_id');
         $quantity = 1;
-        $successUrl = route('checkout-success') . '?session_id={CHECKOUT_SESSION_ID}';
+        $successUrl = route('checkout-success', [
+            'project_version_id' => $request->input('project_version_id'),
+        ]).'&session_id={CHECKOUT_SESSION_ID}';
 
         return Auth::user()->checkout([$stripePriceId => $quantity], [
             'success_url' => $successUrl,
@@ -50,12 +50,31 @@ class CheckoutController extends Controller
             return redirect()->route('checkout-cancel');
         }
 
-        Auth::user()->orders()->create([
+        $order = Auth::user()->orders()->create([
             'payment_status' => $session->payment_status,
             'is_completed' => $session->payment_status === 'paid',
         ]);
 
+        if ($request->has('project_version_id')) {
+            $version = ProjectVersion::find($request->input('project_version_id'));
+            if ($version !== null) {
+                DB::transaction(function () use ($order, $version, $request) {
+                    $project = $version->project()->first();
+                    $order->consume($project);
+                    $version->publish();
+
+                    $request->session()->flash('success', 'Payment successful!');
+
+                    return redirect()->route('projects.versions.edit', [
+                        'project' => $version->project()->first(),
+                        'version' => $version,
+                    ]);
+                });
+            }
+        }
+
         $request->session()->flash('success', 'Payment successful!');
+
         return redirect()->route('dashboard');
     }
 

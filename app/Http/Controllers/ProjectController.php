@@ -5,13 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
-use App\Models\ProjectVersion;
 use App\Services\CopyWriters\CopyWriterPersona;
 use App\Services\ProjectVersionSuggestionService;
-use Database\Factories\ProjectVersionFactory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class ProjectController extends Controller
 {
@@ -30,7 +27,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        $project = new Project();
+        $project = new Project;
         $project->user_id = Auth::id();
 
         return view('projects.create', compact('project'));
@@ -52,7 +49,7 @@ class ProjectController extends Controller
             $version->project()->associate($project);
             $version->prompt = $request->input('copy_writer_instructions');
             $version->persona = 'max';
-            $version->name = 'v' . ($project->versions()->count() + 1);
+            $version->name = 'v'.($project->versions()->count() + 1);
             $version->save();
         }
 
@@ -74,6 +71,7 @@ class ProjectController extends Controller
         $domain = $request->input('domain');
         if ($domain) {
             $project = Project::where('custom_domain', $domain)->firstOrFail();
+
             return redirect()->route('project.page', $project);
         }
 

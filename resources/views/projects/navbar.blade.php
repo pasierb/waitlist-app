@@ -61,20 +61,11 @@ $navLinks = [
                         @endforeach
                     </ul>
                 </div>
-                <form action="{{route('projects.versions.publish', [$project, $version])}}" method="POST">
-                    @csrf
-                    @if($version->id === $project->published_version_id)
-                        <button class="btn btn-sm" disabled>
-                            <x-heroicon-o-globe-alt class="h-4"/>
-                            Published
-                        </button>
-                    @else
-                        <button class="btn btn-sm">
-                            <x-heroicon-o-globe-alt class="h-4"/>
-                            Publish
-                        </button>
-                    @endif
-                </form>
+
+                <button class="btn btn-sm" x-on:click="publishConfirmationDialog.showModal()">
+                    Go
+                </button>
+                <x-project-publish-confirmation-dialog id="publishConfirmationDialog" :projectVersion="$version"/>
 
                 <a class="btn btn-sm"
                    target="_blank"

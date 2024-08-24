@@ -26,6 +26,11 @@ class Project extends Model
         return $this->hasOne(ProjectVersion::class, 'id', 'published_version_id');
     }
 
+    public function isPublished(): bool
+    {
+        return $this->published_version_id !== null;
+    }
+
     public function latestDraftVersion()
     {
         return $this->versions()
@@ -36,7 +41,7 @@ class Project extends Model
 
     public function url(): string
     {
-        $host = $this->slug . '.' . Url::fromString(config('app.url'))->getHost();
+        $host = $this->slug.'.'.Url::fromString(config('app.url'))->getHost();
 
         return Url::fromString(config('app.url'))
             ->withHost($host);

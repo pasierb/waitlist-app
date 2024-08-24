@@ -155,7 +155,7 @@
                    id="custom_domain-input"
                    name="custom_domain"
                    placeholder="example.com"
-                   @if(!Auth::user()->isPremium()) disabled @endif
+                   disabled
                    value="{{old('custom_domain') ?? $project->custom_domain}}"
                    class="input input-bordered w-full @error('custom_domain') input-error @enderror"/>
             @error('custom_domain')

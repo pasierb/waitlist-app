@@ -1,6 +1,6 @@
-@props(['title', 'footer'])
+@props(['id', 'title', 'footer'])
 
-<dialog id="ai_modal" class="modal">
+<dialog id="{{ $id  }}" class="modal">
     <div class="modal-box w-8/12 max-w-4xl flex flex-col max-h-full my-12">
         <div class="mb-4">
             <form method="dialog">

@@ -14,7 +14,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
-    'description' => "Build waitlists that look like pages, not forms",
+    'description' => 'Build waitlists that look like pages, not forms',
 
     /*
     |--------------------------------------------------------------------------

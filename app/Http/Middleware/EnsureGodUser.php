@@ -15,7 +15,7 @@ class EnsureGodUser
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!auth()->user()->isGod()) {
+        if (! auth()->user()->isGod()) {
             return abort(403);
         }
 
